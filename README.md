@@ -1,16 +1,17 @@
 # STA 437/2005  Winter 2025: 
 ## Methods for Multivariate Data
 
-<p align="center">
-<img src="pics/cover.jpeg" width="400">
-</p>
 
-This course introduces modern methods for multivariate data building also some theoretical foundations. The lecture is divided into six blocks: I. Foundations of Multivariate Analysis, II. Multivariate statistical Inference, III. Dimensionality Reduction Techniques, IV. Classification and Clustering Methods, V. Covariance matrix modelling and estimation, VI. Methods for Tensors.
+<img src="pics/cover.png" align="left" width="150"> This course introduces modern methods for multivariate data building also some theoretical foundations. The lecture is divided into six blocks: I. Foundations of Multivariate Analysis, II. Multivariate statistical Inference, III. Dimensionality Reduction Techniques, IV. Classification and Clustering Methods, V. Covariance matrix modelling and estimation, VI. Methods for Tensors.
+
+
+
 
 
 
 More details can be found in [syllabus](syllabus/syllabus.pdf) and [piazza](https://piazza.com/utoronto.ca/winter2025/sta437).
 
+***
 ***
 
 ### Announcements:
@@ -59,9 +60,9 @@ No required textbooks. Suggested reading will be posted after each lecture (See 
 
 | Week | Lectures  | Suggested reading | Tutorials | Video | Timeline |
 | --- |  --- | --- | --- | --- | --- | 
-| 1 | [Introduction <br/> Random vectors <br> Covariance matrices](slides/w01/sld01new.pdf)  | PML1 1.1-1.3 <br/> PML1 3.4, 4.2  |  [tut w1](slides/w01/tut01/tut01.pdf) | NA | [syllabus](syllabus/syllabus.pdf) |
-| 2 | [Decision theory <br/> Directed Graphical Models](slides/w02/sld02new.pdf) | PRML 1.5 <br/> PML2 4.2 | [tut w2](slides/w02/tut02.pdf)<br> [moralization](https://web.mit.edu/jmn/www/6.034/d-separation.pdf) | [rec w2](https://play.library.utoronto.ca/watch/8c39adc740c86d722215471e42f531ed) | |
-| 3 | [Markov Random Fields <br/> Exact inference](slides/w03/sld03new.pdf)  | PML2 2.3, 4.3 <br/> PML2 9.5 | [tut w3](slides/w03/tut03/tut03.pdf) | [rec w3<br> tut w3](https://play.library.utoronto.ca/watch/66546780843e33cd00a9ef10752dbcf4) | [hw1 out](#homeworks)  |
+| 1 | [Introduction <br/> Random vectors]()  | PML1 1.1-1.3 <br/> PML1 3.4, 4.2  |  [tut w1](slides/w01/tut01/tut01.pdf) | NA | [syllabus](syllabus/syllabus.pdf) |
+| 2 | [Covariance matrices <br/> Linear algebra]() | PRML 1.5 <br/> PML2 4.2 | [tut w2](slides/w02/tut02.pdf)<br> [moralization](https://web.mit.edu/jmn/www/6.034/d-separation.pdf) | [rec w2](https://play.library.utoronto.ca/watch/8c39adc740c86d722215471e42f531ed) | |
+| 3 | [Multivariate normal distribution <br/> Multivariate inference]()  | PML2 2.3, 4.3 <br/> PML2 9.5 | [tut w3](slides/w03/tut03/tut03.pdf) | [rec w3<br> tut w3](https://play.library.utoronto.ca/watch/66546780843e33cd00a9ef10752dbcf4) | [hw1 out](#homeworks)  |
 | 4 | [Message passing <br/> Monte Carlo Methods](slides/w04/sld04new.pdf)    | PML2 9.3, 9.4 <br/> PML2 11.1, 11.2, 11.5 | [tut w4](slides/w04/tut04.pdf)  | [rec w4](https://play.library.utoronto.ca/watch/7bf82f9fa7a0d8f640faae5885a84b02)| hw1 due |
 | 5 | [Markov Chain Monte Carlo](slides/w05/sld05new.pdf)   | PML2 2.6, 12.1-12.6  | [tut w5](slides/w05/tut5appendix.pdf),[demo](https://chi-feng.github.io/mcmc-demo/)<br> [notebook](slides/w05/tut5_MCMCex.ipynb)| [rec w5](https://play.library.utoronto.ca/watch/e5a8d315b82ef1308547d5200ecf68ae) | [hw2 out](#homeworks) |
 | 6 | [Hidden Markov Models <br/> Variational inference I](slides/w06/sld06new.pdf)   | PML2 9.2 <br/> PML2 5.1, | [HMM colab](https://colab.research.google.com/github/probml/dynamax/blob/main/docs/notebooks/hmm/casino_hmm_inference.ipynb) <br> [VI colab](https://colab.research.google.com/drive/1FEWTchUwZn6ybL6q0Txcyc02L-FCTq9u) | [rec w6](https://play.library.utoronto.ca/watch/2ea8805d0a03842ea43c0fd625df1f4a)| hw2 due |
