@@ -52,7 +52,7 @@ No required textbooks. Suggested reading will be posted after each lecture (See 
 * (MKB) K.V. Mardia, J.T. Kent, J.M. Bibby (1979) [Multivariate Analysis]()
 *	(PRML) Christopher M. Bishop (2006) [Pattern Recognition and Machine Learning](https://www.microsoft.com/en-us/research/people/cmbishop/prml-book/)
 *	(ESL) Trevor Hastie, Robert Tibshirani, Jerome Friedman (2009) [The Elements of Statistical Learning](https://web.stanford.edu/~hastie/ElemStatLearn/)
-
+* (K) Robert Kabacoff (2024) [Modern Data Visualization with R](https://rkabacoff.github.io/datavis/)
 
 ***
 
