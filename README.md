@@ -50,10 +50,11 @@ Ichiro Hashimoto, Kevin Zhang, Junhao Zhu
 ### Suggested Reading
 No required textbooks. Suggested reading will be posted after each lecture (See lectures below).
 * (MKB) K.V. Mardia, J.T. Kent, J.M. Bibby (1979) [Multivariate Analysis]()
+* (ET) Brian Everitt, Torsten Hothorn (2011) [An Introduction to Applied Multivariate Analysis with R]()
 *	(PRML) Christopher M. Bishop (2006) [Pattern Recognition and Machine Learning](https://www.microsoft.com/en-us/research/people/cmbishop/prml-book/)
 *	(ESL) Trevor Hastie, Robert Tibshirani, Jerome Friedman (2009) [The Elements of Statistical Learning](https://web.stanford.edu/~hastie/ElemStatLearn/)
 * (K) Robert Kabacoff (2024) [Modern Data Visualization with R](https://rkabacoff.github.io/datavis/)
-
+* (HH) Susan Holmes, Wolfgang Huber [Modern Statistics for Modern Biology](https://web.stanford.edu/class/bios221/book/)
 ***
 
 ## Lectures and timeline
