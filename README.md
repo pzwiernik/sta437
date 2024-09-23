@@ -49,22 +49,20 @@ Ichiro Hashimoto, Kevin Zhang, Junhao Zhu
 
 ### Suggested Reading
 No required textbooks. Suggested reading will be posted after each lecture (See lectures below).
-* (MKB) K.V. Mardia, J.T. Kent, J.M. Bibby (1979) [Multivariate Analysis]()
+* (MKB) K.V. Mardia, J.T. Kent, J.M. Bibby (2024) [Multivariate Analysis, 2nd edition](https://www.wiley.com/en-us/Multivariate+Analysis%2C+2nd+Edition-p-9781118738023)
 * (ET) Brian Everitt, Torsten Hothorn (2011) [An Introduction to Applied Multivariate Analysis with R]()
-*	(PRML) Christopher M. Bishop (2006) [Pattern Recognition and Machine Learning](https://www.microsoft.com/en-us/research/people/cmbishop/prml-book/)
-*	(ESL) Trevor Hastie, Robert Tibshirani, Jerome Friedman (2009) [The Elements of Statistical Learning](https://web.stanford.edu/~hastie/ElemStatLearn/)
-* (K) Robert Kabacoff (2024) [Modern Data Visualization with R](https://rkabacoff.github.io/datavis/)
 * (HH) Susan Holmes, Wolfgang Huber [Modern Statistics for Modern Biology](https://web.stanford.edu/class/bios221/book/)
+*	(PRML) Christopher M. Bishop (2006) [Pattern Recognition and Machine Learning](https://www.microsoft.com/en-us/research/people/cmbishop/prml-book/)
 ***
 
 ## Lectures and timeline
 
 | Week | Lectures  | Suggested reading | Tutorials | Video | Timeline |
 | --- |  --- | --- | --- | --- | --- | 
-| 1 | [Introduction <br/> Random vectors]()  | PML1 1.1-1.3 <br/> PML1 3.4, 4.2  |  [tut w1](slides/w01/tut01/tut01.pdf) | NA | [syllabus](syllabus/syllabus.pdf) |
-| 2 | [Covariance matrices <br/> Linear algebra]() | PRML 1.5 <br/> PML2 4.2 | [tut w2](slides/w02/tut02.pdf)<br> [moralization](https://web.mit.edu/jmn/www/6.034/d-separation.pdf) | [rec w2](https://play.library.utoronto.ca/watch/8c39adc740c86d722215471e42f531ed) | |
-| 3 | [Multivariate normal distribution <br/> Multivariate inference]()  | PML2 2.3, 4.3 <br/> PML2 9.5 | [tut w3](slides/w03/tut03/tut03.pdf) | [rec w3<br> tut w3](https://play.library.utoronto.ca/watch/66546780843e33cd00a9ef10752dbcf4) | [hw1 out](#homeworks)  |
-| 4 | [Message passing <br/> Monte Carlo Methods](slides/w04/sld04new.pdf)    | PML2 9.3, 9.4 <br/> PML2 11.1, 11.2, 11.5 | [tut w4](slides/w04/tut04.pdf)  | [rec w4](https://play.library.utoronto.ca/watch/7bf82f9fa7a0d8f640faae5885a84b02)| hw1 due |
+| 1 | [Introduction, multivariate graphics, some linear algebra<br/>Random vectors, covariance matrices, sample statistics]()  | PML1 1.1-1.3 <br/> PML1 3.4, 4.2  |  [tut w1](slides/w01/tut01/tut01.pdf) | NA | [syllabus](syllabus/syllabus.pdf) |
+| 2 | [Multivariate normal distribution: definition, basic properties <br/> Estimation for MVN models]() | PRML 1.5 <br/> PML2 4.2 | [tut w2](slides/w02/tut02.pdf)<br> [moralization](https://web.mit.edu/jmn/www/6.034/d-separation.pdf) | [rec w2](https://play.library.utoronto.ca/watch/8c39adc740c86d722215471e42f531ed) | |
+| 3 | [MVN: marginal and conditional distributions <br/> Derived distributions: Wishart, Hotelling T^2]()  | PML2 2.3, 4.3 <br/> PML2 9.5 | [tut w3](slides/w03/tut03/tut03.pdf) | [rec w3<br> tut w3](https://play.library.utoronto.ca/watch/66546780843e33cd00a9ef10752dbcf4) | [hw1 out](#homeworks)  |
+| 4 | [Principal Component Analysis: definition, basic examples <br/> Scree plot, Computations](slides/w04/sld04new.pdf)    | PML2 9.3, 9.4 <br/> PML2 11.1, 11.2, 11.5 | [tut w4](slides/w04/tut04.pdf)  | [rec w4](https://play.library.utoronto.ca/watch/7bf82f9fa7a0d8f640faae5885a84b02)| hw1 due |
 | 5 | [Markov Chain Monte Carlo](slides/w05/sld05new.pdf)   | PML2 2.6, 12.1-12.6  | [tut w5](slides/w05/tut5appendix.pdf),[demo](https://chi-feng.github.io/mcmc-demo/)<br> [notebook](slides/w05/tut5_MCMCex.ipynb)| [rec w5](https://play.library.utoronto.ca/watch/e5a8d315b82ef1308547d5200ecf68ae) | [hw2 out](#homeworks) |
 | 6 | [Hidden Markov Models <br/> Variational inference I](slides/w06/sld06new.pdf)   | PML2 9.2 <br/> PML2 5.1, | [HMM colab](https://colab.research.google.com/github/probml/dynamax/blob/main/docs/notebooks/hmm/casino_hmm_inference.ipynb) <br> [VI colab](https://colab.research.google.com/drive/1FEWTchUwZn6ybL6q0Txcyc02L-FCTq9u) | [rec w6](https://play.library.utoronto.ca/watch/2ea8805d0a03842ea43c0fd625df1f4a)| hw2 due |
 | 7 | Reading week <br/> (no class/tutorial)  | - | - | |- | 
