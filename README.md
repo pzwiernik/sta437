@@ -30,9 +30,8 @@ More details can be found in [syllabus](syllabus/syllabus.pdf) and [piazza](http
 ***
 
 ### Teaching Assistants:
-Ichiro Hashimoto, Kevin Zhang, Junhao Zhu 
-- <code><b>They will handle all questions related to homework assigments.</b></code>
-- Email: sta414.2104@course.utoronto.ca (in the subject of the email indicate the scope: HW1, HW2, general, etc)
+
+Miaoshiqi Liu, Peng Liu, Shupeng Chen, Rongqian Zhang, Luis Sierra Muntané
   
 
 ***
