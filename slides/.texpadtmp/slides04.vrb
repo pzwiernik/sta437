@@ -1,0 +1,5 @@
+\frametitle{PCA Biplot for Pottery data}
+PCA Biplot of Olympic Athletes	{\scriptsize
+\begin{center}
+\includegraphics[width=.6\textwidth]{pics/plot4.2.pdf}		
+\end{center}}

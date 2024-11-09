@@ -1,0 +1,583 @@
+\documentclass[11pt,handout,aspectratio=169]{beamer}
+
+
+\input{./defs.tex}
+
+\title[STA437-Week1]{STA 437/2005: \\ Methods for Multivariate Data}
+\subtitle[]{Week 1: Introduction and Preliminaries}
+\author[Prob Learning]{Piotr Zwiernik}
+\institute[UofT]{University of Toronto}
+\date{}
+
+
+\begin{document}
+<<setup, include=FALSE,echo=FALSE>>=
+library(knitr)
+knitr::opts_chunk$set(tidy=FALSE,         # Avoid tidying code automatically
+  echo=TRUE,          # Display code chunks in the document
+  results='markup',   # Display code results normally
+  comment=NA,         # Remove default "##" comment symbols in output
+  highlight=TRUE,      # Enable syntax highlighting
+  fig.path='pics/beamer-',fig.align='center',fig.show='hold',size='footnotesize')
+@
+\SweaveOpts{concordance=TRUE}
+
+\maketitle
+
+\begin{frame}{Table of contents}
+  \setbeamertemplate{section in toc}[sections numbered]
+  \tableofcontents%[hideallsubsections]
+\end{frame}
+
+
+
+\section{What is this class about?}
+% \begin{frame}
+% {The Team I}
+
+
+\begin{frame}{Multivariate datasets}
+\begin{itemize}
+	\item Modern datasets are high-dimensional and highly unstructured.\\[.7cm]
+	\item This means that we simultaneously observe many correlated features. \\[.7cm]
+	\item Modelling them independently is both \emph{wasteful} and statisticallly...\\[.7cm]
+	\item The problem is that our intuition works well only in 1D-3D.
+\end{itemize}	
+\end{frame}
+
+\begin{frame}{This course}
+  \begin{itemize}
+  \item Discuss some classical and more modern methods for multivariate datasets.\\[.7cm]
+  \item Build math toolbox that gives deeper understanding for these methods.\\[.7cm]
+  \item Aimed at advanced undergrad and master level graduate students. \\[.7cm]
+  \item 2 hrs lecture + 1 hour tutorial to get more hands-on experience. \\[.7cm]
+  \item We will use \alert{a lot of} real analysis, probability, and linear algebra. 
+  \begin{itemize}
+\item To large extend I am assuming you are comfortable with basic matrix algebra. 
+  \end{itemize}  
+  \end{itemize}
+\end{frame}
+
+
+\section{Administrative details}
+\begin{frame}{Course Information}
+Course Website: \url{https://pzwiernik.github.io/sta437/} 
+
+\vspace{.5em}
+ % 
+Main source of information is the course webpage; check regularly!
+
+%\pause
+
+We will also use \alert{Quercus} for {\bf announcements \& grades  etc}.
+
+\begin{itemize}
+\item You received an announcement on Sunday.
+\end{itemize}
+%\pause
+ % 
+We will use \alert{Piazza} for {\bf discussions}.
+\begin{itemize}
+\item Sign up via quercus or: \url{https://piazza.com/utoronto.ca/winter2024/sta414}
+\item Your grade {\bf does not depend on your participation on Piazza}. 
+\item We only allow questions that are related to the course materials/assignments/exams. 
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Course Information}
+\begin{itemize}
+\item This course have two \emph{identical} sections:
+  \begin{itemize}
+  \item Section 1: Wed 9-11am (tutorial Fri 9-10am)  
+  \item Section 2: Wed 1-3pm (tutorial Fri 1-2pm)  
+  \end{itemize}
+\item You are welcome to attend either one of the sections.
+  %\pause
+\item Instructor office hours are Monday 2pm-3:30pm, UY 9040.
+\item TA office hours will be announced later.
+%\pause
+\item Questions during lectures/tutorials are always welcome!
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Course Information}
+  \begin{itemize}
+  \item While cell phones and other electronics are not prohibited, talking, recording or taking pictures in class is prohibited without the consent of your instructor.
+  \item {Lecture slides and notes will be posted on the course webpage.} Please do let me know about typos you notice and/or any suggestions you might have.
+  \item For accessibility services: If you require additional academic accommodations, please contact UofT Accessibility Services as soon as possible, \url{studentlife.utoronto.ca/as}. No last minute arrangements will be considered.   
+  \end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]{Literature}
+This course is not following any particular book. \\[2mm]
+Recommended readings will be given for each lecture. The following will be useful throughout the course:
+{\small\begin{itemize} 
+\item Mardia, Kent, Bibby (1979), \textit{Multivariate Analysis}.
+ \item  Everitt, Hothorn (2011), \textit{An Introduction to Applied Multivariate Analysis with R}. 
+ \item Holms, Huber (2023), \textit{Modern Statistics for Modern Biology}.
+\end{itemize}}
+\bigskip 
+Use Appendix~A in [MKB] as reference for matrix algebra.
+\bigskip
+Some other books mentioned on the website.\\
+
+There are lots of freely available, high-quality resources online.
+
+\end{frame}
+
+%\begin{frame}[Fragile]{Setup in R}
+%<<>>=
+%CRAN_pkgs <- c("ggplot2", "dplyr", "tidyr", "mosaicData",
+%"carData", "VIM", "scales", "treemapify",
+%"gapminder","sf", "tidygeocoder", "mapview",
+%"ggmap", "osmdata", "choroplethr",
+%"choroplethrMaps", "lubridate", "CGPfunctions",
+%"ggcorrplot", "visreg", "gcookbook", "forcats",
+%"survival", "survminer", "car", "rgl",
+%"ggalluvial", "ggridges", "GGally", "superheat",
+%"waterfalls", "factoextra","networkD3",
+%"ggthemes", "patchwork", "hrbrthemes", "ggpol",
+%"quantmod", "gghighlight", "leaflet", "ggiraph",
+%"rbokeh", "ggalt","MVA")
+%library(CRAN_pkgs)
+%@	
+%\end{frame}
+
+\begin{frame}{Requirements and Marking}
+Ask Xin how this goes.
+\begin{itemize}
+  \item 10 quizes (in the end of the lecture)
+    \begin{itemize}
+    \item Combination of pen \!\& \!paper derivations and coding exercises
+    \item Equally weighted for a total of 30\%
+    \end{itemize}
+  % \item Read some classic papers.
+  %   \begin{itemize}
+  %   \item Worth 5\%, honor system.
+  %   \end{itemize}
+     % 
+     %\pause
+  \item Midterm
+    \begin{itemize}
+    \item 26/27 February (tentative)
+    \item $2$ hours 
+    \item Worth 30\% of course mark
+    \end{itemize}
+     % 
+          %\pause
+  \item Final Exam (In-Person)
+    \begin{itemize}
+    \item $\sim 2$-$3$ hours
+    \item Date and time TBA
+    \item Worth 40\% of course mark
+    \end{itemize}
+    \item Exam questions are  conceptual/theoretical; no coding.
+    \item \alert{Everybody must take the final exam! No exceptions.}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{More on tutorials}
+  \begin{itemize}
+  \item The goal is to get a more hands-on experience with the presented methods. 
+  \item We will be using \texttt{R} but the TAs can also help in Python if needed.
+  \item Extensions will be granted only in special situations, and you will need to fill out absence declaration form and \textbf{inform the instructor} or have documentation from the accessibility services.
+
+  \item You will be using Python and Numpy on assignments.
+  \end{itemize}\end{frame}
+
+%{
+%\setbeamercolor{background canvas}{bg=}
+%\includepdf[pages=1]{RSG.pdf}
+%}
+
+
+
+\begin{frame}
+  {Related Courses}
+  \begin{itemize}
+    \item STA314 and CSC311: Intro ML (overlap with clustering)\\[.2cm]
+    \item {STA414/2104}: More advanced ML (overlap with graphical models)\\[.2cm]
+    \item STA302: Linear regression and classical statistics   \\[.2cm]     
+    \item CSC2515: Advanced CSC311\\[.2cm]
+    \item CSC2532: Learning theory - Focus on mathematics of ML\\[.2cm]
+    \item Various topics and seminar style courses offered at DoSS and DCS
+
+ % \item If you have already taken an applied statistic course, there will be some overlap. 
+
+  \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Provisional Calendar (tentative)}
+\small
+\noindent \textbf{I. Introduction and preliminaries}\\
+week 1, Jan 8/9: \\[-1mm]
+	\begin{itemize}
+        \item Introduction, graphics, preliminaries.
+	\end{itemize}
+
+\noindent \textbf{II. Multivariate Gaussian distribution and Multivariate Inference}\\
+week 2, Jan 15/16: \\[-1mm]
+\begin{itemize}
+\item Multivariate Normal distribution
+\item Wishart distribution, Hotelling's T-squared test 
+\end{itemize}
+
+\noindent \textbf{III. Dimensionality reduction techniques (based on geometry)}\\
+week 3, Jan 22/23:\\[-1mm]
+\begin{itemize}
+\item SVD, Spectrum of a symmetric matrix
+  \item Principal Component Analysis
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Provisional Calendar (cont'ed)}
+\small
+week 4, Jan 29/30:\\[-1mm]
+\begin{itemize}
+\item Canonical Correlation Analysis (CCA)
+\item UMAP
+\end{itemize}
+
+week 5, Feb 5/6:\\[-1mm]
+  \begin{itemize}
+  \item Quick primer in neural nerworks 
+  \item Autoencoders, Sparse Autoencoders
+  \end{itemize}
+
+\noindent \textbf{IV. Advanced Classification and Clustering Methods}
+\textcolor{red}{Consider skipping?}
+week 6, Feb 12/13:\\[-1mm]
+\begin{itemize}
+\item Linear Discriminant Analysis, Gaussian mixtures, k-means
+\item hierarchical clustering
+\end{itemize}
+
+week 7:\quad \textcolor{blue}{Reading week}
+\end{frame}
+
+
+\begin{frame}
+{Provisional Calendar (cont'ed) }
+\small
+week 8,  Feb 26/27:\\[-1mm]
+  \begin{itemize}
+  \item \alert{Midterm exam on Feb 27/28}
+\end{itemize}
+
+\noindent \textbf{V. Dimensionality reduction techniques (based on probability)}
+\alert{Discuss measures of dependence??}
+week 9, Mar 4/5:\\[-1mm]
+\begin{itemize}
+\item Probabilistic PCA
+\item Factor Analysis
+\end{itemize}
+
+week 10, Mar 11/12:\\[-1mm]
+\begin{itemize}
+\item Gaussian graphical models, Graphical LASSO
+\item Linear Structural Equation Models
+\end{itemize}
+
+week 11, Mar 18/19:\\[-1mm]
+\begin{itemize}
+\item Shrinkage estimation
+\end{itemize}
+
+\noindent \textbf{V. Tensor data}
+
+week 12, Mar 25/26:\\[-1mm]
+\begin{itemize}
+\item Tensor data
+\end{itemize}
+
+ week 13, Apr 1/2:\\[-1mm]
+\begin{itemize} 
+\item TBD
+\end{itemize}
+\end{frame}
+
+\section{Introduction to multivariate statistics}
+
+\begin{frame}{Multivariate data}
+	\begin{itemize}
+		\item Many datasets consist of several variables measured on the same set of subjects: patients, samples, users, or organisms.
+		\item Goal: investigation of connections or associations between the different variables measured.
+		\item Usually the data are reported in a tabular data structure with one row for each subject and one column for each variable.  
+	\end{itemize}
+	\begin{exampleblock}{Example}
+	Studying the expression of 25{,}000 gene (columns) on many samples (rows) of patient-derived cells, we notice that many of the genes act together, either that they are positively correlated or that they are anti-correlated. We would miss a lot of important information if we were to only study each gene separately.	
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]{Example 1: Decathlon}
+The columns are a subset of gene expression measurements, they correspond to 156 genes that show differential expression between cell types:
+\scriptsize
+<<example1>>=
+data("olympic", package = "ade4")
+athletes = setNames(olympic$tab, 
+  c("m100", "long", "weight", "high", "m400", "m110", "disc", "pole", "javel", "m1500"))
+head(athletes)
+@
+\end{frame}
+
+
+%\begin{frame}[fragile]{Example 2: Hypothetical example}
+%<<set-data,echo=FALSE, include=FALSE>>=
+%hypo <- structure(list(individual = 1:10, sex = structure(c(2L, 2L, 2L,2L, 2L, 1L, 1L, 1L, 1L, 1L), .Label = c("Female", "Male"), class = "factor"),age = c(21L, 43L, 22L, 86L, 60L, 16L, NA, 43L, 22L, 80L),IQ = c(120L, NA, 135L, 150L, 92L, 130L, 150L, NA, 84L, 70L), depression = structure(c(2L, 1L, 1L, 1L, 2L, 2L, 2L, 2L,1L, 1L), .Label = c("No", "Yes"), class = "factor"), health = structure(c(3L,3L, 1L, 4L, 2L, 2L, 3L, 1L, 1L, 2L), .Label = c("Average","Good", "Very good", "Very poor"), class = "factor"), weight = c(150L,160L, 135L, 140L, 110L, 110L, 120L, 120L, 105L, 100L)), .Names = c("individual","sex", "age", "IQ", "depression", "health", "weight"), class = "data.frame", row.names = c(NA, -10L))
+%@
+%This is a hypothetical example of a dataset:{\scriptsize
+%<<example2>>=
+%hypo[4:8,-1]
+%@
+%}
+%Some potential issues:
+%\begin{itemize}
+%	\item Three types of data: {nominal}, ordinal, continuous.
+%	\item There are some missing entries (denoted with \texttt{NA}).
+%\end{itemize}
+%\end{frame}
+
+\begin{frame}[fragile]{Example 2: Star Wars}
+The Star Wars dataset comes from the dplyr package. It describes 13 charac-
+teristics of 87 characters from the Star Wars universe.
+\scriptsize
+<<example2>>=
+data("starwars", package = "dplyr")
+head(starwars[,c(1,2,3,5,6,7,8,11)])
+@
+\end{frame}
+
+\begin{frame}[fragile]{Example 3: Pottery}
+Chemical analysis data on Romano-British pottery made in three different regions (kiln 1, kilns 2-3, and kilns 4-5):{\scriptsize
+<<example3>>=
+data("pottery", package = "HSAUR2")
+head(pottery)
+@
+}
+Question: Do the chemical profiles of each pot suggest different types of pots and if any such types are related to kiln or region.
+\end{frame}
+
+
+\begin{frame}[fragile]{Example 4: US pollution data}
+Air pollution in cities in the USA. 
+{\scriptsize
+<<>>=
+data("USairpollution", package = "HSAUR2")
+head(USairpollution)
+@
+The following variables were obtained for 41 US cities:\\
+\texttt{SO2}: SO2 content of air in micrograms per cubic metre;\\
+\texttt{temp}: average annual temperature in degrees Fahrenheit;\\
+\texttt{manu}: number of manufacturing enterprises employing 20 or more workers;\\
+\texttt{popul}: population size (1970 census) in thousands;\\
+\texttt{wind}: average annual wind speed in miles per hour;\\
+\texttt{precip}: average annual precipitation in inches;\\
+\texttt{predays}: average number of days with precipitation per year.
+
+}
+\end{frame}
+
+\begin{frame}[fragile]{Example 5: Academic salaries}
+The Salaries dataset comes from the carData package. It describes the 9-
+month academic salaries of 397 US college professors at a single institution in
+2008-2009.
+\scriptsize
+<<>>=
+	data(Salaries, package="carData")
+head(Salaries)
+@
+\end{frame}
+
+\begin{frame}[fragile]{Example 6: A bigger example }
+Gene expression microarray dataset that reports the transcriptomes of 101 individual cells from mouse embryos at different time points in early development. 45101 genes are probed.
+\scriptsize
+<<>>=
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("Hiiragi2013")
+library("Hiiragi2013")
+data("x")
+dim(Biobase::exprs(x))
+dfx = as.data.frame(Biobase::exprs(x))
+@
+\end{frame}
+
+\begin{frame}{Main challenges}
+\begin{itemize}
+	\item Having 25{,}000 dimensions of variation to consider at once is daunting; we will show how to reduce our data to a smaller number of most important dimensions without losing too much information.
+	\item How to visualize multivariate data?
+	\item Sometimes we do not want dimensionality reduction techniques and need to model a high-dimensional data sets directly. We will learn about high-dimensional statistics. 
+\end{itemize}	
+\end{frame}
+ 
+\section{Multivariate data visualization}
+
+\begin{frame}[fragile]{Scatterplot for 2D datasets}
+	The scatterplot is the standard for representing continuous bivariate data.
+	{\scriptsize
+%<<plot1,fig.pos="t", fig.height=1, fig.width=1,fig.cap="">>=	
+%	mlab <- "Manufacturing enterprises with 20 or more workers"
+%	plab <- "Population size (1970 census) in thousands"
+%	plot(popul ~ manu, data = USairpollution, xlab = mlab, ylab = plab)
+@
+<<echo=FALSE>>=
+library(ggplot2)
+@
+<<plot1,fig.pos="t", fig.height=1, fig.width=1,fig.cap="",echo=FALSE>>=	
+	p <- ggplot(Salaries, aes(x = yrs.since.phd, y = salary)) + geom_point(color="cornflowerblue", size = 2, alpha=.8) + scale_y_continuous(label = scales::dollar, limits = c(50000, 250000)) + scale_x_continuous(breaks = seq(0, 60, 10),limits=c(0, 60)) + labs(x = "Years Since PhD", y = "", title = "Experience vs. Salary",subtitle = "9-month salary for 2008-2009")
+@
+<<echo=FALSE>>=
+ggsave("./pics/plot1.1.pdf", plot = p, width = 7, height = 5)
+@
+\begin{center}
+\includegraphics[width=.6\textwidth]{pics/plot1.1.pdf}		
+\end{center}}
+\end{frame}
+
+\begin{frame}[fragile]{Scatterplot for 2D datasets + categorical variable}
+	The scatterplot is the standard for representing continuous bivariate data.
+	{\scriptsize
+%<<plot1,fig.pos="t", fig.height=1, fig.width=1,fig.cap="">>=	
+%	mlab <- "Manufacturing enterprises with 20 or more workers"
+%	plab <- "Population size (1970 census) in thousands"
+%	plot(popul ~ manu, data = USairpollution, xlab = mlab, ylab = plab)
+@
+<<echo=FALSE>>=
+library(ggplot2)
+@
+<<plot1,fig.pos="t", fig.height=1, fig.width=1,fig.cap="",echo=FALSE>>=	
+	p <- ggplot(Salaries, aes(x = yrs.since.phd, y = salary,color=rank)) + geom_point(size = 2, alpha=.8) + scale_y_continuous(label = scales::dollar, limits = c(50000, 250000)) + scale_x_continuous(breaks = seq(0, 60, 10),limits=c(0, 60)) + labs(x = "Years Since PhD", y = "", title = "Experience vs. Salary",subtitle = "9-month salary for 2008-2009")
+@
+<<echo=FALSE>>=
+ggsave("./pics/plot1.2.pdf", plot = p, width = 9, height = 5)
+@
+\begin{center}
+\includegraphics[width=.7\textwidth]{pics/plot1.2.pdf}		
+\end{center}}
+In the tutorial you will work more on this example and add more features to this plot.
+\end{frame}
+
+\begin{frame}[fragile]{Scatterplot with some marginal information}
+<<echo=FALSE>>=
+library(patchwork)
+mlab <- "Manufacturing enterprises with 20 or more workers"plab <- "Population size (1970 census) in thousands"
+scatter_plot <- ggplot(USairpollution, aes(x = manu, y = popul)) + geom_point(alpha = 0) + geom_text(aes(label = abbreviate(row.names(USairpollution))), size = 5) + labs(x = mlab, y = plab) hist_plot <- ggplot(USairpollution, aes(x = manu)) + geom_histogram(binwidth = 200, fill = "steelblue", color = "black") +  labs(x = mlab, y = "") + theme_minimal()
+boxplot_plot <- ggplot(USairpollution, aes(y = popul)) + geom_boxplot() + labs(x = "", y = plab) + theme_minimal()
+layout <- (hist_plot+plot_spacer()+plot_layout(widths = c(4, 1))) / (scatter_plot + boxplot_plot + plot_layout(widths = c(8, 1))) + plot_layout(heights = c(1, 8))
+ggsave("./pics/plot1.3.pdf", plot = layout, width = 7, height = 5)
+@
+\begin{center}
+\includegraphics[width=.75\textwidth]{pics/plot1.3.pdf}		
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile]{2D kernel density estimation}
+In our bigger gene expression dataset, take a look at differential expression between a wildtype and an FGF4-KO sample.
+
+\tiny
+<<>>=
+scp <- ggplot(dfx, aes(x = `59 E4.5 (PE)`,y = `92 E4.5 (FGF4-KO)`))
+plot1 <- scp + geom_point()
+plot2 <- scp + geom_point(alpha = 0.1)
+plot3 <- scp + geom_density2d(h = 0.5, bins = 60)
+library("RColorBrewer")
+colorscale = scale_fill_gradientn(colors = rev(brewer.pal(9, "YlGnBu")), 
+	values = c(0, exp(seq(-5, 0, length.out = 100))))
+plot4 <- scp + stat_density2d(h = 0.5, bins = 60,aes( fill = after_stat(level)), geom = "polygon") +  colorscale + coord_fixed()
+@
+<<echo=FALSE>>=
+ggsave("./pics/plot1.5a.pdf", plot = plot1, width = 5, height = 5)
+ggsave("./pics/plot1.5b.pdf", plot = plot2, width = 5, height = 5)
+ggsave("./pics/plot1.5c.pdf", plot = plot3, width = 5, height = 5)
+ggsave("./pics/plot1.5d.pdf", plot = plot4, width = 7, height = 5)
+@
+\begin{center}
+\includegraphics[height=3.2cm,width=3.2cm]{pics/plot1.5a.pdf}\includegraphics[height=3.2cm,width=3.2cm]{pics/plot1.5b.pdf}\includegraphics[height=3.2cm,width=3.2cm]{pics/plot1.5c.pdf}	\includegraphics[height=3.2cm,width=4.3cm]{pics/plot1.5d.pdf}			
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{The scatterplot matrix and lattice plots}
+%\scriptsize
+<<echo=FALSE>>=
+library(GGally)
+# Custom function to adjust point size and color by a factor variable
+custom_points <- function(data, mapping, ...){
+  ggplot(data, mapping) +
+    geom_point(pch = ".", size = 2, color = "darkblue") +
+    theme_minimal()
+}
+# Create a scatterplot matrix with ggpairs using custom points
+p <- ggpairs(USairpollution, 
+        upper = list(continuous = custom_points), 
+        lower = list(continuous = custom_points))
+ggsave("./pics/plot1.4.pdf", plot = p, width = 7, height = 5)
+@
+\begin{center}
+\includegraphics[width=.75\textwidth]{pics/plot1.4.pdf}		
+\end{center}
+\end{frame}
+
+
+
+\begin{frame}[fragile]{The scatterplot matrix and lattice plots + 2D kernel density estimators}
+%\scriptsize
+<<echo=FALSE>>=
+library(GGally)
+# Custom function to adjust point size and color by a factor variable
+custom_points <- function(data, mapping, ...){
+  ggplot(data, mapping) +
+    geom_point(pch = ".", size = 2, color = "darkblue") +    # Scatterplot points
+    geom_density_2d(color = "seagreen") +                         # 2D kernel density contour
+    theme_minimal()
+}
+# Create a scatterplot matrix with ggpairs using custom points
+p <- ggpairs(USairpollution, 
+        upper = list(continuous = custom_points), 
+        lower = list(continuous = custom_points))
+ggsave("./pics/plot1.6.pdf", plot = p, width = 7, height = 5)
+@
+\begin{center}
+\includegraphics[width=.75\textwidth]{pics/plot1.6.pdf}		
+\end{center}
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]{Interactive graphics: Plotly}
+Plotly is a powerful library for creating interactive, web-based visualizations. It's available in several programming languages including R and Python. With Plotly, users can create interactive plots like scatter plots, bar charts, heatmaps, and 3D plots.
+<<>>=
+library(ggplot2)
+library(plotly)
+p <- ggplot(mpg, aes(x=displ, y=hwy, color=class)) + geom_point(size=3) + labs(x = "Engine displacement",
+y = "Highway Mileage",color = "Car Class") + theme_bw()
+ggplotly(p)
+@
+Mousing over a point displays information about that point. Clicking on a
+legend point, removes that class from the plot. Clicking on it again returns it.
+Popup tools on the upper right of the plot allow you to zoom in and out of
+the image, pan, select, reset axes, and download the image as a png file.
+\end{frame}
+
+\section{Notation and preliminaries}
+
+\begin{frame}{Summary of this part}
+	\begin{itemize}
+		\item Vectors, matrices, random vectors
+		\item Interpretations for $A\mathbf x$ and $AB$
+		\item Linearity of expectation, bilinearity of covariance
+	\end{itemize}
+\end{frame}
+
+\end{document}
