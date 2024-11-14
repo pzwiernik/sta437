@@ -36,12 +36,12 @@ Miaoshiqi Liu, Peng Liu, Shupeng Chen, Rongqian Zhang, Luis Sierra Muntané
 
 ***
 
-### Time & Location:
+### Lecture Time & Location:
 
 | Section | Room | Lecture time| 
 | --- | --- | --- | 
-| STA 414 LEC0101 & STA 2104 LEC0101| PB B250 | M 14-17 | 
-| STA 414 LEC5101 & STA 2104 LEC5101 | MS 2170 | T 18-21 | 
+| STA 437 LEC0101 & STA 2105 LEC0101| BR 200 | W 9-11 (lecture), F 9-10 (tutorials)| 
+| STA 437 LEC5101 & STA 2105 LEC5101 | SF 1105 | W 13-15 (lecture), F 13-14 (tutorials)| 
 
 
 ***
