@@ -2,7 +2,7 @@
 ## Methods for Multivariate Data
 
 
-<img src="pics/cover.png" align="left" width="150"> This course introduces modern methods for multivariate data building also some theoretical foundations. The lecture is divided into five blocks: I. Foundations of Multivariate Analysis, II. Multivariate statistical Inference, III. Dimensionality Reduction Techniques, IV. Covariance matrix modelling and estimation, VI. Methods for Tensors.
+<img src="pics/cover.png" align="left" width="150"> This course introduces modern methods for multivariate data building also some theoretical foundations. The lecture is divided into five blocks: I. Foundations of Multivariate Analysis, II. Multivariate statistical Inference, III. Dimensionality Reduction Techniques, IV. Covariance matrix modelling and estimation, V. Methods for Tensors.
 
 
 
@@ -62,10 +62,10 @@ Lecture notes will cover most of the material presented in class. To get deeper 
 | --- |  --- | --- | --- | --- | --- | 
 | 1 | Introduction, multivariate graphics, some linear algebra<br/>Random vectors, covariance matrices, sample statistics  | MKB  |  [tut w1]() | NA | [syllabus]() |
 | 2 | Multivariate normal distribution: definition, basic properties <br/> Estimation for MVN models |  | [tut w2]() |  | |
-| 3 | Gaussian Processes: basic definitions and examples <br> Non-Gaussian distributions: elliptical distributions, copulas |  | [tut w3]() |  | [hw1 out](#homeworks)  |
-| 4 | Non-Gaussian distributions: Gaussian mixtures <br> Principal Component Analysis: definition, basic examples     |  | [tut w4]()  | | hw1 due |
-| 5 | Principal Component Analysis: Scree plot, Computations  <br> Uniform Manifold Approximation and Projection (UMAP)  |  | [tut w4]()  | | hw1 due |
-| 6 |   |  | [tut w4]()  | | hw1 due |
+| 3 | Gaussian Processes: basic definitions and examples <br>  |  | [tut w3]() |  | [hw1 out](#homeworks)  |
+| 4 | Non-Gaussian distributions: elliptical distributions, copulas <br> Non-Gaussian distributions: Gaussian mixtures     |  | [tut w4]()  | | hw1 due |
+| 5 | Principal Component Analysis: definition, basic examples  <br> Principal Component Analysis: Scree plot, Computations   |  | [tut w5]()  | | hw1 due |
+| 6 |  Uniform Manifold Approximation and Projection (UMAP) <br> Autoencoders |  | [tut w6]()  | | hw1 due |
 | 7 | Reading week <br/> (no class/tutorial)  | - | - | |- | 
 | 8 | Midterm exam   |  | - | | midterm |
 | 9 | Canonical Correlation Analysis (CCA)  |  | [tut w7]()| | |
