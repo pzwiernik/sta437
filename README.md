@@ -47,7 +47,7 @@ Miaoshiqi Liu, Peng Liu, Shupeng Chen, Rongqian Zhang, Luis Sierra Muntané
 ***
 
 ### Suggested Reading
-[Lecture notes]() (the file will be updated as the course progresses)
+[Lecture notes]() (the file will be updated as the course progresses so don't print the whole document)
 
 The lecture notes cover all the material presented in class. Some of the textbooks I used:
 * (MKB) K.V. Mardia, J.T. Kent, J.M. Bibby (2024) [Multivariate Analysis, 2nd edition](https://www.wiley.com/en-us/Multivariate+Analysis%2C+2nd+Edition-p-9781118738023)
