@@ -49,7 +49,7 @@ Miaoshiqi Liu, Peng Liu, Shupeng Chen, Rongqian Zhang, Luis Sierra Muntané
 ### Suggested Reading
 [Lecture notes]() (the file will be updated as the course progresses)
 
-Lecture notes will cover most of the material presented in class. To get deeper understanding of the material I will occasionally be pointing you to:
+The lecture notes cover all the material presented in class. Some of the textbooks I used:
 * (MKB) K.V. Mardia, J.T. Kent, J.M. Bibby (2024) [Multivariate Analysis, 2nd edition](https://www.wiley.com/en-us/Multivariate+Analysis%2C+2nd+Edition-p-9781118738023)
 * (ET) Brian Everitt, Torsten Hothorn (2011) [An Introduction to Applied Multivariate Analysis with R]()
 * (HH) Susan Holmes, Wolfgang Huber [Modern Statistics for Modern Biology](https://web.stanford.edu/class/bios221/book/)
