@@ -16,7 +16,7 @@ More details can be found in [syllabus](syllabus/syllabus.pdf) and [piazza](http
 
 ### Announcements:
 
-- Lectures begin on Jan 8/9!
+- Lectures begin on Jan 8!
 
 ***
 
