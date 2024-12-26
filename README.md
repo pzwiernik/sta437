@@ -56,7 +56,7 @@ The lecture notes cover all the material presented in class. Some of the textboo
 *	(PRML) Christopher M. Bishop (2006) [Pattern Recognition and Machine Learning](https://www.microsoft.com/en-us/research/people/cmbishop/prml-book/)
 ***
 
-## Lectures and timeline
+## Lectures and timeline (provisional)
 
 | Week | Lectures  | Suggested reading | Tutorials | .  | Timeline |
 | --- |  --- | --- | --- | --- | --- | 
