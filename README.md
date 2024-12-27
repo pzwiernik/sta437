@@ -7,9 +7,7 @@
 
 
 
-
-
-More details can be found in [syllabus](syllabus/syllabus.pdf) and [piazza](https://piazza.com/utoronto.ca/winter2025/sta437).
+More details can be found in [syllabus](syllabus/syllabus.pdf) and [piazza](https://piazza.com/utoronto.ca/winter2025/sta4372005).
 
 ***
 ***
