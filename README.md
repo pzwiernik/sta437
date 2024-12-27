@@ -58,11 +58,11 @@ The lecture notes cover all the material presented in class. Some of the textboo
 
 | Week | Lectures  | Suggested reading | Tutorials | .  | Timeline |
 | --- |  --- | --- | --- | --- | --- | 
-| 1 | Introduction, some linear algebra, matrix decompositions<br/>Random vectors, covariance matrices, sample statistics  | MKB  |  [tut w1]() | NA | [syllabus]() |
-| 2 | Multivariate normal distribution: definition, basic properties <br/> Conditional distribution, conditional independence |  | [tut w2]() |  | |
-| 3 | Estimation for MVN models <br> Gaussian Processes: basic definitions and examples   |  | [tut w3]() |  | [hw1 out](#homeworks)  |
-| 4 | Non-Gaussian distributions: elliptical distributions, copulas <br> Non-Gaussian distributions: Gaussian mixtures     |  | [tut w4]()  | | hw1 due |
-| 5 | Principal Component Analysis: definition, basic examples  <br> Principal Component Analysis: Scree plot, Computations   |  | [tut w5]()  | | hw1 due |
+| 1 | Introduction, some linear algebra, matrix decompositions<br/>Random vectors, covariance matrices, sample statistics  | MKB  | LSM | NA | [syllabus]() |
+| 2 | Multivariate normal distribution: definition, basic properties <br/> Conditional distribution, conditional independence |  | ML |  | |
+| 3 | Estimation for MVN models <br> Gaussian Processes: basic definitions and examples   |  | RZ |  | [hw1 out](#homeworks)  |
+| 4 | Non-Gaussian distributions: elliptical distributions, copulas <br> Non-Gaussian distributions: Gaussian mixtures     |  | PL  | | hw1 due |
+| 5 | Principal Component Analysis: definition, basic examples  <br> Principal Component Analysis: Scree plot, Computations   |  | midterm1  | | hw1 due |
 | 6 |  Uniform Manifold Approximation and Projection (UMAP) <br> Autoencoders |  | [tut w6]()  | | hw1 due |
 | 7 | Reading week <br/> (no class/tutorial)  | - | - | |- | 
 | 8 | Midterm exam   |  | - | | midterm |
