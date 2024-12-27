@@ -29,7 +29,7 @@ More details can be found in [syllabus](syllabus/syllabus.pdf) and [piazza](http
 
 ### Teaching Assistants:
 
-Miaoshiqi Liu, Peng Liu, Shupeng Chen, Rongqian Zhang, Luis Sierra Muntané
+Miaoshiqi Liu (miaoshiqi.liu@mail.utoronto.ca), Peng Liu (penn.liu@mail.utoronto.ca), Shupeng Chen (shupeng.chen@mail.utoronto.ca), Rongqian Zhang (rongqian.zhang@mail.utoronto.ca), Luis Sierra Muntané (luis.sierra@mail.utoronto.ca)
   
 
 ***
