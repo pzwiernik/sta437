@@ -61,16 +61,16 @@ The lecture notes cover all the material presented in class. Some of the textboo
 | 1 | Introduction, some linear algebra, matrix decompositions<br/>Random vectors, covariance matrices, sample statistics  | MKB  | LSM | NA | [syllabus]() |
 | 2 | Multivariate normal distribution: definition, basic properties <br/> Conditional distribution, conditional independence |  | ML |  | |
 | 3 | Estimation for MVN models <br> Gaussian Processes: basic definitions and examples   |  | RZ |  | [hw1 out](#homeworks)  |
-| 4 | Non-Gaussian distributions: elliptical distributions, copulas <br> Non-Gaussian distributions: Gaussian mixtures     |  | PL  | | hw1 due |
-| 5 | Principal Component Analysis: definition, basic examples  <br> Principal Component Analysis: Scree plot, Computations   |  | midterm1  | | hw1 due |
-| 6 |  Uniform Manifold Approximation and Projection (UMAP) <br> Autoencoders |  | [tut w6]()  | | hw1 due |
-| 7 | Reading week <br/> (no class/tutorial)  | - | - | |- | 
-| 8 | Midterm exam   |  | - | | midterm |
-| 9 | Canonical Correlation Analysis (CCA)  |  | [tut w7]()| | |
-| 10 | Graphical models: basic definitions <br> Gaussian Graphical models | | [tut w8]() | | [hw3 out](#homeworks) |
-| 11 | Factor Analysis models |  |   [tut w9]() | |  |
-| 12 | Introduction to tensor methods  |  | [tut w10]()  |  | hw3 due |
-| 13 | TBA  |  | | |  |
+| 4 | Non-Gaussian distributions: elliptical distributions, copulas <br> Non-Gaussian distributions: Gaussian mixtures     |  | PL  | |  |
+| 5 | Principal Component Analysis: definition, basic examples   |  | midterm1  | |  |
+| 6 | Principal Component Analysis: Scree plot, Computations  |  | SCh  | |  |
+| 7 | Reading week <br/> (no class/tutorial)  | - | - | | Final project out | 
+| 8 | Uniform Manifold Approximation and Projection (UMAP) <br> Autoencoders |  | ML | | midterm |
+| 9 | Canonical Correlation Analysis (CCA)  |  | RZ| | |
+| 10 | Graphical models: basic definitions <br> Gaussian Graphical models | | midterm2 | | |
+| 11 | Factor Analysis models |  |   PL | |  |
+| 12 | Introduction to tensor methods  |  | SCh  |  | Final Project due |
+| 13 | TBA  |  | LSM| |  |
 
 <!--
 | 1 | [Introduction <br/> Probabilistic Models](slides/w01/sld01.pdf) | | PML1 1.1-1.3 <br/> PML1 3.4, 4.2  |  [tut w1](slides/w01/tut01/tut01.pdf) | [syllabus](syllabus/syllabus.pdf) |
