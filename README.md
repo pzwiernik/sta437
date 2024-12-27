@@ -67,10 +67,10 @@ The lecture notes cover all the material presented in class. Some of the textboo
 | 7 | Reading week <br/> (no class/tutorial)  | - | - | | Final project out | 
 | 8 | Uniform Manifold Approximation and Projection (UMAP) <br> Autoencoders |  | ML | | midterm |
 | 9 | Canonical Correlation Analysis (CCA)  |  | RZ| | |
-| 10 | Graphical models: basic definitions <br> Gaussian Graphical models | | midterm2 | | |
-| 11 | Factor Analysis models |  |   PL | |  |
-| 12 | Introduction to tensor methods  |  | SCh  |  | Final Project due |
-| 13 | TBA  |  | LSM| |  |
+| 10 | Graphical models: basic definitions <br> Undirected Gaussian Graphical models | | midterm2 | | |
+| 11 | Directed Acyclic Graph models |  |   PL | |  |
+| 12 |  Factor Analysis models |  | SCh  |  | Final Project due |
+| 13 | Introduction to tensor methods  |  | LSM| |  |
 
 <!--
 | 1 | [Introduction <br/> Probabilistic Models](slides/w01/sld01.pdf) | | PML1 1.1-1.3 <br/> PML1 3.4, 4.2  |  [tut w1](slides/w01/tut01/tut01.pdf) | [syllabus](syllabus/syllabus.pdf) |
