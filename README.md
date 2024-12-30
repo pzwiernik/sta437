@@ -62,15 +62,15 @@ The lecture notes cover all the material presented in class. Some of the textboo
 | 2 | Multivariate normal distribution: definition, basic properties <br/> Conditional distribution, conditional independence |  | ML | 15 Jan | |
 | 3 | Estimation for MVN models <br> Gaussian Processes: basic definitions and examples   |  | RZ | 22 Jan |   |
 | 4 | Non-Gaussian distributions: elliptical distributions, copulas <br> Non-Gaussian distributions: Gaussian mixtures     |  | PL  | 29 Jan |  |
-| 5 | Principal Component Analysis: definition, basic examples   |  | midterm1  | 5 Feb|  |
+| 5 | Principal Component Analysis: definition, basic examples   |  | **midterm1**  | 5 Feb|  |
 | 6 | Principal Component Analysis: Scree plot, Computations  |  | SCh  | 12 Feb|  |
 | 7 | Reading week <br/> (no class/tutorial)  | - | - | - | Final project out | 
 | 8 | Laplacian eigenmap <br> Uniform Manifold Approximation and Projection (UMAP) |  | ML | 26 Feb |  |
 | 9 | Basics of neural networks <br> Autoencoders |  | RZ | 5 Mar|  |
-| 10 | Canonical Correlation Analysis (CCA)  |  | midterm2| 12 Mar| |
+| 10 | Canonical Correlation Analysis (CCA)  |  | **midterm2**| 12 Mar| |
 | 11 | Graphical models: basic definitions <br> Undirected Gaussian Graphical models | | PL | 19 Mar| |
 | 12 |  Factor Analysis models |  | SCh  | 26 Mar |  |
-| 13 | Introduction to tensor methods  |  | LSM| Apr 2| Final Project due |
+| 13 | Introduction to tensor methods  |  | LSM| Apr 2| **Final Project due** |
 
 
 
