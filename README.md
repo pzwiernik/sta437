@@ -58,7 +58,7 @@ The lecture notes cover all the material presented in class. Some of the textboo
 
 | Week | Lectures  | Slides | Tutorials | Lecture date  | Timeline |
 | --- |  --- | --- | --- | --- | --- | 
-| 1 | Introduction, some linear algebra, matrix decompositions<br/>Random vectors, covariance matrices, sample statistics  |   | LSM |  8 Jan| [syllabus]() |
+| 1 | Introduction, some linear algebra, matrix decompositions<br/>Random vectors, covariance matrices, sample statistics  | [w1](./slides/slides_intro.pdf)  | LSM |  8 Jan| [syllabus]() |
 | 2 | Multivariate normal distribution: definition, basic properties <br/> Conditional distribution, conditional independence |  | ML | 15 Jan | |
 | 3 | Estimation for MVN models <br> Gaussian Processes: basic definitions and examples   |  | RZ | 22 Jan |   |
 | 4 | Non-Gaussian distributions: elliptical distributions, copulas <br> Non-Gaussian distributions: Gaussian mixtures     |  | PL  | 29 Jan |  |
