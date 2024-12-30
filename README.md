@@ -56,7 +56,7 @@ The lecture notes cover all the material presented in class. Some of the textboo
 
 ## Lectures and timeline (provisional)
 
-| Week | Lectures  | Suggested reading | Tutorials | .  | Timeline |
+| Week | Lectures  | Slides | Tutorials | .  | Timeline |
 | --- |  --- | --- | --- | --- | --- | 
 | 1 | Introduction, some linear algebra, matrix decompositions<br/>Random vectors, covariance matrices, sample statistics  | MKB  | LSM | NA | [syllabus]() |
 | 2 | Multivariate normal distribution: definition, basic properties <br/> Conditional distribution, conditional independence |  | ML |  | |
@@ -65,10 +65,10 @@ The lecture notes cover all the material presented in class. Some of the textboo
 | 5 | Principal Component Analysis: definition, basic examples   |  | midterm1  | |  |
 | 6 | Principal Component Analysis: Scree plot, Computations  |  | SCh  | |  |
 | 7 | Reading week <br/> (no class/tutorial)  | - | - | | Final project out | 
-| 8 | Uniform Manifold Approximation and Projection (UMAP) <br> Autoencoders |  | ML | | midterm |
-| 9 | Canonical Correlation Analysis (CCA)  |  | RZ| | |
-| 10 | Graphical models: basic definitions <br> Undirected Gaussian Graphical models | | midterm2 | | |
-| 11 | Directed Acyclic Graph models |  |   PL | |  |
+| 8 | Laplacian eigenmap <br> Uniform Manifold Approximation and Projection (UMAP) <br> Autoencoders |  | ML | | midterm |
+| 9 | Basics of neural networks <br> Autoencoders |  | ML | | midterm |
+| 10 | Canonical Correlation Analysis (CCA)  |  | RZ| | |
+| 11 | Graphical models: basic definitions <br> Undirected Gaussian Graphical models | | midterm2 | | |
 | 12 |  Factor Analysis models |  | SCh  |  | Final Project due |
 | 13 | Introduction to tensor methods  |  | LSM| |  |
 
