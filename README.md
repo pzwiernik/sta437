@@ -65,8 +65,8 @@ The lecture notes cover all the material presented in class. Some of the textboo
 | 5 | Principal Component Analysis: definition, basic examples   |  | midterm1  | 5 Feb|  |
 | 6 | Principal Component Analysis: Scree plot, Computations  |  | SCh  | 12 Feb|  |
 | 7 | Reading week <br/> (no class/tutorial)  | - | - | - | Final project out | 
-| 8 | Laplacian eigenmap <br> Uniform Manifold Approximation and Projection (UMAP) |  | ML | 26 Feb | midterm |
-| 9 | Basics of neural networks <br> Autoencoders |  | RZ | 5 Mar| midterm |
+| 8 | Laplacian eigenmap <br> Uniform Manifold Approximation and Projection (UMAP) |  | ML | 26 Feb |  |
+| 9 | Basics of neural networks <br> Autoencoders |  | RZ | 5 Mar|  |
 | 10 | Canonical Correlation Analysis (CCA)  |  | midterm2| 12 Mar| |
 | 11 | Graphical models: basic definitions <br> Undirected Gaussian Graphical models | | PL | 19 Mar| |
 | 12 |  Factor Analysis models |  | SCh  | 26 Mar | Final Project due |
