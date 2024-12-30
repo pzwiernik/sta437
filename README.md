@@ -69,8 +69,8 @@ The lecture notes cover all the material presented in class. Some of the textboo
 | 9 | Basics of neural networks <br> Autoencoders |  | RZ | 5 Mar|  |
 | 10 | Canonical Correlation Analysis (CCA)  |  | midterm2| 12 Mar| |
 | 11 | Graphical models: basic definitions <br> Undirected Gaussian Graphical models | | PL | 19 Mar| |
-| 12 |  Factor Analysis models |  | SCh  | 26 Mar | Final Project due |
-| 13 | Introduction to tensor methods  |  | LSM| Apr 2|  |
+| 12 |  Factor Analysis models |  | SCh  | 26 Mar |  |
+| 13 | Introduction to tensor methods  |  | LSM| Apr 2| Final Project due |
 
 
 
