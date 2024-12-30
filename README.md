@@ -7,9 +7,7 @@
 
 
 
-
-
-More details can be found in [syllabus](syllabus/syllabus.pdf) and [piazza](https://piazza.com/utoronto.ca/winter2025/sta437).
+More details can be found in [syllabus](syllabus/syllabus.pdf) and [piazza](https://piazza.com/utoronto.ca/winter2025/sta4372005).
 
 ***
 ***
@@ -25,13 +23,13 @@ More details can be found in [syllabus](syllabus/syllabus.pdf) and [piazza](http
 | Prof |  [Piotr Zwiernik](https://pzwiernik.github.io/) |
 | :--- | :--- |
 | Email | piotr.zwiernik@utoronto.ca |
-| Office hours | TBA |
+| Office hours | Tuesday, 13:30-15:00 (UY 9033) |
 
 ***
 
 ### Teaching Assistants:
 
-Miaoshiqi Liu, Peng Liu, Shupeng Chen, Rongqian Zhang, Luis Sierra Muntané
+Miaoshiqi Liu (miaoshiqi.liu@mail.utoronto.ca), Peng Liu (penn.liu@mail.utoronto.ca), Shupeng Chen (shupeng.chen@mail.utoronto.ca), Rongqian Zhang (rongqian.zhang@mail.utoronto.ca), Luis Sierra Muntané (luis.sierra@mail.utoronto.ca)
   
 
 ***
@@ -56,23 +54,23 @@ The lecture notes cover all the material presented in class. Some of the textboo
 *	(PRML) Christopher M. Bishop (2006) [Pattern Recognition and Machine Learning](https://www.microsoft.com/en-us/research/people/cmbishop/prml-book/)
 ***
 
-## Lectures and timeline
+## Lectures and timeline (provisional)
 
 | Week | Lectures  | Suggested reading | Tutorials | .  | Timeline |
 | --- |  --- | --- | --- | --- | --- | 
-| 1 | Introduction, some linear algebra, matrix decompositions<br/>Random vectors, covariance matrices, sample statistics  | MKB  |  [tut w1]() | NA | [syllabus]() |
-| 2 | Multivariate normal distribution: definition, basic properties <br/> Conditional distribution, conditional independence |  | [tut w2]() |  | |
-| 3 | Estimation for MVN models <br> Gaussian Processes: basic definitions and examples   |  | [tut w3]() |  | [hw1 out](#homeworks)  |
-| 4 | Non-Gaussian distributions: elliptical distributions, copulas <br> Non-Gaussian distributions: Gaussian mixtures     |  | [tut w4]()  | | hw1 due |
-| 5 | Principal Component Analysis: definition, basic examples  <br> Principal Component Analysis: Scree plot, Computations   |  | [tut w5]()  | | hw1 due |
-| 6 |  Uniform Manifold Approximation and Projection (UMAP) <br> Autoencoders |  | [tut w6]()  | | hw1 due |
-| 7 | Reading week <br/> (no class/tutorial)  | - | - | |- | 
-| 8 | Midterm exam   |  | - | | midterm |
-| 9 | Canonical Correlation Analysis (CCA)  |  | [tut w7]()| | |
-| 10 | Graphical models: basic definitions <br> Gaussian Graphical models | | [tut w8]() | | [hw3 out](#homeworks) |
-| 11 | Factor Analysis models |  |   [tut w9]() | |  |
-| 12 | Introduction to tensor methods  |  | [tut w10]()  |  | hw3 due |
-| 13 | TBA  |  | | |  |
+| 1 | Introduction, some linear algebra, matrix decompositions<br/>Random vectors, covariance matrices, sample statistics  | MKB  | LSM | NA | [syllabus]() |
+| 2 | Multivariate normal distribution: definition, basic properties <br/> Conditional distribution, conditional independence |  | ML |  | |
+| 3 | Estimation for MVN models <br> Gaussian Processes: basic definitions and examples   |  | RZ |  | [hw1 out](#homeworks)  |
+| 4 | Non-Gaussian distributions: elliptical distributions, copulas <br> Non-Gaussian distributions: Gaussian mixtures     |  | PL  | |  |
+| 5 | Principal Component Analysis: definition, basic examples   |  | midterm1  | |  |
+| 6 | Principal Component Analysis: Scree plot, Computations  |  | SCh  | |  |
+| 7 | Reading week <br/> (no class/tutorial)  | - | - | | Final project out | 
+| 8 | Uniform Manifold Approximation and Projection (UMAP) <br> Autoencoders |  | ML | | midterm |
+| 9 | Canonical Correlation Analysis (CCA)  |  | RZ| | |
+| 10 | Graphical models: basic definitions <br> Undirected Gaussian Graphical models | | midterm2 | | |
+| 11 | Directed Acyclic Graph models |  |   PL | |  |
+| 12 |  Factor Analysis models |  | SCh  |  | Final Project due |
+| 13 | Introduction to tensor methods  |  | LSM| |  |
 
 <!--
 | 1 | [Introduction <br/> Probabilistic Models](slides/w01/sld01.pdf) | | PML1 1.1-1.3 <br/> PML1 3.4, 4.2  |  [tut w1](slides/w01/tut01/tut01.pdf) | [syllabus](syllabus/syllabus.pdf) |
