@@ -66,9 +66,9 @@ The lecture notes cover all the material presented in class. Some of the textboo
 | 6 | Principal Component Analysis: Scree plot, Computations  |  | SCh  | |  |
 | 7 | Reading week <br/> (no class/tutorial)  | - | - | | Final project out | 
 | 8 | Laplacian eigenmap <br> Uniform Manifold Approximation and Projection (UMAP) <br> Autoencoders |  | ML | | midterm |
-| 9 | Basics of neural networks <br> Autoencoders |  | ML | | midterm |
-| 10 | Canonical Correlation Analysis (CCA)  |  | RZ| | |
-| 11 | Graphical models: basic definitions <br> Undirected Gaussian Graphical models | | midterm2 | | |
+| 9 | Basics of neural networks <br> Autoencoders |  | RZ | | midterm |
+| 10 | Canonical Correlation Analysis (CCA)  |  | midterm2| | |
+| 11 | Graphical models: basic definitions <br> Undirected Gaussian Graphical models | | PL | | |
 | 12 |  Factor Analysis models |  | SCh  |  | Final Project due |
 | 13 | Introduction to tensor methods  |  | LSM| |  |
 
