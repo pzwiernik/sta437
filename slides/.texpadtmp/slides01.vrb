@@ -1,15 +1,5 @@
-\frametitle{Interactive graphics: Plotly}
-Plotly is a powerful library for creating interactive, web-based visualizations. It's available in several programming languages including R and Python. With Plotly, users can create interactive plots like scatter plots, bar charts, heatmaps, and 3D plots.
+\frametitle{Example 3: Pottery}
+Chemical analysis data on Romano-British pottery made in three different regions (kiln 1, kilns 2-3, and kilns 4-5):{\scriptsize
 \begin{Schunk}
 \begin{Sinput}
-> library(ggplot2)
-> library(plotly)
-> p <- ggplot(mpg, aes(x=displ, y=hwy, color=class)) + geom_point(size=3) + labs(x = "Engine displacement",
-+ y = "Highway Mileage",color = "Car Class") + theme_bw()
-> ggplotly(p)
-\end{Sinput}
-\end{Schunk}
-Mousing over a point displays information about that point. Clicking on a
-legend point, removes that class from the plot. Clicking on it again returns it.
-Popup tools on the upper right of the plot allow you to zoom in and out of
-the image, pan, select, reset axes, and download the image as a png file.
+> data("pottery", package = "HSAUR2")

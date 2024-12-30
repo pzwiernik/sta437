@@ -1,0 +1,378 @@
+\documentclass[11pt,handout,aspectratio=169]{beamer}
+
+
+\input{./defs.tex}
+
+\title[STA437-Week1]{STA 437/2005: \\ Methods for Multivariate Data}
+\subtitle[]{Week 1: Introduction and Preliminaries}
+\author[Prob Learning]{Piotr Zwiernik}
+\institute[UofT]{University of Toronto}
+\date{}
+
+
+\usepackage{Sweave}
+\begin{document}
+\input{slides01-concordance}
+
+\maketitle
+
+\begin{frame}{Table of contents}
+  \setbeamertemplate{section in toc}[sections numbered]
+  \tableofcontents%[hideallsubsections]
+\end{frame}
+
+
+
+\section{What is this class about?}
+% \begin{frame}
+% {The Team I}
+
+
+\begin{frame}{Multivariate datasets}
+\begin{itemize}
+	\item Modern datasets are high-dimensional and highly unstructured.\\[.7cm]
+	\item This means that we simultaneously observe many correlated features. \\[.7cm]
+	\item Modelling them independently is both \emph{wasteful} and statisticallly...\\[.7cm]
+	\item The problem is that our intuition works well only in 1D-3D.
+\end{itemize}	
+\end{frame}
+
+\begin{frame}{This course}
+  \begin{itemize}
+  \item Discuss some classical and more modern methods for multivariate datasets.\\[.7cm]
+  \item Build math toolbox that gives deeper understanding for these methods.\\[.7cm]
+  \item Aimed at advanced undergrad and master level graduate students. \\[.7cm]
+  \item 2 hrs lecture + 1 hour tutorial to get more hands-on experience. \\[.7cm]
+  \item We will use \alert{a lot of} real analysis, probability, and linear algebra. 
+  \begin{itemize}
+\item To large extend I am assuming you are comfortable with basic matrix algebra. 
+  \end{itemize}  
+  \end{itemize}
+\end{frame}
+
+
+\section{Administrative details}
+\begin{frame}{Course Information}
+Course Website: \url{https://pzwiernik.github.io/sta437/} 
+
+\vspace{.5em}
+ % 
+Main source of information is the course webpage; check regularly!
+
+%\pause
+
+We will also use \alert{Quercus} for {\bf announcements \& grades  etc}.
+
+\begin{itemize}
+\item You received an announcement on Sunday.
+\end{itemize}
+%\pause
+ % 
+We will use \alert{Piazza} for {\bf discussions}.
+\begin{itemize}
+\item Sign up via quercus or: \url{https://piazza.com/utoronto.ca/winter2024/sta414}
+\item Your grade {\bf does not depend on your participation on Piazza}. 
+\item We only allow questions that are related to the course materials/assignments/exams. 
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Course Information}
+\begin{itemize}
+\item This course have two \emph{identical} sections:
+  \begin{itemize}
+  \item Section 1: Wed 9-11am (tutorial Fri 9-10am)  
+  \item Section 2: Wed 1-3pm (tutorial Fri 1-2pm)  
+  \end{itemize}
+\item You are welcome to attend either one of the sections.
+  %\pause
+\item Instructor office hours are Monday 2pm-3:30pm, UY 9040.
+\item TA office hours will be announced later.
+%\pause
+\item Questions during lectures/tutorials are always welcome!
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Course Information}
+  \begin{itemize}
+  \item While cell phones and other electronics are not prohibited, talking, recording or taking pictures in class is prohibited without the consent of your instructor.
+  \item {Lecture slides and notes will be posted on the course webpage.} Please do let me know about typos you notice and/or any suggestions you might have.
+  \item For accessibility services: If you require additional academic accommodations, please contact UofT Accessibility Services as soon as possible, \url{studentlife.utoronto.ca/as}. No last minute arrangements will be considered.   
+  \end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]{Literature}
+This course is not following any particular book. \\[2mm]
+Recommended readings will be given for each lecture. The following will be useful throughout the course:
+{\small\begin{itemize} 
+\item Mardia, Kent, Bibby (1979), \textit{Multivariate Analysis}.
+ \item  Everitt, Hothorn (2011), \textit{An Introduction to Applied Multivariate Analysis with R}. 
+ \item Holms, Huber (2023), \textit{Modern Statistics for Modern Biology}.
+\end{itemize}}
+\bigskip 
+Use Appendix~A in [MKB] as reference for matrix algebra.
+\bigskip
+Some other books mentioned on the website.\\
+
+There are lots of freely available, high-quality resources online.
+
+\end{frame}
+
+%\begin{frame}[Fragile]{Setup in R}
+%<<>>=
+%CRAN_pkgs <- c("ggplot2", "dplyr", "tidyr", "mosaicData",
+%"carData", "VIM", "scales", "treemapify",
+%"gapminder","sf", "tidygeocoder", "mapview",
+%"ggmap", "osmdata", "choroplethr",
+%"choroplethrMaps", "lubridate", "CGPfunctions",
+%"ggcorrplot", "visreg", "gcookbook", "forcats",
+%"survival", "survminer", "car", "rgl",
+%"ggalluvial", "ggridges", "GGally", "superheat",
+%"waterfalls", "factoextra","networkD3",
+%"ggthemes", "patchwork", "hrbrthemes", "ggpol",
+%"quantmod", "gghighlight", "leaflet", "ggiraph",
+%"rbokeh", "ggalt","MVA")
+%library(CRAN_pkgs)
+%@	
+%\end{frame}
+
+\begin{frame}{Requirements and Marking}
+Ask Xin how this goes.
+\begin{itemize}
+  \item 10 quizes (in the end of the lecture)
+    \begin{itemize}
+    \item Combination of pen \!\& \!paper derivations and coding exercises
+    \item Equally weighted for a total of 30\%
+    \end{itemize}
+  % \item Read some classic papers.
+  %   \begin{itemize}
+  %   \item Worth 5\%, honor system.
+  %   \end{itemize}
+     % 
+     %\pause
+  \item Midterm
+    \begin{itemize}
+    \item 26/27 February (tentative)
+    \item $2$ hours 
+    \item Worth 30\% of course mark
+    \end{itemize}
+     % 
+          %\pause
+  \item Final Exam (In-Person)
+    \begin{itemize}
+    \item $\sim 2$-$3$ hours
+    \item Date and time TBA
+    \item Worth 40\% of course mark
+    \end{itemize}
+    \item Exam questions are  conceptual/theoretical; no coding.
+    \item \alert{Everybody must take the final exam! No exceptions.}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{More on tutorials}
+  \begin{itemize}
+  \item The goal is to get a more hands-on experience with the presented methods. 
+  \item We will be using \texttt{R} but the TAs can also help in Python if needed.
+  \item Extensions will be granted only in special situations, and you will need to fill out absence declaration form and \textbf{inform the instructor} or have documentation from the accessibility services.
+
+  \item You will be using Python and Numpy on assignments.
+  \end{itemize}\end{frame}
+
+%{
+%\setbeamercolor{background canvas}{bg=}
+%\includepdf[pages=1]{RSG.pdf}
+%}
+
+
+
+\begin{frame}
+  {Related Courses}
+  \begin{itemize}
+    \item STA314 and CSC311: Intro ML (overlap with clustering)\\[.2cm]
+    \item {STA414/2104}: More advanced ML (overlap with graphical models)\\[.2cm]
+    \item STA302: Linear regression and classical statistics   \\[.2cm]     
+    \item CSC2515: Advanced CSC311\\[.2cm]
+    \item CSC2532: Learning theory - Focus on mathematics of ML\\[.2cm]
+    \item Various topics and seminar style courses offered at DoSS and DCS
+
+ % \item If you have already taken an applied statistic course, there will be some overlap. 
+
+  \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Provisional Calendar (tentative)}
+\small
+\noindent \textbf{I. Introduction and preliminaries}\\
+week 1, Jan 8/9: \\[-1mm]
+	\begin{itemize}
+        \item Introduction, graphics, preliminaries.
+	\end{itemize}
+
+\noindent \textbf{II. Multivariate Gaussian distribution and Multivariate Inference}\\
+week 2, Jan 15/16: \\[-1mm]
+\begin{itemize}
+\item Multivariate Normal distribution
+\item Wishart distribution, Hotelling's T-squared test 
+\end{itemize}
+
+\noindent \textbf{III. Dimensionality reduction techniques (based on geometry)}\\
+week 3, Jan 22/23:\\[-1mm]
+\begin{itemize}
+\item SVD, Spectrum of a symmetric matrix
+  \item Principal Component Analysis
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Provisional Calendar (cont'ed)}
+\small
+week 4, Jan 29/30:\\[-1mm]
+\begin{itemize}
+\item Canonical Correlation Analysis (CCA)
+\item UMAP
+\end{itemize}
+
+week 5, Feb 5/6:\\[-1mm]
+  \begin{itemize}
+  \item Quick primer in neural nerworks 
+  \item Autoencoders, Sparse Autoencoders
+  \end{itemize}
+
+\noindent \textbf{IV. Advanced Classification and Clustering Methods}
+\textcolor{red}{Consider skipping?}
+week 6, Feb 12/13:\\[-1mm]
+\begin{itemize}
+\item Linear Discriminant Analysis, Gaussian mixtures, k-means
+\item hierarchical clustering
+\end{itemize}
+
+week 7:\quad \textcolor{blue}{Reading week}
+\end{frame}
+
+
+\begin{frame}
+{Provisional Calendar (cont'ed) }
+\small
+week 8,  Feb 26/27:\\[-1mm]
+  \begin{itemize}
+  \item \alert{Midterm exam on Feb 27/28}
+\end{itemize}
+
+\noindent \textbf{V. Dimensionality reduction techniques (based on probability)}
+\alert{Discuss measures of dependence??}
+week 9, Mar 4/5:\\[-1mm]
+\begin{itemize}
+\item Probabilistic PCA
+\item Factor Analysis
+\end{itemize}
+
+week 10, Mar 11/12:\\[-1mm]
+\begin{itemize}
+\item Gaussian graphical models, Graphical LASSO
+\item Linear Structural Equation Models
+\end{itemize}
+
+week 11, Mar 18/19:\\[-1mm]
+\begin{itemize}
+\item Shrinkage estimation
+\end{itemize}
+
+\noindent \textbf{V. Tensor data}
+
+week 12, Mar 25/26:\\[-1mm]
+\begin{itemize}
+\item Tensor data
+\end{itemize}
+
+ week 13, Apr 1/2:\\[-1mm]
+\begin{itemize} 
+\item TBD
+\end{itemize}
+\end{frame}
+
+\section{Introduction to multivariate statistics}
+
+\begin{frame}{Multivariate data}
+	\begin{itemize}
+		\item Many datasets consist of several variables measured on the same set of subjects: patients, samples, users, or organisms.
+		\item Goal: investigation of connections or associations between the different variables measured.
+		\item Usually the data are reported in a tabular data structure with one row for each subject and one column for each variable.  
+	\end{itemize}
+	\begin{exampleblock}{Example}
+	Studying the expression of 25{,}000 gene (columns) on many samples (rows) of patient-derived cells, we notice that many of the genes act together, either that they are positively correlated or that they are anti-correlated. We would miss a lot of important information if we were to only study each gene separately.	
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]{Example 1: Decathlon}
+The columns are a subset of gene expression measurements, they correspond to 156 genes that show differential expression between cell types:
+\scriptsize
+\begin{Schunk}
+\begin{Sinput}
+> data("olympic", package = "ade4")
+> athletes = setNames(olympic$tab, 
++   c("m100", "long", "weight", "high", "m400", "m110", "disc", "pole", "javel", "m1500"))
+> head(athletes)
+\end{Sinput}
+\begin{Soutput}
+   m100 long weight high  m400  m110  disc pole javel  m1500
+1 11.25 7.43  15.48 2.27 48.90 15.13 49.28  4.7 61.32 268.95
+2 10.87 7.45  14.97 1.97 47.71 14.46 44.36  5.1 61.76 273.02
+3 11.18 7.44  14.20 1.97 48.29 14.81 43.66  5.2 64.16 263.20
+4 10.62 7.38  15.02 2.03 49.06 14.72 44.80  4.9 64.04 285.11
+5 11.02 7.43  12.92 1.97 47.44 14.40 41.20  5.2 57.46 256.64
+6 10.83 7.72  13.58 2.12 48.34 14.18 43.06  4.9 52.18 274.07
+\end{Soutput}
+\end{Schunk}
+\end{frame}
+
+
+%\begin{frame}[fragile]{Example 2: Hypothetical example}
+%<<set-data,echo=FALSE, include=FALSE>>=
+%hypo <- structure(list(individual = 1:10, sex = structure(c(2L, 2L, 2L,2L, 2L, 1L, 1L, 1L, 1L, 1L), .Label = c("Female", "Male"), class = "factor"),age = c(21L, 43L, 22L, 86L, 60L, 16L, NA, 43L, 22L, 80L),IQ = c(120L, NA, 135L, 150L, 92L, 130L, 150L, NA, 84L, 70L), depression = structure(c(2L, 1L, 1L, 1L, 2L, 2L, 2L, 2L,1L, 1L), .Label = c("No", "Yes"), class = "factor"), health = structure(c(3L,3L, 1L, 4L, 2L, 2L, 3L, 1L, 1L, 2L), .Label = c("Average","Good", "Very good", "Very poor"), class = "factor"), weight = c(150L,160L, 135L, 140L, 110L, 110L, 120L, 120L, 105L, 100L)), .Names = c("individual","sex", "age", "IQ", "depression", "health", "weight"), class = "data.frame", row.names = c(NA, -10L))
+%@
+%This is a hypothetical example of a dataset:{\scriptsize
+%<<example2>>=
+%hypo[4:8,-1]
+%@
+%}
+%Some potential issues:
+%\begin{itemize}
+%	\item Three types of data: {nominal}, ordinal, continuous.
+%	\item There are some missing entries (denoted with \texttt{NA}).
+%\end{itemize}
+%\end{frame}
+
+\begin{frame}[fragile]{Example 2: Star Wars}
+The Star Wars dataset comes from the dplyr package. It describes 13 charac-
+teristics of 87 characters from the Star Wars universe.
+\scriptsize
+\begin{Schunk}
+\begin{Sinput}
+> data("starwars", package = "dplyr")
+> head(starwars[,c(1,2,3,5,6,7,8,11)])
+\end{Sinput}
+\begin{Soutput}
+            name height mass  skin_color eye_color birth_year    sex species
+1 Luke Skywalker    172   77        fair      blue       19.0   male   Human
+2          C-3PO    167   75        gold    yellow      112.0   none   Droid
+3          R2-D2     96   32 white, blue       red       33.0   none   Droid
+4    Darth Vader    202  136       white    yellow       41.9   male   Human
+5    Leia Organa    150   49       light     brown       19.0 female   Human
+6      Owen Lars    178  120       light      blue       52.0   male   Human
+\end{Soutput}
+\end{Schunk}
+\end{frame}
+
+\begin{frame}[fragile]{Example 3: Pottery}
+Chemical analysis data on Romano-British pottery made in three different regions (kiln 1, kilns 2-3, and kilns 4-5):{\scriptsize
+\begin{Schunk}
+\begin{Sinput}
+> data("pottery", package = "HSAUR2")
