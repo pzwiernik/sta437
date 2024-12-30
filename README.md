@@ -90,10 +90,10 @@ The lecture notes cover all the material presented in class. Some of the textboo
 
 ***
 
-## Homeworks
+## Final project
 
-| Homework # | Out | Due | TA Office Hours | Solutions |
-| --- | --- | --- | --- | --- |
+TBA
+
 <!--
 |[Assigment 1](https://colab.research.google.com/drive/1wZYgVqb_qEZkHfcsw4EHCW85wVUsVT1s?usp=sharing) |1/22 |2/04 | 1/31 3-4pm, 2/02 11am-12pm, both at Sidney Smith, rooms 621/621A| [solutions](./hw/hw1/STA414_2024_HW1_Answers.pdf)|
 |[Assigment 2](https://colab.research.google.com/drive/1CrlCXFbOf18Hj70H6kOlQIXJc1RciC6r?usp=sharing) |2/05 |2/18 |2/13 1-2pm and on 2/16 11am-12pm, both at Sidney Smith, room 621 |[solutions](./hw/hw2/STA414_2024_Assignment_2_Solution.pdf) |
