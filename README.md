@@ -56,21 +56,21 @@ The lecture notes cover all the material presented in class. Some of the textboo
 
 ## Lectures and timeline (tentative)
 
-| Week | Lectures  | Slides | Tutorials | .  | Timeline |
+| Week | Lectures  | Slides | Tutorials | Lecture date  | Timeline |
 | --- |  --- | --- | --- | --- | --- | 
-| 1 | Introduction, some linear algebra, matrix decompositions<br/>Random vectors, covariance matrices, sample statistics  |   | LSM |  | [syllabus]() |
-| 2 | Multivariate normal distribution: definition, basic properties <br/> Conditional distribution, conditional independence |  | ML |  | |
-| 3 | Estimation for MVN models <br> Gaussian Processes: basic definitions and examples   |  | RZ |  | [hw1 out](#homeworks)  |
-| 4 | Non-Gaussian distributions: elliptical distributions, copulas <br> Non-Gaussian distributions: Gaussian mixtures     |  | PL  | |  |
-| 5 | Principal Component Analysis: definition, basic examples   |  | midterm1  | |  |
-| 6 | Principal Component Analysis: Scree plot, Computations  |  | SCh  | |  |
-| 7 | Reading week <br/> (no class/tutorial)  | - | - | | Final project out | 
-| 8 | Laplacian eigenmap <br> Uniform Manifold Approximation and Projection (UMAP) |  | ML | | midterm |
-| 9 | Basics of neural networks <br> Autoencoders |  | RZ | | midterm |
-| 10 | Canonical Correlation Analysis (CCA)  |  | midterm2| | |
-| 11 | Graphical models: basic definitions <br> Undirected Gaussian Graphical models | | PL | | |
-| 12 |  Factor Analysis models |  | SCh  |  | Final Project due |
-| 13 | Introduction to tensor methods  |  | LSM| |  |
+| 1 | Introduction, some linear algebra, matrix decompositions<br/>Random vectors, covariance matrices, sample statistics  |   | LSM |  8 Jan| [syllabus]() |
+| 2 | Multivariate normal distribution: definition, basic properties <br/> Conditional distribution, conditional independence |  | ML | 15 Jan | |
+| 3 | Estimation for MVN models <br> Gaussian Processes: basic definitions and examples   |  | RZ | 22 Jan |   |
+| 4 | Non-Gaussian distributions: elliptical distributions, copulas <br> Non-Gaussian distributions: Gaussian mixtures     |  | PL  | 29 Jan |  |
+| 5 | Principal Component Analysis: definition, basic examples   |  | midterm1  | 5 Feb|  |
+| 6 | Principal Component Analysis: Scree plot, Computations  |  | SCh  | 12 Feb|  |
+| 7 | Reading week <br/> (no class/tutorial)  | - | - | - | Final project out | 
+| 8 | Laplacian eigenmap <br> Uniform Manifold Approximation and Projection (UMAP) |  | ML | 26 Feb | midterm |
+| 9 | Basics of neural networks <br> Autoencoders |  | RZ | 5 Mar| midterm |
+| 10 | Canonical Correlation Analysis (CCA)  |  | midterm2| 12 Mar| |
+| 11 | Graphical models: basic definitions <br> Undirected Gaussian Graphical models | | PL | 19 Mar| |
+| 12 |  Factor Analysis models |  | SCh  | 26 Mar | Final Project due |
+| 13 | Introduction to tensor methods  |  | LSM| Apr 2|  |
 
 
 
