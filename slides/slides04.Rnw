@@ -1,0 +1,117 @@
+\documentclass[11pt,handout,aspectratio=169]{beamer}
+
+
+\input{./defs.tex}
+
+\title[STA437-Week1]{STA 437/2005: \\ Methods for Multivariate Data}
+\subtitle[]{Week 4: Principal Component Analysis}
+\author[Prob Learning]{Piotr Zwiernik}
+\institute[UofT]{University of Toronto}
+\date{}
+
+
+\begin{document}
+<<setup, include=FALSE,echo=FALSE>>=
+library(knitr)
+knitr::opts_chunk$set(tidy=FALSE,         # Avoid tidying code automatically
+  echo=TRUE,          # Display code chunks in the document
+  results='markup',   # Display code results normally
+  comment=NA,         # Remove default "##" comment symbols in output
+  highlight=TRUE,      # Enable syntax highlighting
+  fig.path='pics/beamer-',fig.align='center',fig.show='hold',size='footnotesize')
+@
+\SweaveOpts{concordance=TRUE}
+
+\maketitle
+
+%\begin{frame}{Table of contents}
+%  \setbeamertemplate{section in toc}[sections numbered]
+%  \tableofcontents%[hideallsubsections]
+%\end{frame}
+
+
+
+\section{PCA teaser}
+% \begin{frame}
+% {The Team I}
+
+
+
+\begin{frame}[fragile]{Example 1: Decathlon}
+The columns are a subset of gene expression measurements, they correspond to 156 genes that show differential expression between cell types:
+\scriptsize
+<<example1>>=
+data("olympic", package = "ade4")
+athletes = setNames(olympic$tab, 
+  c("m100", "long", "weight", "high", "m400", "m110", "disc", "pole", "javel", "m1500"))
+head(athletes)
+@
+\end{frame}
+
+
+\begin{frame}[fragile]{PCA Biplot for Decathlon data}
+PCA Biplot of Olympic Athletes	{\scriptsize
+<<echo=FALSE>>=
+library(ggplot2)
+library(ggfortify)athletes_scaled <- scale(athletes)pca_result <- prcomp(athletes_scaled, center = TRUE, scale. = TRUE)
+@
+<<echo=FALSE>>=	
+	plot1 <- autoplot(pca_result, 
+         data = athletes, 
+         label = FALSE, label.size = 2,             loadings = TRUE, loadings.label = TRUE,           loadings.label.size = 5,loadings.colour = "blue") +   theme_minimal()   
+@
+<<echo=FALSE>>=
+ggsave("./pics/plot4.1.pdf", plot = plot1, width = 5, height = 4)
+@
+\begin{center}
+\includegraphics[width=.6\textwidth]{pics/plot4.1.pdf}		
+\end{center}}
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Example 3: Pottery}
+Chemical analysis data on Romano-British pottery made in three different regions (kiln 1, kilns 2-3, and kilns 4-5):{\scriptsize
+<<example3>>=
+data("pottery", package = "HSAUR2")
+head(pottery)
+@
+}
+Question: Do the chemical profiles of each pot suggest different types of pots and if any such types are related to kiln or region.
+\end{frame}
+
+
+\begin{frame}[fragile]{PCA Biplot for Pottery data}
+PCA Biplot of Olympic Athletes	{\scriptsize
+<<echo=FALSE>>=
+library(ggplot2)
+library(ggfortify)
+data("pottery", package = "HSAUR2")
+numeric_data <- pottery[,-10]numeric_data_scaled <- scale(numeric_data)
+pca_result <- prcomp(numeric_data_scaled, center = TRUE, scale. = TRUE)
+@
+<<echo=FALSE>>=	
+	plot2 <- autoplot(pca_result, 
+         data = pottery, 
+         label = FALSE, 
+         label.size = 6, 
+         colour= 'kiln',
+         loadings = FALSE, 
+         loadings.label = FALSE, 
+         loadings.label.size = 3,
+         loadings.colour = "blue") + 
+  ggtitle("PCA Biplot of Pottery Dataset") + 
+  theme_minimal()
+@
+<<echo=FALSE>>=
+ggsave("./pics/plot4.2.pdf", plot = plot2, width = 5, height = 4)
+@
+\begin{center}
+\includegraphics[width=.6\textwidth]{pics/plot4.2.pdf}		
+\end{center}}
+\end{frame}
+
+
+
+
+\end{document}

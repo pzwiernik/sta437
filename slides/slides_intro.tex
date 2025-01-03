@@ -33,14 +33,17 @@
 \begin{itemize}
 	\item Modern datasets are high-dimensional and highly unstructured.\\[.7cm]
 	\item This means that we simultaneously observe many correlated features. \\[.7cm]
-	\item Modelling them independently is both \emph{wasteful}.\\[.7cm]
-	\item The problem is that our intuition works well only in 1D-3D.
+	\item Modelling them independently is \emph{wasteful}.\\[.7cm]
+	\item Modelling them jointly is \emph{hard}!\\[.7cm]
+	\item Our intuition works well only in 1D-3D so we need to develop tools to guide it.
 \end{itemize}	
 \end{frame}
 
 \begin{frame}{This course}
   \begin{itemize}
-  \item Discuss some classical and more modern methods for multivariate datasets.\\[.7cm]
+  \item Discuss some classical and more modern methods for multivariate datasets.\begin{itemize}
+  	\item Tentative outline of the course on the website\\[.7cm]
+  \end{itemize}
   \item Build math toolbox that gives deeper understanding for these methods.\\[.7cm]
   \item Aimed at advanced undergrad and master level graduate students. \\[.7cm]
   \item 2 hrs lecture + 1 hour tutorial to get more hands-on experience. \\[.7cm]
@@ -62,17 +65,17 @@ Main source of information is the course webpage; check regularly!
 
 %\pause
 
-We will also use \alert{Quercus} for {\bf announcements \& grades  etc}.
+We will also use \alert{Quercus} for { announcements \& grades}.
 
 \begin{itemize}
 \item You received an announcement on Sunday.
 \end{itemize}
 %\pause
  % 
-We will use \alert{Piazza} for {\bf discussions}.
+We will use \alert{Piazza} for {discussions}.
 \begin{itemize}
 \item Sign up via quercus or: \url{https://piazza.com/utoronto.ca/winter2025/sta4372005}
-\item Your grade {\bf does not depend on your participation on Piazza}. 
+\item Your grade { does not depend on your participation on Piazza}. 
 \end{itemize}
 \end{frame}
 
@@ -98,7 +101,7 @@ We will use \alert{Piazza} for {\bf discussions}.
 
 \begin{frame}{Course Information}
   \begin{itemize}
-  \item While cell phones and other electronics are not prohibited, talking, recording or taking pictures in class is prohibited without the consent of your instructor.
+  \item While cell phones and other electronics are not prohibited, recording or taking pictures in class is prohibited without the consent of your instructor.
   \item The lecture notes will cover everything presented in class. Let me know about typos you notice and/or any suggestions you might have.
   \item For accessibility services: If you require additional academic accommodations, please contact UofT Accessibility Services as soon as possible, \url{studentlife.utoronto.ca/as}. No last minute arrangements will be considered.   
   \end{itemize}
@@ -171,7 +174,7 @@ We will use \alert{Piazza} for {\bf discussions}.
 \begin{frame}{Multivariate data}
 	\begin{itemize}
 		\item Many datasets consist of several variables measured on the same set of subjects: patients, samples, users, or organisms.
-		\item Goal: investigation of connections or associations between the different variables measured.
+		\item Goal: investigation of associations between the different variables measured.
 		\item Usually the data are reported in a tabular data structure with one row for each subject and one column for each variable.  
 	\end{itemize}
 	\begin{exampleblock}{Example}
@@ -292,8 +295,7 @@ The following variables were obtained for 41 US cities:\\
 \end{frame}
 
 \begin{frame}[fragile]{Example 5: Academic salaries}
-The Salaries dataset comes from the carData package. It describes the 9-
-month academic salaries of 397 US college professors at a single institution in
+The Salaries dataset comes from the carData package. It describes the 9-month academic salaries of 397 US college professors at a single institution in
 2008-2009.
 \scriptsize
 \begin{Schunk}
@@ -345,7 +347,7 @@ Gene expression microarray dataset that reports the transcriptomes of 101 indivi
 \section{Multivariate data visualization}
 
 \begin{frame}[fragile]{Scatterplot for 2D datasets}
-	The scatterplot is the standard for representing continuous bivariate data.
+	The scatterplot is the standard tool for representing continuous bivariate data.
 	{\scriptsize
 %<<plot1,fig.pos="t", fig.height=1, fig.width=1,fig.cap="">>=	
 %	mlab <- "Manufacturing enterprises with 20 or more workers"

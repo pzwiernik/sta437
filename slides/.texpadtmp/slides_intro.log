@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.13)  30 DEC 2024 11:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.13)  3 JAN 2025 13:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1055,7 +1055,7 @@ File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/mat
 \openout4 = `slides_intro.vrb'.
 
  (/Users/piotrzwiernik/Documents/GitHub/sta437/slides/.texpadtmp/slides_intro.vrb)
-Overfull \vbox (21.0449pt too high) detected at line 292
+Overfull \vbox (21.0449pt too high) detected at line 295
  []
 
 
@@ -1094,7 +1094,7 @@ File: pics/plot1.1.pdf Graphic file (type pdf)
 Package pdftex.def Info: pics/plot1.1.pdf  used on input line 9.
 (pdftex.def)             Requested size: 239.00558pt x 170.72223pt.
 )
-Overfull \vbox (2.9444pt too high) detected at line 357
+Overfull \vbox (2.9444pt too high) detected at line 359
  []
 
 
@@ -1124,7 +1124,7 @@ File: pics/plot1.3.pdf Graphic file (type pdf)
 Package pdftex.def Info: pics/plot1.3.pdf  used on input line 3.
 (pdftex.def)             Requested size: 298.75394pt x 213.39867pt.
 )
-Overfull \vbox (27.09225pt too high) detected at line 375
+Overfull \vbox (27.09225pt too high) detected at line 377
  []
 
 
@@ -1156,7 +1156,7 @@ File: pics/plot1.5d.pdf Graphic file (type pdf)
 Package pdftex.def Info: pics/plot1.5d.pdf  used on input line 18.
 (pdftex.def)             Requested size: 122.34238pt x 91.04855pt.
 )
-Overfull \vbox (13.20467pt too high) detected at line 397
+Overfull \vbox (13.20467pt too high) detected at line 399
  []
 
 
@@ -1173,7 +1173,7 @@ File: pics/plot1.4.pdf Graphic file (type pdf)
 Package pdftex.def Info: pics/plot1.4.pdf  used on input line 3.
 (pdftex.def)             Requested size: 298.75394pt x 213.39867pt.
 )
-Overfull \vbox (27.09225pt too high) detected at line 404
+Overfull \vbox (27.09225pt too high) detected at line 406
  []
 
 
@@ -1190,7 +1190,7 @@ File: pics/plot1.6.pdf Graphic file (type pdf)
 Package pdftex.def Info: pics/plot1.6.pdf  used on input line 3.
 (pdftex.def)             Requested size: 298.75394pt x 213.39867pt.
 )
-Overfull \vbox (27.09225pt too high) detected at line 413
+Overfull \vbox (27.09225pt too high) detected at line 415
  []
 
 
@@ -1201,7 +1201,7 @@ Overfull \vbox (27.09225pt too high) detected at line 413
 \openout4 = `slides_intro.vrb'.
 
  (/Users/piotrzwiernik/Documents/GitHub/sta437/slides/.texpadtmp/slides_intro.vrb)
-Overfull \vbox (6.45131pt too high) detected at line 433
+Overfull \vbox (6.45131pt too high) detected at line 435
  []
 
 
@@ -1215,7 +1215,7 @@ Overfull \vbox (6.45131pt too high) detected at line 433
 ]
 
 LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
-(Font)              using `T1/cmss/m/n' instead on input line 443.
+(Font)              using `T1/cmss/m/n' instead on input line 445.
 
 
 
@@ -1252,7 +1252,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  128i,13n,126p,1922b,789s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsi1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfss1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfss1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfst0800.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfst1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on /Users/piotrzwiernik/Documents/GitHub/sta437/slides/.texpadtmp/slides_intro.pdf (29 pages, 5920816 bytes).
+Output written on /Users/piotrzwiernik/Documents/GitHub/sta437/slides/.texpadtmp/slides_intro.pdf (29 pages, 5918533 bytes).
 PDF statistics:
  369 PDF objects out of 1000 (max. 8388607)
  278 compressed objects within 3 object streams
