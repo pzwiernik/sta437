@@ -54,6 +54,12 @@ The lecture notes cover all the material presented in class. Some of the textboo
 *	(PRML) Christopher M. Bishop (2006) [Pattern Recognition and Machine Learning](https://www.microsoft.com/en-us/research/people/cmbishop/prml-book/)
 ***
 
+### Grading scheme (in chronological order)
+(20%) midterm 1,  (20%) midterm 2,   (20%) final project,  (40%) final exam
+
+The midterms are short (1 hour) and they focus on simple conceptual/theory questions. 
+***
+
 ## Lectures and timeline (tentative)
 
 | Week | Lectures  | Slides | Tutorials | Lecture date  | Timeline |
