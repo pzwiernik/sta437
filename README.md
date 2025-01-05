@@ -1,3 +1,7 @@
+---
+title: ""
+---
+
 # STA 437/2005  Winter 2025: 
 ## Methods for Multivariate Data
 
