@@ -25,14 +25,11 @@ More details can be found in [syllabus](syllabus/syllabus.pdf) and [piazza](http
 | Email | piotr.zwiernik@utoronto.ca |
 | Office hours | Tuesday, 13:30-15:00 (UY 9033) |
 
-***
-
 ### Teaching Assistants:
 
 Miaoshiqi Liu (miaoshiqi.liu@mail.utoronto.ca), Peng Liu (penn.liu@mail.utoronto.ca), Shupeng Chen (shupeng.chen@mail.utoronto.ca), Rongqian Zhang (rongqian.zhang@mail.utoronto.ca), Luis Sierra Muntané (luis.sierra@mail.utoronto.ca)
   
 
-***
 
 ### Lecture Time & Location:
 
