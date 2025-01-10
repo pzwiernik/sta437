@@ -7,13 +7,14 @@
 
 
 
-More details can be found in [syllabus](syllabus/syllabus.pdf) and [piazza](https://piazza.com/utoronto.ca/winter2025/sta4372005).
+More details can be found in [syllabus](syllabus2025.pdf) and [piazza](https://piazza.com/utoronto.ca/winter2025/sta4372005).
 
 ***
 ***
 
 ### Announcements:
 
+- Jan 10: The syllabus has been uploaded.
 - Jan 9: Some notes for the upcoming tutorial session are linked below.
 - Jan 1: Lectures begin on Jan 8!
 
