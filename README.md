@@ -71,10 +71,10 @@ The midterms are short (1 hour) and they focus on simple conceptual/theory quest
 | 6 | Principal Component Analysis: Scree plot, Computations  |  | SCh  | 12 Feb|  |
 | 7 | Reading week <br/> (no class/tutorial)  | - | - | - | Final project out | 
 | 8 | Laplacian eigenmap <br> Uniform Manifold Approximation and Projection (UMAP) |  | ML | 26 Feb |  |
-| 9 | Basics of neural networks <br> Autoencoders |  | RZ | 5 Mar|  |
-| 10 | Canonical Correlation Analysis (CCA)  |  | **midterm2**| 12 Mar| |
-| 11 | Graphical models: basic definitions <br> Undirected Gaussian Graphical models | | PL | 19 Mar| |
-| 12 |  Factor Analysis models |  | SCh  | 26 Mar |  |
+| 9 | Canonical Correlation Analysis (CCA) |  | RZ | 5 Mar|  |
+| 10 | Graphical models: basic definitions <br> Gaussian Graphical models  |  | **midterm2**| 12 Mar| |
+| 11 | Graphical models: log-linear models, Ising model | | PL | 19 Mar| |
+| 12 |  Factor Analysis models, Independent Component Analysis |  | SCh  | 26 Mar |  |
 | 13 | Introduction to tensor methods  |  | LSM| Apr 2| **Final Project due** |
 
 
