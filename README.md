@@ -64,10 +64,10 @@ The midterms are short (1 hour) and they focus on simple conceptual/theory quest
 | Week | Lectures  | Notes | Tutorials | Lecture date  | Timeline |
 | --- |  --- | --- | --- | --- | --- | 
 | 1 | Introduction, some linear algebra, matrix decompositions<br/>Random vectors, covariance matrices.  | [slides1](./slides/slides_intro.pdf) <br> [notes1](./lectures/lecture1.pdf) | RZ: [tut1](./tutorials/tutorial1.html) |  8 Jan| [syllabus]() |
-| 2 | Sample statistics. Multivariate normal distribution: definition, basic properties. Conditional distribution, conditional independence | [notes2](./lectures/lecture2.pdf) | ML | 15 Jan | |
-| 3 | Estimation for MVN models <br> Gaussian Processes: basic definitions and examples   |  | LSM | 22 Jan |   |
-| 4 | Non-Gaussian distributions: elliptical distributions, copulas <br> Non-Gaussian distributions: Gaussian mixtures     |  | DL  | 29 Jan |  |
-| 5 | Principal Component Analysis: definition, basic examples   |  | **midterm1**  | 5 Feb|  |
+| 2 | Sample statistics. Multivariate normal distribution: definition, basic properties.  | [notes2](./lectures/lecture2.pdf) | ML: [tut2](./tutorials/tutorial2.pdf) | 15 Jan | |
+| 3 | MVN: Conditional distribution, conditional independence. <br> Estimation for MVN models    |  | LSM | 22 Jan |   |
+| 4 | Gaussian Processes: basic definitions and examples <br> Non-Gaussian distributions: elliptical distributions, copulas      |  | DL  | 29 Jan |  |
+| 5 | Non-Gaussian distributions: Gaussian mixtures <br> Principal Component Analysis: definition, basic examples   |  | **midterm1**  | 5 Feb|  |
 | 6 | Principal Component Analysis: Scree plot, Computations  |  | SCh  | 12 Feb|  |
 | 7 | Reading week <br/> (no class/tutorial)  | - | - | - | Final project out | 
 | 8 | Laplacian eigenmap <br> Uniform Manifold Approximation and Projection (UMAP) |  | ML | 26 Feb |  |
