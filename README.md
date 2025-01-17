@@ -29,7 +29,7 @@ More details can be found in [syllabus](syllabus2025.pdf) and [piazza](https://p
 
 ### Teaching Assistants:
 
-Miaoshiqi Liu (miaoshiqi.liu@mail.utoronto.ca), Peng Liu (penn.liu@mail.utoronto.ca), Shupeng Chen (shupeng.chen@mail.utoronto.ca), Rongqian Zhang (rongqian.zhang@mail.utoronto.ca), Luis Sierra Muntané (luis.sierra@mail.utoronto.ca)
+Shupeng Chen (shupeng.chen@mail.utoronto.ca), Dayi Li (dayi.li@mail.utoronto.ca), Miaoshiqi Liu (miaoshiqi.liu@mail.utoronto.ca),  Luis Sierra Muntané (luis.sierra@mail.utoronto.ca), Rongqian Zhang (rongqian.zhang@mail.utoronto.ca)
   
 
 
@@ -66,14 +66,14 @@ The midterms are short (1 hour) and they focus on simple conceptual/theory quest
 | 1 | Introduction, some linear algebra, matrix decompositions<br/>Random vectors, covariance matrices.  | [slides1](./slides/slides_intro.pdf) <br> [notes1](./lectures/lecture1.pdf) | RZ: [tut1](./tutorials/tutorial1.html) |  8 Jan| [syllabus]() |
 | 2 | Sample statistics. Multivariate normal distribution: definition, basic properties. Conditional distribution, conditional independence |  | ML | 15 Jan | |
 | 3 | Estimation for MVN models <br> Gaussian Processes: basic definitions and examples   |  | LSM | 22 Jan |   |
-| 4 | Non-Gaussian distributions: elliptical distributions, copulas <br> Non-Gaussian distributions: Gaussian mixtures     |  | PL  | 29 Jan |  |
+| 4 | Non-Gaussian distributions: elliptical distributions, copulas <br> Non-Gaussian distributions: Gaussian mixtures     |  | DL  | 29 Jan |  |
 | 5 | Principal Component Analysis: definition, basic examples   |  | **midterm1**  | 5 Feb|  |
 | 6 | Principal Component Analysis: Scree plot, Computations  |  | SCh  | 12 Feb|  |
 | 7 | Reading week <br/> (no class/tutorial)  | - | - | - | Final project out | 
 | 8 | Laplacian eigenmap <br> Uniform Manifold Approximation and Projection (UMAP) |  | ML | 26 Feb |  |
 | 9 | Canonical Correlation Analysis (CCA) |  | RZ | 5 Mar|  |
 | 10 | Graphical models: basic definitions <br> Gaussian Graphical models  |  | **midterm2**| 12 Mar| |
-| 11 | Graphical models: log-linear models, Ising model | | PL | 19 Mar| |
+| 11 | Graphical models: log-linear models, Ising model | | DL | 19 Mar| |
 | 12 |  Factor Analysis models, Independent Component Analysis |  | SCh  | 26 Mar |  |
 | 13 | Introduction to tensor methods  |  | LSM| Apr 2| **Final Project due** |
 
