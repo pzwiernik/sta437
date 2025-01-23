@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.13)  3 JAN 2025 13:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.13)  23 JAN 2025 09:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1004,6 +1004,11 @@ File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/mat
 
 ]
 
+LaTeX Font Warning: Font shape `T1/cmss/m/sc' in size <10.95> not available
+(Font)              Font shape `T1/cmr/m/sc' tried instead on input line 76.
+
+
+
 [6
 
 ]
@@ -1015,6 +1020,11 @@ File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/mat
 [8
 
 ]
+
+LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
+(Font)              using `T1/cmss/m/n' instead on input line 107.
+
+
 
 [9
 
@@ -1029,197 +1039,6 @@ File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/mat
 ]
 
 [12
-
-]
-\openout4 = `slides_intro.vrb'.
-
- (/Users/piotrzwiernik/Documents/GitHub/sta437/slides/.texpadtmp/slides_intro.vrb)
-
-[13
-
-]
-\openout4 = `slides_intro.vrb'.
-
- (/Users/piotrzwiernik/Documents/GitHub/sta437/slides/.texpadtmp/slides_intro.vrb)
-
-[14
-
-]
-\openout4 = `slides_intro.vrb'.
-
- (/Users/piotrzwiernik/Documents/GitHub/sta437/slides/.texpadtmp/slides_intro.vrb)
-
-[15
-
-]
-\openout4 = `slides_intro.vrb'.
-
- (/Users/piotrzwiernik/Documents/GitHub/sta437/slides/.texpadtmp/slides_intro.vrb)
-Overfull \vbox (21.0449pt too high) detected at line 295
- []
-
-
-
-[16
-
-]
-\openout4 = `slides_intro.vrb'.
-
- (/Users/piotrzwiernik/Documents/GitHub/sta437/slides/.texpadtmp/slides_intro.vrb)
-
-[17
-
-]
-\openout4 = `slides_intro.vrb'.
-
- (/Users/piotrzwiernik/Documents/GitHub/sta437/slides/.texpadtmp/slides_intro.vrb)
-
-[18
-
-]
-
-[19
-
-]
-
-[20
-
-]
-\openout4 = `slides_intro.vrb'.
-
- (/Users/piotrzwiernik/Documents/GitHub/sta437/slides/.texpadtmp/slides_intro.vrb
-<pics/plot1.1.pdf, id=166, 505.89pt x 361.35pt>
-File: pics/plot1.1.pdf Graphic file (type pdf)
-<use pics/plot1.1.pdf>
-Package pdftex.def Info: pics/plot1.1.pdf  used on input line 9.
-(pdftex.def)             Requested size: 239.00558pt x 170.72223pt.
-)
-Overfull \vbox (2.9444pt too high) detected at line 359
- []
-
-
-
-[21
-
- <./pics/plot1.1.pdf>]
-\openout4 = `slides_intro.vrb'.
-
- (/Users/piotrzwiernik/Documents/GitHub/sta437/slides/.texpadtmp/slides_intro.vrb
-<pics/plot1.2.pdf, id=181, 650.43pt x 361.35pt>
-File: pics/plot1.2.pdf Graphic file (type pdf)
-<use pics/plot1.2.pdf>
-Package pdftex.def Info: pics/plot1.2.pdf  used on input line 9.
-(pdftex.def)             Requested size: 278.83578pt x 154.9088pt.
-)
-
-[22
-
- <./pics/plot1.2.pdf>]
-\openout4 = `slides_intro.vrb'.
-
- (/Users/piotrzwiernik/Documents/GitHub/sta437/slides/.texpadtmp/slides_intro.vrb
-<pics/plot1.3.pdf, id=196, 505.89pt x 361.35pt>
-File: pics/plot1.3.pdf Graphic file (type pdf)
-<use pics/plot1.3.pdf>
-Package pdftex.def Info: pics/plot1.3.pdf  used on input line 3.
-(pdftex.def)             Requested size: 298.75394pt x 213.39867pt.
-)
-Overfull \vbox (27.09225pt too high) detected at line 377
- []
-
-
-
-[23
-
- <./pics/plot1.3.pdf>]
-\openout4 = `slides_intro.vrb'.
-
- (/Users/piotrzwiernik/Documents/GitHub/sta437/slides/.texpadtmp/slides_intro.vrb
-<pics/plot1.5a.pdf, id=207, 361.35pt x 361.35pt>
-File: pics/plot1.5a.pdf Graphic file (type pdf)
-<use pics/plot1.5a.pdf>
-Package pdftex.def Info: pics/plot1.5a.pdf  used on input line 18.
-(pdftex.def)             Requested size: 91.04855pt x 91.04855pt.
-<pics/plot1.5b.pdf, id=208, 361.35pt x 361.35pt>
-File: pics/plot1.5b.pdf Graphic file (type pdf)
-<use pics/plot1.5b.pdf>
-Package pdftex.def Info: pics/plot1.5b.pdf  used on input line 18.
-(pdftex.def)             Requested size: 91.04855pt x 91.04855pt.
-<pics/plot1.5c.pdf, id=209, 361.35pt x 361.35pt>
-File: pics/plot1.5c.pdf Graphic file (type pdf)
-<use pics/plot1.5c.pdf>
-Package pdftex.def Info: pics/plot1.5c.pdf  used on input line 18.
-(pdftex.def)             Requested size: 91.04855pt x 91.04855pt.
-<pics/plot1.5d.pdf, id=210, 505.89pt x 361.35pt>
-File: pics/plot1.5d.pdf Graphic file (type pdf)
-<use pics/plot1.5d.pdf>
-Package pdftex.def Info: pics/plot1.5d.pdf  used on input line 18.
-(pdftex.def)             Requested size: 122.34238pt x 91.04855pt.
-)
-Overfull \vbox (13.20467pt too high) detected at line 399
- []
-
-
-
-[24
-
- <./pics/plot1.5a.pdf> <./pics/plot1.5b.pdf> <./pics/plot1.5c.pdf> <./pics/plot1.5d.pdf>]
-\openout4 = `slides_intro.vrb'.
-
- (/Users/piotrzwiernik/Documents/GitHub/sta437/slides/.texpadtmp/slides_intro.vrb
-<pics/plot1.4.pdf, id=242, 505.89pt x 361.35pt>
-File: pics/plot1.4.pdf Graphic file (type pdf)
-<use pics/plot1.4.pdf>
-Package pdftex.def Info: pics/plot1.4.pdf  used on input line 3.
-(pdftex.def)             Requested size: 298.75394pt x 213.39867pt.
-)
-Overfull \vbox (27.09225pt too high) detected at line 406
- []
-
-
-
-[25
-
- <./pics/plot1.4.pdf>]
-\openout4 = `slides_intro.vrb'.
-
- (/Users/piotrzwiernik/Documents/GitHub/sta437/slides/.texpadtmp/slides_intro.vrb
-<pics/plot1.6.pdf, id=254, 505.89pt x 361.35pt>
-File: pics/plot1.6.pdf Graphic file (type pdf)
-<use pics/plot1.6.pdf>
-Package pdftex.def Info: pics/plot1.6.pdf  used on input line 3.
-(pdftex.def)             Requested size: 298.75394pt x 213.39867pt.
-)
-Overfull \vbox (27.09225pt too high) detected at line 415
- []
-
-
-
-[26
-
- <./pics/plot1.6.pdf>]
-\openout4 = `slides_intro.vrb'.
-
- (/Users/piotrzwiernik/Documents/GitHub/sta437/slides/.texpadtmp/slides_intro.vrb)
-Overfull \vbox (6.45131pt too high) detected at line 435
- []
-
-
-
-[27
-
-]
-
-[28
-
-]
-
-LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
-(Font)              using `T1/cmss/m/n' instead on input line 445.
-
-
-
-[29
 
 ]
 \tf@nav=\write7
@@ -1241,21 +1060,21 @@ L3 programming layer <2024-11-02>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `slides_intro.out' has not changed.
-(rerunfilecheck)             Checksum: 43554EE908ED388EA10A16891197CF6E;1040.
+(rerunfilecheck)             Checksum: 9F27938A518028E6774BB3C17ACD1CEE;708.
  ) 
 Here is how much of TeX's memory you used:
- 38282 strings out of 473330
- 902146 string characters out of 5719762
+ 38069 strings out of 473330
+ 896501 string characters out of 5719762
  1370808 words of memory out of 5000000
- 60571 multiletter control sequences out of 15000+600000
- 580920 words of font info for 94 fonts, out of 8000000 for 9000
+ 60423 multiletter control sequences out of 15000+600000
+ 580695 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,13n,126p,1922b,789s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsi1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfss1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfss1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfst0800.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfst1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on /Users/piotrzwiernik/Documents/GitHub/sta437/slides/.texpadtmp/slides_intro.pdf (29 pages, 5918533 bytes).
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfcc0800.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfss0600.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfss0700.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfss1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfss1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb>
+Output written on /Users/piotrzwiernik/Documents/GitHub/sta437/slides/.texpadtmp/slides_intro.pdf (12 pages, 273639 bytes).
 PDF statistics:
- 369 PDF objects out of 1000 (max. 8388607)
- 278 compressed objects within 3 object streams
- 64 named destinations out of 1000 (max. 500000)
- 128 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 233 PDF objects out of 1000 (max. 8388607)
+ 162 compressed objects within 2 object streams
+ 28 named destinations out of 1000 (max. 500000)
+ 67 words of extra memory for PDF output out of 10000 (max. 10000000)
 
