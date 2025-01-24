@@ -204,7 +204,7 @@ Handling a $10000$-dimensional Gaussian comes with its own computational challen
 \begin{frame}{Nonparametric Regression}
 GPs can be used for nonparametric regression:
     \[
-    y_i = f(\x_i) + \epsilon, \quad \eps_i \sim {N}(0, \sigma^2),\quad i=1,\ldots, n.
+    y_i = f(\x_i) + \eps_i, \quad \eps_i \sim {N}(0, \sigma^2),\quad i=1,\ldots, n.
     \]
     
 Prior over \( f:\R^d\to \R \): GP defined by \( m(\x) \) and \( k(\x, \x') \).
@@ -226,8 +226,25 @@ We have $f(\X)=(f(\x_1),\ldots,f(\x_n))\sim N_n(\nu,C)$
 \end{frame}
 
 \begin{frame}{Nonparametric Regression}
-	We have $\mathbf y\;=\;f(\mathbf{x})+\bs\eps$, and so $\y\sim N(m(\x),\Sigma+\sigma^2 I_n)$
-   Prediction involves computing the posterior GP.
+Note that $\y=(y_1,\ldots,y_n)=(f(\x_1)+\eps_1,\ldots,f(\x_n)+\eps_n)$.
+\bigskip
+
+The function $y(\x)$ is also described by a GP:
+\medskip 
+
+$\bullet$ The mean is $m(\x)$.
+\begin{itemize}
+	\item  $\E[y(\x_i)]=\E[f(\x_i)+\eps_i]=m(\x_i)$.
+\end{itemize}
+
+$\bullet$  The kernel is $k(\x,\x')+\sigma^2\bs 1\{\x=\x'\}$. 
+\begin{itemize}
+	\item  $\cov[y(\x_i),y(\x_j)]=\cov(f(\x_i)+\eps_i,f(\x_j)+\eps_j)=k(\x_i,\x'_j)+\sigma^2\bs 1\{\x_i=\x'_j\}$.
+\end{itemize}
+
+\begin{alertblock}{}
+Given data $(y_1,\x_1)$, \ldots, $(y_n,\x_n)$ we can now easily predict $y$ at any other point $\x$.	
+\end{alertblock}
 \end{frame}
 
 
@@ -255,6 +272,12 @@ We have $f(\X)=(f(\x_1),\ldots,f(\x_n))\sim N_n(\nu,C)$
 %\end{minted}
 %\end{frame}
 
+\begin{frame}{Illustration}
+	\begin{center}
+		\includegraphics[width=0.8\textwidth]{pics/GP_nonpreg.pdf}
+	\end{center}
+\end{frame}
+
 \begin{frame}{Summary}
 \begin{itemize}
     \item Gaussian Processes are a versatile tool for regression and spatial modeling.
@@ -263,7 +286,7 @@ We have $f(\X)=(f(\x_1),\ldots,f(\x_n))\sim N_n(\nu,C)$
         \item Mean function.
         \item Kernel function.
     \end{itemize}
-    \item Next: Applications of GPs in high-dimensional data.
+    \item Takeaway: Conceptually it is not harder than MVNs and the same formulas apply.
 \end{itemize}
 \end{frame}
 

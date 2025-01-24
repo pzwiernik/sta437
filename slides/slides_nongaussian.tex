@@ -1,0 +1,322 @@
+\documentclass[11pt,handout,aspectratio=169]{beamer}
+
+
+\input{./defs.tex}
+
+\title[STA437-Week1]{STA 437/2005: \\ Methods for Multivariate Data}
+\subtitle[]{Week 5: Non-Gaussian Distributions}
+\author[Piotr Zwiernik]{Piotr Zwiernik}
+\institute[UofT]{University of Toronto}
+\date{}
+
+
+%\usepackage{Sweave}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Table of contents}
+\setbeamertemplate{section in toc}[sections numbered]
+\tableofcontents%[hideallsubsections]
+\end{frame}
+
+\section{Elliptical distributions}
+
+\begin{frame}{}
+	\begin{center}
+		{\Huge \alert{Elliptical distributions}}
+	\end{center}
+\end{frame}
+
+\subsection{Spherical distributions}
+
+\begin{frame}{Why Study Elliptical Distributions?}
+    \begin{itemize}
+        \item Generalize the multivariate normal distribution.\\[5mm]
+        \item Model data with heavy tails or outliers.\\[5mm]
+        \item Maintain symmetry and linear correlation structures.\\[5mm]
+        \item Applications in finance, insurance, and environmental studies.
+    \end{itemize}
+\end{frame}
+
+% Slide: Spherical Distributions Definition
+\begin{frame}{Spherical Distributions}
+\textbf{Orthogonal Matrices:} $O(m) = \{ U \in \mathbb{R}^{m \times m} : U^\top U = I_m \}$.
+%  \begin{itemize}
+%    \item $U \in O(m)$ implies $U^{-1} = U^\top$.
+%    \item Determinants satisfy $|\det(U)| = 1$.
+%  \end{itemize}
+\begin{alertblock}{Spherical distribution}
+A random vector $X \in \mathbb{R}^m$ has a \emph{spherical distribution} if for any $U \in O(m)$:
+  \begin{equation*}
+    X \overset{d}{=} U X.
+  \end{equation*}	
+\end{alertblock}
+Characteristic function satisfies: $\psi_X(\bs t)=\psi_{UX}(\bs t)=\psi_X(U^\top \bs t)$ and so \textbf{equivalently} $\psi_X(\bs t)$ depends only on $\|\bs t\|$. Thus, the same applies to the density: $$f_X(\x)\;=\;h(\|\bs x\|)\qquad\mbox{for some }h\mbox{ (generator)}.$$
+%e.g. $X\sim N_m(\bs 0_m,I_m)$ then $h(s)=\tfrac{1}{(2\pi)^{m/2}}e^{-\tfrac12 s}$
+  \end{frame}
+
+% Slide: Examples of Spherical Distributions
+\begin{frame}{Examples of Spherical Distributions}
+Standard normal distribution $Z \sim N_m(0, I_m)$ is a simple example.
+\bigskip
+
+\begin{block}{Spherical scale mixture of normals}
+	If $Z \sim N_m(0, I_m)$ and a random variable $\tau > 0$ is independent of $Z$, then:
+      \begin{equation*}
+        X = \frac{1}{\sqrt{\tau}} Z
+      \end{equation*}
+      has a spherical distribution.
+\end{block}
+  \textbf{Indeed:} Let $U \in O(m)$, then 
+$$    UX \;=\; \frac{1}{\sqrt{\tau}} UZ \;\overset{d}{=}\; \frac{1}{\sqrt{\tau}} Z \;=\; X.$$
+\end{frame}
+
+% Slide: Moment Structure of Spherical Distributions
+\begin{frame}{Moment Structure of Spherical Distributions}
+Spherical symmetry implies:
+      \begin{align*}
+        \mathbb{E}[X] &= 0, \\
+        \var(X) &= c I_m, \quad \mbox{for some }c \geq 0.
+      \end{align*}  
+      \textbf{Indeed:} $\var(X)=\var(UX)=U \var(X)U^\top$ for any $U\in O(m)$ 
+\bigskip
+
+For $X = \frac{1}{\sqrt{\tau}} Z$ with $Z \sim N(0, I_m)$, $\tau>0$, $\tau\indep Z$:
+      \begin{equation*}
+        \var(X) = \mathbb{E}[\tau^{-1}] I_m.
+      \end{equation*}
+\textbf{Indeed:} $\E[X]=\E[\tfrac{1}{\sqrt{\tau}}Z]=\E[\tfrac{1}{\sqrt{\tau}}]\E[Z]=\bs 0_m$ and so 
+$$\var(X)\;=\;\E XX^\top -\E[X]\E[X]^\top\;=\;\E[\tfrac{1}{\tau}ZZ^\top]\;=\;\E[\tfrac{1}{\tau}]\E[ZZ^\top]\;=\;\E[\tfrac{1}{\tau}]I_m$$
+\end{frame}
+
+% Slide: Independence of Norm and Direction
+\begin{frame}{Independence of $\|X\|$ and $\frac{X}{\|X\|}$}
+\begin{alertblock}{Key Property}
+	If $X$ is spherical, the norm $\|X\| = \sqrt{X^\top X}$ is independent of the direction $\frac{X}{\|X\|}$.
+\end{alertblock}
+  \textbf{Proof Sketch:}
+Let $U \in O(m)$. Then:
+$$
+        \frac{X}{\|X\|} \;\overset{d}{=}\; \frac{UX}{\|UX\|} \;=\; U \frac{X}{\|X\|}.
+$$
+The vector $\frac{X}{\|X\|}$ is rotationally invariant $\Longrightarrow$ has uniform distribution on the unit sphere (independent of what $\|X\|$ is).
+\bigskip
+
+A formal proof uses polar coordinates, see the notes.
+\end{frame}
+
+%% Slide: Polar Coordinates
+%\begin{frame}{Polar Coordinates}
+%  \textbf{Definition:} In $\mathbb{R}^m$, polar coordinates represent $\mathbf{x}$ as:
+%  \begin{equation*}
+%    \mathbf{x} = r \mathbf{u}(\boldsymbol{\theta}),
+%  \end{equation*}
+%  where $r = \|\mathbf{x}\|$ is the radial coordinate, and $\boldsymbol{\theta}$ are angular coordinates.
+%  \vspace{0.5cm}
+%  \textbf{Jacobian Determinant:}
+%  \begin{equation*}
+%    J(r, \boldsymbol{\theta}) = r^{m-1} \prod_{i=2}^{m-1} \sin^{m-i}(\theta_{i-1}).
+%  \end{equation*}
+%  \vspace{0.5cm}
+%  \textbf{Implication:} If $f(\mathbf{x}) = g(\|\mathbf{x}\|^2)$, then:
+%  \begin{equation*}
+%    f(\mathbf{x}) d\mathbf{x} = g(r^2) r^{m-1} dr d\boldsymbol{\theta}.
+%  \end{equation*}
+%\end{frame}
+
+\subsection{Elliptical distributions}
+
+% Slide: Elliptical Distributions
+\begin{frame}{Elliptical Distribution $E(\mu,\Sigma)$}
+Recall that $Z\sim N_m(\bs 0_m,I_m)$ then $X=\mu+\Sigma^{1/2}Z\sim N_m(\mu,\Sigma)$.
+\begin{block}{Elliptical distribution}
+A random vector $X \in \mathbb{R}^m$ has an elliptical distribution if:
+  \begin{equation*}
+    X = \mu + \Sigma^{1/2} Z,
+  \end{equation*}
+  where $Z$ is a spherical random vector.	
+\end{block}
+The density of $X\sim E(\mu,\Sigma)$ is of the form $$f_X(\x)\;=\;c_m \sqrt{\det{\Sigma^{-1}}}h((\x-\mu)^\top\Sigma^{-1}(\x-\mu)).$$
+The generator $g$ controls the shape of the distribution (and its tails in particular). 
+\end{frame}
+
+% Slide: Why Elliptical Distributions?
+\begin{frame}{Again: Why Elliptical Distributions?}
+    \begin{itemize}
+        \item Generalize the multivariate normal distribution.\\[5mm]
+        \item Model data with heavy tails or outliers.\\[5mm]
+        \item Maintain symmetry and linear correlation structures.\\[5mm]
+        \item Applications in finance, insurance, and environmental studies.
+    \end{itemize}
+\end{frame}
+
+% Slide: Scale Mixtures of Normals
+\begin{frame}{Scale Mixtures of Normals}
+Scale mixture of normals is a special class of elliptical distributions. 
+\bigskip
+
+  \textbf{Stochastic representation:}
+  \begin{equation*}
+    X = \mu + \frac{1}{\sqrt{\tau}} \Sigma^{1/2} Z,
+  \end{equation*}
+  where $Z \sim N_m(0, I_m)$ and $\tau > 0$ is independent of $Z$.
+  \vspace{0.5cm}
+  \begin{block}{Special Cases of Scale Mixture of Normals}
+  	  \begin{itemize}
+    \item $\tau \equiv 1$: Multivariate normal.
+    \item $\tau \sim \frac{1}{k} \chi^2_k$: Multivariate $t$-distribution with $k$ degrees of freedom.
+    \begin{itemize}
+    \item Smaller $k$ means heavier tails. Gaussian is the limit $k\to \infty$.
+    \end{itemize}
+    \item $\tau \sim \text{Exp}(1)$: Multivariate Laplace.
+  \end{itemize}
+    \end{block}
+\end{frame}
+
+% Slide: Covariance and Correlation
+\begin{frame}{Covariance and Correlation in Elliptical Distributions}
+$\Sigma$ is called the \textbf{scale matrix}. It is generally not equal to the covariance matrix.
+\medskip
+      \begin{equation*}
+        \mathrm{Var}(X) = c \Sigma, \quad c > 0.
+      \end{equation*}
+
+Correlation structure is still governed by $\Sigma$:
+$$
+R_{ij}\;=\;\frac{c\Sigma_{ij}}{\sqrt{c\Sigma_{ii}c\Sigma_{jj}}}\;=\;\frac{\Sigma_{ij}}{\sqrt{\Sigma_{ii}\Sigma_{jj}}}.
+$$
+Similarly, if $X\sim E(\mu,\Sigma)$ and $X=(X_A,X_B)$ then 
+$$
+\E(X_A|X_B=\x_B)\;=\;\E(X_A)-\Sigma_{A,B}\Sigma_{B,B}^{-1}(\x_B-\mu_B)
+$$
+exactly as in the Gaussian case.
+\end{frame}
+
+\section{Copula models}
+\begin{frame}{}
+	\begin{center}
+		{\Huge \alert{Copula models}}
+	\end{center}
+\end{frame}
+
+
+\begin{frame}{What is a Copula?}
+\begin{itemize}
+    \item A \textbf{copula} is a function that captures the \textbf{dependence structure} between random variables, separate from their marginal distributions.
+    \item It is a multivariate cumulative distribution function (CDF) with uniform marginals on $[0, 1]$.
+    \item Why use copulas?
+    \begin{itemize}
+        \item To model non-Gaussian dependencies.
+        \item To analyze dependence independently of marginal behaviors.
+    \end{itemize}
+    \item Formal Definition: \newline
+    A copula $C : [0, 1]^m \to [0, 1]$ satisfies the properties of a multivariate CDF with uniform marginals.
+\end{itemize}
+\end{frame}
+
+% Slide 2: Sklar's Theorem
+\begin{frame}{Sklar's Theorem}
+\begin{block}{Theorem (Sklar, 1959)}
+Let $X = (X_1, \ldots, X_m)$ be a random vector with joint CDF $F$ and marginals $F_1, \ldots, F_m$. There exists a unique copula $C$ such that:
+\[ F(x_1, \dots, x_m) = C(F_1(x_1), \dots, F_m(x_m)). \]
+Conversely, given marginals $F_1, \ldots, F_m$ and a copula $C$, the joint CDF $F$ is defined by the same formula.
+\end{block}
+\begin{itemize}
+    \item $C$ captures \textbf{dependence structure}.
+    \item $F_1, \ldots, F_m$ capture marginal behaviors.
+\end{itemize}
+\end{frame}
+
+% Slide 3: Understanding Sklar's Theorem
+\begin{frame}{Understanding Sklar's Theorem}
+\begin{itemize}
+    \item When $m = 1$, $C(u) = u$, the identity function on $[0, 1]$.
+    \item If $X$ is continuous with CDF $F$, then $F(X) \sim U(0, 1)$. \newline
+    \textbf{Proof:} \newline
+    \[
+    \mathbb{P}(F(X) \leq u) = \mathbb{P}(X \leq F^{-1}(u)) = F(F^{-1}(u)) = u.
+    \]
+    \item In higher dimensions:
+    \[ F(x_1, \ldots, x_m) = C(F_1(x_1), \ldots, F_m(x_m)). \]
+\end{itemize}
+\end{frame}
+
+% Slide 4: Copulas from Uniform Marginals
+\begin{frame}{Copulas from Uniform Marginals}
+\begin{itemize}
+    \item Let $X = (X_1, \ldots, X_m)$ with CDF $F$.
+    \item Define $U_i = F_i(X_i)$, where $F_i$ are the marginal CDFs.
+    \item The transformed variables $U = (U_1, \ldots, U_m)$ have uniform marginals.
+    \[ \mathbb{P}(U_1 \leq u_1, \ldots, U_m \leq u_m) = C(u_1, \ldots, u_m). \]
+    \item Sklar's theorem ensures $C$ is unique for continuous distributions.
+\end{itemize}
+\end{frame}
+
+% Slide 5: Example of a Copula
+\begin{frame}{Simple Example of a Copula}
+\begin{itemize}
+    \item Joint CDF:
+    \[ F_{X,Y}(x, y) =
+    \begin{cases} 
+    0 & x < 0 \text{ or } y < 0, \\
+    x^2 y^2 & 0 \leq x, y \leq 1, \\
+    1 & x > 1 \text{ and } y > 1, \\
+    \min(x^2, y^2) & \text{otherwise}.
+    \end{cases} \]
+    \item Marginal CDFs:
+    \[ F_X(x) = x^2, \quad F_Y(y) = y^2 \quad \text{for } 0 \leq x, y \leq 1. \]
+    \item Copula:
+    \[ C(u, v) = uv \quad \text{if } u, v \leq 1. \]
+\end{itemize}
+\end{frame}
+
+% Slide 6: Invariance under Transformations
+\begin{frame}{Invariance under Monotone Transformations}
+\begin{itemize}
+    \item Let $Y_i = f_i(X_i)$, where $f_i$ are strictly increasing transformations.
+    \item The copula remains unchanged.
+    \item Proof outline:
+    \begin{itemize}
+        \item Marginals transform: $G_i(y_i) = F_i(f_i^{-1}(y_i))$.
+        \item Copula representation remains:
+        \[ C(u_1, \ldots, u_m) = F(F_1^{-1}(u_1), \ldots, F_m^{-1}(u_m)). \]
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+% Slide 7: Copula Density
+\begin{frame}{Density of a Copula}
+\begin{itemize}
+    \item The PDF of a copula $C$ is obtained by differentiating its CDF:
+    \[ c(\mathbf{u}) = \frac{\partial^m C(\mathbf{u})}{\partial u_1 \cdots \partial u_m}. \]
+    \item Using the chain rule:
+    \[ c(\mathbf{u}) = \frac{f(\mathbf{x})}{\prod_{i=1}^m f_i(x_i)}, \]
+    where $f$ is the joint density and $f_i$ are marginal densities.
+\end{itemize}
+\end{frame}
+
+% Slide 8: Gaussian Copula
+\begin{frame}{Gaussian Copula}
+\begin{itemize}
+    \item Derived from the multivariate normal distribution.
+    \item Simplify to standard normal marginals:
+    \[ c(\mathbf{u}; \Sigma) = \det(\Sigma)^{-1/2} \exp\left(-\frac{1}{2} \mathbf{x}^\top (\Sigma^{-1} - I_m) \mathbf{x}\right), \]
+    where $x_i = \Phi^{-1}(u_i)$ and $\Phi$ is the standard normal CDF.
+\end{itemize}
+\end{frame}
+
+% Slide 9: Applications of Copulas
+\begin{frame}{Applications of Copulas}
+\begin{itemize}
+    \item \textbf{Finance:} Modeling dependencies in asset returns.
+    \item \textbf{Insurance:} Understanding risks in correlated claims.
+    \item \textbf{Environmental Science:} Joint modeling of extreme events (e.g., floods).
+    \item \textbf{Medical Statistics:} Modeling dependence in survival times.
+\end{itemize}
+\end{frame}
+
+
+\end{document}
+

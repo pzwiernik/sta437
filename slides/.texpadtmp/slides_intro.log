@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.13)  24 JAN 2025 04:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.13)  24 JAN 2025 05:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -538,48 +538,32 @@ Package: amsthm 2020/05/29 v2.20.6
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/beamer/beamerbasethemes.sty)) (/usr/local/texlive/2024/texmf-dist/tex/latex/beamer/beamerthemedefault.sty (/usr/local/texlive/2024/texmf-dist/tex/latex/beamer/beamerfontthemedefault.sty) (/usr/local/texlive/2024/texmf-dist/tex/latex/beamer/beamercolorthemedefault.sty) (/usr/local/texlive/2024/texmf-dist/tex/latex/beamer/beamerinnerthemedefault.sty
 \beamer@dima=\dimen293
 \beamer@dimb=\dimen294
-) (/usr/local/texlive/2024/texmf-dist/tex/latex/beamer/beamerouterthemedefault.sty))) (./defs.tex (/usr/local/texlive/2024/texmf-dist/tex/latex/textpos/textpos.sty
-Package: textpos 2022/07/23 v1.10.1
-Package textpos Info: choosing support for LaTeX3 on input line 60.
-\TP@textbox=\box77
-\TP@holdbox=\box78
-\TPHorizModule=\dimen295
-\TPVertModule=\dimen296
-\TP@margin=\dimen297
-\TP@absmargin=\dimen298
-
-Grid set 16 x 16 = 28.45274pt x 16.00467pt
-\TPboxrulesize=\dimen299
-\TP@ox=\dimen300
-\TP@oy=\dimen301
-\TP@tbargs=\toks46
-TextBlockOrigin set to 0pt x 0pt
-)
-\zerobox=\box79
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/beamer/beamerouterthemedefault.sty))) (./defs.tex
+\zerobox=\box77
  (/usr/local/texlive/2024/texmf-dist/tex/generic/soul/soul.sty
 Package: soul 2023-06-14 v3.1 Permit use of UTF-8 characters in soul (HO)
  (/usr/local/texlive/2024/texmf-dist/tex/generic/soul/soul-ori.sty
 Package: soul-ori 2023-06-14 v3.1 letterspacing/underlining (mf)
-\SOUL@word=\toks47
-\SOUL@lasttoken=\toks48
-\SOUL@syllable=\toks49
-\SOUL@cmds=\toks50
-\SOUL@buffer=\toks51
-\SOUL@token=\toks52
-\SOUL@syllgoal=\dimen302
-\SOUL@syllwidth=\dimen303
-\SOUL@charkern=\dimen304
-\SOUL@hyphkern=\dimen305
-\SOUL@dimen=\dimen306
-\SOUL@dimeni=\dimen307
+\SOUL@word=\toks46
+\SOUL@lasttoken=\toks47
+\SOUL@syllable=\toks48
+\SOUL@cmds=\toks49
+\SOUL@buffer=\toks50
+\SOUL@token=\toks51
+\SOUL@syllgoal=\dimen295
+\SOUL@syllwidth=\dimen296
+\SOUL@charkern=\dimen297
+\SOUL@hyphkern=\dimen298
+\SOUL@dimen=\dimen299
+\SOUL@dimeni=\dimen300
 \SOUL@minus=\count345
 \SOUL@comma=\count346
 \SOUL@apo=\count347
 \SOUL@grave=\count348
 \SOUL@spaceskip=\skip66
-\SOUL@ttwidth=\dimen308
-\SOUL@uldp=\dimen309
-\SOUL@ulht=\dimen310
+\SOUL@ttwidth=\dimen301
+\SOUL@uldp=\dimen302
+\SOUL@ulht=\dimen303
 ) (/usr/local/texlive/2024/texmf-dist/tex/generic/etexcmds/etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 ))) (/Users/piotrzwiernik/Library/texmf/tex/latex/Sweave/Sweave.sty
@@ -590,7 +574,7 @@ Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
 Package: fancyvrb 2024/01/20 4.5c verbatim text (tvz,hv)
 \FV@CodeLineNo=\count349
 \FV@InFile=\read3
-\FV@TabBox=\box80
+\FV@TabBox=\box78
 \c@FancyVerbLine=\count350
 \FV@StepNumber=\count351
 \FV@OutFile=\write5
@@ -601,7 +585,7 @@ Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
 )) (/usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count352
-\l__pdf_internal_box=\box81
+\l__pdf_internal_box=\box79
 ) (/Users/piotrzwiernik/Documents/GitHub/sta437/slides/.texpadtmp/slides_intro.aux)
 \openout1 = `slides_intro.aux'.
 
@@ -661,16 +645,16 @@ LaTeX Font Info:    ... okay on input line 16.
 (/usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count353
-\scratchdimen=\dimen311
-\scratchbox=\box82
+\scratchdimen=\dimen304
+\scratchbox=\box80
 \nofMPsegments=\count354
 \nofMParguments=\count355
-\everyMPshowfont=\toks53
+\everyMPshowfont=\toks52
 \MPscratchCnt=\count356
-\MPscratchDim=\dimen312
+\MPscratchDim=\dimen305
 \MPnumerator=\count357
 \makeMPintoPDFobject=\count358
-\everyMPtoPDFconversion=\toks54
+\everyMPtoPDFconversion=\toks53
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
  (/usr/local/texlive/2024/texmf-dist/tex/latex/grfext/grfext.sty
@@ -991,10 +975,10 @@ Package rerunfilecheck Info: File `slides_intro.out' has not changed.
 (rerunfilecheck)             Checksum: 43554EE908ED388EA10A16891197CF6E;1040.
  ) 
 Here is how much of TeX's memory you used:
- 23279 strings out of 473330
- 441421 string characters out of 5719762
- 804093 words of memory out of 5000000
- 45838 multiletter control sequences out of 15000+600000
+ 22820 strings out of 473330
+ 436862 string characters out of 5719762
+ 798900 words of memory out of 5000000
+ 45383 multiletter control sequences out of 15000+600000
  579032 words of font info for 91 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,11n,123p,728b,451s stack positions out of 10000i,1000n,20000p,200000b,200000s
