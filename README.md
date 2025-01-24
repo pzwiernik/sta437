@@ -65,7 +65,7 @@ The midterms are short (1 hour) and they focus on simple conceptual/theory quest
 | --- |  --- | --- | --- | --- | --- | 
 | 1 | Introduction, some linear algebra, matrix decompositions<br/>Random vectors, covariance matrices.  | [slides1](./slides/slides_intro.pdf) <br> [notes1](./lectures/lecture1.pdf) | RZ: [tut1](./tutorials/tutorial1.html) |  8 Jan| [syllabus]() |
 | 2 | Sample statistics. Multivariate normal distribution: definition, basic properties.  | [notes2](./lectures/lecture2.pdf) | ML: [tut2](./tutorials/tutorial2.pdf) | 15 Jan | |
-| 3 | MVN: Conditional distribution, conditional independence. <br> Estimation for MVN models    | [notes3](./lectures/lecture3.pdf) | LSM: [tut3](./tutorials/tutorial3.pdf)<br> [code](./tutorials/tutorial3.hmtl) | 22 Jan |   |
+| 3 | MVN: Conditional distribution, conditional independence. <br> Estimation for MVN models    | [notes3](./lectures/lecture3.pdf) | LSM: [tut3](./tutorials/tutorial3.pdf)<br> [code](./tutorials/tutorial3.html) | 22 Jan |   |
 | 4 | Gaussian Processes: basic definitions and examples <br> Non-Gaussian distributions: elliptical distributions, copulas      | notes4 <br> [slides4](./slides/slides_GPs.pdf)| DL  | 29 Jan |  |
 | 5 | Non-Gaussian distributions: Gaussian mixtures <br> Principal Component Analysis: definition, basic examples   |  | **midterm1**  | 5 Feb|  |
 | 6 | Principal Component Analysis: Scree plot, Computations  |  | SCh  | 12 Feb|  |
