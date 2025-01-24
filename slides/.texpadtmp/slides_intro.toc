@@ -1,3 +1,5 @@
-\beamer@sectionintoc {1}{Introduction to Gaussian Processes (GPs)}{3}{0}{1}
-\beamer@sectionintoc {2}{Gaussian Processes for Spatial Data}{7}{0}{2}
-\beamer@sectionintoc {3}{Nonparametric Regression with GPs}{10}{0}{3}
+\beamer@sectionintoc {1}{What is this class about?}{3}{0}{1}
+\beamer@sectionintoc {2}{Administrative details}{5}{0}{2}
+\beamer@sectionintoc {3}{Introduction to multivariate statistics}{9}{0}{3}
+\beamer@sectionintoc {4}{Multivariate data visualization}{17}{0}{4}
+\beamer@sectionintoc {5}{Notation and preliminaries (blackboard)}{24}{0}{5}
