@@ -201,19 +201,39 @@ exactly as in the Gaussian case.
 	\end{center}
 \end{frame}
 
+\begin{frame}{Cumulative Distribution Function (CDF)}
+	Let $X=(X_1,\ldots,X_m)$ be a random vector.  Its \textbf{CDF} is: $$F(x_1,\ldots,x_m)=\P(X_1\leq x_1,X_2\leq x_2,\ldots,X_m\leq x_m).$$
+	Marginal CDF: $F_1(x_1)=\P(X_1\leq x_1)=\lim_{x_2\to \infty}\cdots\lim_{x_m\to\infty}F(x_1,x_2,\ldots,x_m)$.
+	(similar for any other margin)\\[5mm]	
+	\begin{block}{}
+	If $f$ is the corresponding density, then:
+	$$
+	f(x_1,\ldots,x_m)\;=\;\frac{\partial^m}{\partial x_1\cdots\partial x_m}F(x_1,\ldots,x_m)
+	$$
+	
+	$$
+	F(x_1,\ldots,x_m)\;=\;\int_{-\infty}^{x_1}\cdots \int_{-\infty}^{x_m} f(y_1,\ldots,y_m){\rm d}y_1\cdots {\rm d} y_m. 
+	$$		
+	\end{block}
+		If $U\sim U[0,1]$ then $F(u)=u$ $u\in [0,1]$.
+
+\end{frame}
+
 
 \begin{frame}{What is a Copula?}
 \begin{itemize}
     \item A \textbf{copula} is a function that captures the \textbf{dependence structure} between random variables, separate from their marginal distributions.
-    \item It is a multivariate cumulative distribution function (CDF) with uniform marginals on $[0, 1]$.
-    \item Why use copulas?
-    \begin{itemize}
+\end{itemize}
+\begin{alertblock}{Definition}
+	A function $C : [0, 1]^m \to [0, 1]$ is a \textbf{copula} if it is a CDF with uniform marginals, that is, $C_1(u_1)=u_1$, \ldots, $C_m(u_m)=u_m$, where $C_i$ are the marginal CDF's.
+\end{alertblock}
+For example, the copula $C(\bs u)=u_1\cdots u_m$ corresponds to a $m$ independent $U[0,1]$.
+\begin{block}{Why use copulas?}
+	\begin{itemize}
         \item To model non-Gaussian dependencies.
         \item To analyze dependence independently of marginal behaviors.
     \end{itemize}
-    \item Formal Definition: \newline
-    A copula $C : [0, 1]^m \to [0, 1]$ satisfies the properties of a multivariate CDF with uniform marginals.
-\end{itemize}
+\end{block}
 \end{frame}
 
 % Slide 2: Sklar's Theorem
@@ -232,26 +252,41 @@ Conversely, given marginals $F_1, \ldots, F_m$ and a copula $C$, the joint CDF $
 % Slide 3: Understanding Sklar's Theorem
 \begin{frame}{Understanding Sklar's Theorem}
 \begin{itemize}
-    \item When $m = 1$, $C(u) = u$, the identity function on $[0, 1]$.
-    \item If $X$ is continuous with CDF $F$, then $F(X) \sim U(0, 1)$. \newline
-    \textbf{Proof:} \newline
+    \item When $m = 1$, $C(u) = u$, the identity function on $[0, 1]$.\\[5mm]
+    \item If $X$ is continuous with CDF $F$, then $F(X) \sim U(0, 1)$. \\[3mm]
+    \textbf{Proof:} If $X$ is continuous, $F$ is strictly increasing on the support. Hence
     \[
     \mathbb{P}(F(X) \leq u) = \mathbb{P}(X \leq F^{-1}(u)) = F(F^{-1}(u)) = u.
     \]
-    \item In higher dimensions:
-    \[ F(x_1, \ldots, x_m) = C(F_1(x_1), \ldots, F_m(x_m)). \]
+%    \item In higher dimensions:
+%    \[ F(x_1, \ldots, x_m) = C(F_1(x_1), \ldots, F_m(x_m)). \]
 \end{itemize}
 \end{frame}
 
 % Slide 4: Copulas from Uniform Marginals
-\begin{frame}{Copulas from Uniform Marginals}
+\begin{frame}{}
 \begin{itemize}
     \item Let $X = (X_1, \ldots, X_m)$ with CDF $F$.
     \item Define $U_i = F_i(X_i)$, where $F_i$ are the marginal CDFs.
     \item The transformed variables $U = (U_1, \ldots, U_m)$ have uniform marginals.
     \[ \mathbb{P}(U_1 \leq u_1, \ldots, U_m \leq u_m) = C(u_1, \ldots, u_m). \]
+    \item Also note that 
+\begin{equation}\label{eq:cop1}
+    \mathbb{P}(U_1 \leq u_1, \ldots, U_m \leq u_m) = F(F_1^{-1}(u_1),\ldots,F_m^{-1}(u_m))	
+\end{equation}
+    and so the copula can be computed explicitly.
     \item Sklar's theorem ensures $C$ is unique for continuous distributions.
 \end{itemize}
+\begin{alertblock}{}
+	Given copula $C$ and margins $F_i$ we easily get the corresponding  distribution using \eqref{eq:cop1}:
+	$$
+	F(x_1,\ldots,x_m)\;=\;C(F_1(x_1),\ldots,F_m(x_m)).
+	$$
+\end{alertblock}
+\end{frame}
+
+\begin{frame}{Sampling}
+	Fix a copula $C(\bs u)$
 \end{frame}
 
 % Slide 5: Example of a Copula
