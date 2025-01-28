@@ -445,24 +445,53 @@ We can generate samples from the fitted Gaussian copula.
 \section{Gaussian Mixture Models}
 
 % Slide 1: Definition of GMMs
-\begin{frame}{Gaussian Mixture Models (GMMs)}
-\textbf{Definition:}
-A Gaussian Mixture Model assumes that the data is generated from a mixture of \( K \) Gaussian components:
-\[
-f(\mathbf{x}) = \sum_{k=1}^K \pi_k N_m(\mathbf{x}; \mu_k, \Sigma_k),
-\]
-where:
+\begin{frame}{Mixture of Gaussians}
+We combine simple models into a complex model by taking a mixture of $K$ multivariate Gaussian densities of the form:
+$$
+p(x)\;=\;\sum_{k=1}^K \pi_k N_m(x|\mu_k,\Sigma_k),
+$$
+where $\pi_k\geq 0$, $\sum_{k=1}^K\pi_k=1$, and $N_m(x|\mu_k,\Sigma_k)$ is the $m$-dim Gaussian density.
 \begin{itemize}
-    \item \( \pi_k \): mixture weights (\( \pi_k \geq 0 \), \( \sum_{k=1}^K \pi_k = 1 \)),
-    \item \( \mu_k, \Sigma_k \): mean vector and covariance matrix of component \( k \).
+	\item Each Gaussian component has its own mean vector $\mu_k$ and covariance matrix $\Sigma_k$.
+	\item The parameters $\pi_k$ are called the mixing coefficients.
 \end{itemize}
+\pause
+\begin{minipage}{7cm}{}
+Example:
+\begin{itemize}
+	\item $K=3$ (three Gaussian components)
+	\item $m=1$ (univariate Gaussians)
+\end{itemize}
+\end{minipage}\begin{minipage}{5cm}{}
+	\begin{figure}
+\includegraphics[scale=.25]{./pics/multimodal.jpg}
+\end{figure}
+\end{minipage}
+\end{frame}
 
-\textbf{Key Properties:}
-\begin{itemize}
-    \item Flexible model for multimodal data distributions.
-    \item Each Gaussian component corresponds to a sub-population.
-    \item Approximation improves as \( K \) increases (universal approximator for continuous distributions).
-\end{itemize}
+\begin{frame}{The crabs from Naples bay}
+
+%	{In 1892, scientists collected data on populations of the crab and observed that the ratio of forehead width to the body length  actually showed a highly skewed distribution.}\\[.2cm]
+
+%	\begin{figure*}
+\begin{minipage}{5.5cm}{}
+	\includegraphics[scale=.29]{pics/crabs.png}
+		\end{minipage}\begin{minipage}{9cm}
+			 In 1892, scientists collected data on populations of the crab and observed that the ratio of forehead width to the body length  actually showed a highly skewed distribution.\\[2mm] {\small Source: \textit{On Certain Correlated Variations in Carcinus maenas} (1893) W. F.  Weldon.}	
+		\end{minipage}
+
+{ They wondered whether this distribution could be the result of the population being a mix of two different normal distributions (two sub-species).}
+\smallskip 
+
+{ In \textbf{1894}, Karl Pearson proposed a method to fit this model (\href{https://archive.org/details/philtrans02543681}{\textcolor{blue}{read here}}), whose modern version is the ``method of moments''. The method involved solving a higher order polynomial.}
+%	\end{figure*}
+\end{frame}
+
+\begin{frame}{}
+%\frametitle{Mixture of Gaussians: 2D example}
+\begin{figure}
+\includegraphics[page=2,width=4.8in,trim={0 0 0 3cm},clip]{pics/raw.pdf}
+\end{figure}
 \end{frame}
 
 % Slide 2: Why use Gaussian Mixtures?
@@ -479,26 +508,29 @@ Gaussian Mixture Models (GMMs) are widely used because of their:
 For simplicity, in clustering, we often assume \( \Sigma_k = \Sigma \) for all \( k \).
 \end{frame}
 
-% Slide 3: Latent Variable Representation
-\begin{frame}{Latent Variable Representation of GMMs}
-\textbf{Latent Variable Model:}
-GMMs can be written using a latent variable \( Z \in \{1, \dots, K\} \), where:
+\begin{frame}
+\frametitle{Mixture of Gaussians as a latent variable model}
+Recall: \textcolor{blue}{$p(x)\;=\;\sum_{k=1}^K \pi_k N_m(x|\mu_k,\Sigma_k)$}.\\[.3cm]
 \begin{itemize}
-    \item \( \mathbb{P}(Z = k) = \pi_k \) (mixing proportions),
-    \item \( \mathbf{X} \mid Z = k \sim N_m(\mu_k, \Sigma_k) \) (conditional distribution).
+	\item Consider a latent variable $z$ with $K$ states $z\in \{1,\ldots,K\}$. 
+%	\item For simplicity encode it in a 1-to-K representation:
+%	$$
+%	z\in \{e_1,\ldots,e_K\},\quad  \mbox{where } e_i=(0,\ldots,0,1,0,\ldots,0).
+%	$$
+	\item The distribution of $z$ given by the mixing coefficients: $$p(z=k)=\pi_k.$$
+	\item Specify the conditional as $p(x|z=k)=N_m(x|\mu_k,\Sigma_k)$ with joint: $$p(x,z=k)\;=\;p(z=k)p(x|z=k)\;=\;\pi_k N_m(x|\mu_k,\Sigma_k).$$
+	\item Then the marginal $p(x)$ satisfies $$\textcolor{blue}{p(x)=\sum_{k=1}^K p(x,z=k)\;=\;\sum_{k=1}^K \pi_k N_m(x|\mu_k,\Sigma_k)}.$$
 \end{itemize}
+%\begin{figure}
+%\includegraphics[page=3,width=4.8in,trim={0 0 0 3cm},clip]{./raw.pdf}
+%\end{figure}
+\end{frame}
 
-\textbf{Marginal Distribution:}
-The marginal distribution of \( \mathbf{X} \) is:
-\[
-f(\mathbf{x}) = \sum_{k=1}^K \pi_k N_m(\mathbf{x}; \mu_k, \Sigma_k).
-\]
-
-\textbf{Advantages of Latent Representation:}
-\begin{itemize}
-    \item Facilitates model estimation (e.g., Expectation-Maximization).
-    \item Provides a natural interpretation for clustering and component membership.
-\end{itemize}
+\begin{frame}{Yet another illustration}
+The quantities $p(z|x)$ are called responsibilities.
+\begin{figure}
+\includegraphics[page=8,width=4.8in,trim={0 0 0 3cm},clip]{pics/raw.pdf}
+\end{figure}
 \end{frame}
 
 % Slide 4: Likelihood Inference for GMMs
@@ -516,6 +548,50 @@ f(\mathbf{x}) = \sum_{k=1}^K \pi_k N_m(\mathbf{x}; \mu_k, \Sigma_k).
 
 \textbf{Solution:} Use the \textbf{Expectation-Maximization (EM)} algorithm to iteratively estimate parameters using the latent variable representation.
 \end{frame}
+
+\begin{frame}{The General EM algorithm}
+Consider a general setting with latent variables.
+\begin{itemize}
+	\item Observed dataset $\boldsymbol{X}\in \mathbb R^{N\times D}$, latent variables $\boldsymbol{Z}\in \mathbb R^{N\times K}$.
+	\end{itemize}
+Maximize the log-likelihood  \textcolor{purple}{$\log p(\boldsymbol{X}|\theta)=\log\left(\sum_{\boldsymbol Z}p(\boldsymbol X,\boldsymbol Z|\theta)\right)$}.
+\begin{itemize}
+	\item Initialize parameters $\theta^{\rm old}$.
+%	\item Our knowledge on $z$ carried by the posterior $p(z|x,\theta)$. 
+	 \item \textbf{E-step}: use $\theta^{\rm old}$ to compute the posterior $p(\boldsymbol{Z}|\boldsymbol{X},\theta^{\rm old})$.
+ 	\item \textbf{M-step}: $\theta^{\rm new}=\arg\max_\theta Q(\theta,\theta^{\rm old})$, where
+$$
+	Q(\theta,\theta^{\rm old})\;=\;\sum_{\boldsymbol{Z}}p(\boldsymbol{Z}|\boldsymbol{X},\theta^{\rm old})\log p(\boldsymbol{X},\boldsymbol{Z}|\theta)\;=\;\mathbb E\Big(\log p(\boldsymbol{X},\boldsymbol{Z}|\theta)\Big|\boldsymbol{X},\theta^{\rm old}\Big)
+$$
+which is tractable in many applications.
+\item Replace $\theta^{\rm old}\leftarrow\theta^{\rm new}$. Repeat until convergence.
+\end{itemize}
+%\begin{figure}
+%\includegraphics[page=19,width=4.8in,trim={0 0 0 3cm},clip]{./raw.pdf}
+%\end{figure}
+\end{frame}
+
+\begin{frame}{Example: Gaussian mixture}
+\begin{itemize}
+%	\item We confirm earlier formulas for the Gaussian mixture.
+	\item If $z$ was observed, the MLE would be trivial
+	$${\small \log p(\boldsymbol X,\boldsymbol Z|\theta)=\sum_{n=1}^N \log p(x_n,z_n|\theta)=\sum_{n=1}^N\sum_{k=1}^K \textcolor{blue}{1\!\!1(z_n\!=\!k)}\log\left(\pi_kN(x_n|\mu_k,\Sigma_k)\right).}$$
+\end{itemize}
+For the E-step: $p(\boldsymbol{Z}|\boldsymbol{X},\theta)=\prod_{n=1}^N p(z_n|\boldsymbol{X},\theta)$ we have
+$$
+p(z_n=k|\boldsymbol{X},\theta)=p(z_n=k|x_n,\theta)=\frac{\pi_k N_m(x_n|\mu_k,\Sigma_k)}{\sum_{j=1}^K \pi_j N_m(x_n|\mu_j,\Sigma_j)}.
+$$
+For the M-step: ${\small \mathbb E(1\!\!1(z_n=k)|\boldsymbol{X},\theta^{\rm old})=p(z_n=k|\boldsymbol{X},\theta^{\rm old})}$ and so 
+$$
+{\small \mathbb E\Big(\log p(\boldsymbol X,\boldsymbol Z|\theta)\Big|\boldsymbol{X},\theta^{\rm old}\Big)\;=\;\sum_{n=1}^N\sum_{k=1}^K \textcolor{blue}{p(z_n=k|\boldsymbol{X},\theta^{\rm old})}\log\left(\pi_kN(x_n|\mu_k,\Sigma_k)\right).}
+$$
+Maximizing gives the formulas on Slide~\ref{GMEM}.
+%\begin{figure}
+%\includegraphics[page=24,width=4.8in,trim={0 0 0 3cm},clip]{./raw.pdf}
+%\end{figure}
+\end{frame}
+
+
 
 % Slide 5: EM Algorithm for GMMs
 \begin{frame}{EM Algorithm for GMMs}
@@ -537,6 +613,9 @@ The EM algorithm alternates between two steps to estimate parameters:
 
 \textbf{Convergence:} Repeat until the log-likelihood \( \ell(\theta) \) converges.
 \end{frame}
+
+
+
 
 % Slide 6: Example: GMM in Action
 \begin{frame}{Example: GMM in Action}
@@ -573,7 +652,7 @@ The EM algorithm alternates between two steps to estimate parameters:
     \item Log-likelihood increases monotonically with iterations.
 \end{itemize}
 
-\includegraphics[width=0.8\textwidth]{Figures/GMM2.pdf}
+\includegraphics[width=0.3\textwidth]{pics/GMM2_1.pdf}\includegraphics[width=0.3\textwidth]{pics/GMM2_2.pdf}\includegraphics[width=0.3\textwidth]{pics/GMM2_3.pdf}
 \end{frame}
 
 \end{document}
