@@ -25,7 +25,7 @@ More details can be found in [syllabus](syllabus2025.pdf) and [piazza](https://p
 | Prof |  [Piotr Zwiernik](https://pzwiernik.github.io/) |
 | :--- | :--- |
 | Email | piotr.zwiernik@utoronto.ca |
-| Office hours | Tuesday, 13:30-15:00 (UY 9033) |
+| Office hours | Tuesday, 15:30-17:00 (UY 9033) |
 
 ### Teaching Assistants:
 
