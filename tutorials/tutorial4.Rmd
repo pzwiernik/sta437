@@ -1,0 +1,380 @@
+---
+title: "Gaussian Processes for Spatial Analysis"
+author: "David Li"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+# Introduction to Gaussian Processes for Spatial Analysis
+
+Gaussian Processes (GPs) are powerful tools for modeling spatial dependence. This tutorial covers:
+
+1. Mathematical foundations of GPs and variograms
+2. Implementation in R
+3. Spatial prediction (kriging)
+4. Model diagnostics
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE)
+library(ggplot2)
+library(gstat)
+library(sp)
+library(fields)
+library(automap)
+```
+
+## 1. Mathematical Foundations
+
+### 1.1 Gaussian Process Definition
+
+A GP is defined by its mean function $m(\mathbf{x})$ and covariance function $k(\mathbf{x}, \mathbf{x}')$:
+
+$$
+f(\mathbf{x}) \sim \mathbf{GP}\left(m(\mathbf{x}), k(\mathbf{x}, \mathbf{x}')\right)
+$$
+
+For spatial analysis, we commonly use the exponential covariance function:
+
+$$
+k(\mathbf{x}_i, \mathbf{x}_j) = \sigma^2\exp\left(-\frac{||\mathbf{x}_i - \mathbf{x}_j||}{\rho}\right) + \sigma_n^2\delta_{ij}
+$$
+
+Where:
+- $\sigma^2$ = Process variance (sill)
+
+- $\rho$ = Range parameter
+
+- $\sigma_n^2$ = Nugget effect (measurement error)
+
+- $\delta_{ij}$ = Kronecker delta
+
+### 1.2 Geostatistical Regression Model:
+
+$$
+Z(\mathbf{s}) = \underbrace{\beta_0 + \beta_1 X_1(\mathbf{s}) + \cdots + \beta_p X_p(\mathbf{s})}_{\text{Covariate effects}} + \underbrace{w(\mathbf{s})}_{\text{Spatial GP}} + \underbrace{\epsilon(\mathbf{s})}_{\text{Nugget}}
+$$
+
+Where:
+- $X_j(\mathbf{s})$: Spatial covariates.
+
+- $w(\mathbf{s}) \sim \mathbf{GP}(0, k(\cdot))$: Spatial random field
+
+- $\epsilon(\mathbf{s}) \sim N(0, \sigma_n^2)$: Measurement error
+
+- $k(\mathbf{s}, \mathbf{s}') = \sigma^2\exp(-\|\mathbf{s}-\mathbf{s}'\|/\rho)$: Exponential covariance.
+
+### 1.3 Data Simulation with Covariates
+
+```{r simulate_data}
+set.seed(437)
+n_points <- 200
+x <- runif(n_points, 0, 100)
+y <- runif(n_points, 0, 100)
+
+# Simulate covariates
+X1 <- 0.1*x + rnorm(n_points, sd=0.5)  # Spatial covariate
+X2 <- ifelse(y > 50, 1, 0)             # Binary covariate
+
+# True parameters
+beta <- c(2, 0.8, -1.2)  # Intercept, beta1, beta2
+sigma_sq <- 1.5           # Spatial variance
+rho <- 25                 # Range
+sigma_n <- 0.3            # Nugget SD
+
+# Spatial covariance matrix
+d <- as.matrix(dist(cbind(x, y)))
+Sigma <- sigma_sq * exp(-d/rho)
+
+# Generate spatial effects
+spatial_effect <- t(chol(Sigma)) %*% rnorm(n_points)
+
+# Combine components
+z <- beta[1] + beta[2]*X1 + beta[3]*X2 + spatial_effect + rnorm(n_points, 0, sigma_n)
+
+# Create spatial dataframe
+sp_df <- data.frame(x, y, z, X1, X2)
+coordinates(sp_df) <- ~x+y
+```
+
+### 1.4. Exploratory Analysis
+
+#### 1.4.1 Covariate Relationships
+```{r covariate_plots}
+sp_df_df <- data.frame(sp_df)
+
+ggplot(sp_df_df, aes(X1, z)) + 
+  geom_point() + 
+  geom_smooth(method=lm) +
+  ggtitle("Z vs X1 Relationship")
+
+ggplot(sp_df_df, aes(factor(X2), z)) + 
+  geom_boxplot() +
+  ggtitle("Z by X2 Category")
+```
+
+
+#### 1.4.2 Data Map
+```{r data_plots}
+ggplot(sp_df_df, aes(x, y, z)) + 
+  geom_point(aes(color = z)) + 
+  scale_color_viridis_c() +
+  ggtitle("Z values at observed locations.")
+```
+
+### 1.5 What if spatial dependence is not considered?
+
+Let's fit a simple linear regression model without considering spatial dependence:
+
+```{r}
+fit_lm <- lm(z~X1+X2, data = sp_df_df)
+
+summary(fit_lm)
+```
+
+```{r}
+# 95% confidence intervals
+fit_lm$coefficients  + 1.96*summary(fit_lm)$coefficients[,2]
+fit_lm$coefficients  - 1.96*summary(fit_lm)$coefficients[,2]
+```
+Estimations are quite off for these $\beta$'s.
+
+How to determine if there is spatial dependence among data?
+
+## 2 Variogram Analysis
+
+The variogram is defined as
+$$
+2\gamma(h) = \mathbb{E}[(Z(\mathbf{s} + h) - Z(\mathbf{s}))^2].
+$$
+The semivariogram is then $\gamma(h)$. It characterizes spatial depdence.
+
+The semivariogram is estimated by:
+
+$$
+\gamma(h) = \frac{1}{2N(h)}\sum_{i=1}^{N(h)}[z(\mathbf{x}_i) - z(\mathbf{x}_i + h)]^2
+$$
+
+**Special Case - No Spatial Dependence:**
+When there's no spatial correlation (pure nugget effect):
+
+$$
+\gamma(h) = \begin{cases}
+0 & h = 0 \\
+c_0 & h > 0
+\end{cases}
+$$
+
+This indicates complete spatial randomness.
+
+### 2.1 Variogram Modeling
+
+The empirical variogram now models residuals after covariate effects:
+
+```{r residual_variogram}
+vgram <- variogram(z ~ X1 + X2, sp_df)
+plot(vgram, main="Residual Empirical Variogram")
+```
+
+### 2.2 Model Fitting
+```{r fit_model}
+fit_vgram <- autofitVariogram(z ~ X1 + X2, sp_df, model="Exp")
+plot(fit_vgram)
+```
+
+Fitted parameters:
+
+- Nugget: `r round(fit_vgram$var_model$psill[1], 2)`
+
+- Partial Sill: `r round(fit_vgram$var_model$psill[2], 2)`
+
+- Range: `r round(fit_vgram$var_model$range[2], 1)`
+
+## 3. Spatial Prediction (Kriging)
+
+### 3.1 Kriging Equations
+
+The kriging predictor combines covariance structure with observations:
+
+$$
+\hat{Z}(\mathbf{s}_0) = \mathbf{x}_0^\top\hat{\beta} + \mathbf{k}_0^\top(\mathbf{K} + \hat{\sigma}_n^2\mathbf{I})^{-1}(\mathbf{z} - \mathbf{X}\hat{\beta})
+$$
+
+Where:
+- $\mathbf{x}_0$ = Covariate vector at new location.
+
+- $\mathbf{X}$ = Design matrix of covariates.
+
+- $\hat{\beta}$ = Generalized least squares estimates.
+
+- $\hat{\sigma}_n$ = Estimated nugget effects from variogram fitting.
+
+- $\mathbf{K}$ = $n \times n$ covariance matrix between observations.
+
+- $\mathbf{k}_0$ = $n \times 1$ covariance vector between observations and prediction locations.
+
+In addition, $\beta$ is estimated using generalized least square as follow:
+
+$$
+\hat{\beta} = (\mathbf{X}^T\hat{\mathbf{\Sigma}}^{-1}\mathbf{X})^{-1}\mathbf{X}^T\hat{\mathbf{\Sigma}}^{-1}\mathbf{z}
+$$
+
+Where:
+
+- $\mathbf{X}$ = Design matrix (including intercept).
+
+- $\mathbf{\Sigma}$ = Covariance matrix from estimated from empirical variogram.
+
+- $\mathbf{z}$ = Response vector.
+
+### 3.2 Implementation
+
+```{r prediction_grid}
+grid <- expand.grid(
+  x = seq(0, 100, length=50),
+  y = seq(0, 100, length=50)
+)
+grid$X1 <- 0.1*grid$x  # Maintain covariate relationship
+grid$X2 <- ifelse(grid$y > 50, 1, 0)
+coordinates(grid) <- ~x+y
+```
+
+### 3.3 Universal Kriging
+```{r universal_kriging}
+uk_model <- gstat(
+  formula = z ~ X1 + X2,
+  data = sp_df,
+  model = fit_vgram$var_model
+)
+
+pred_uk <- predict(uk_model, grid)
+```
+
+
+## 4. Visualization of Results
+
+### 4.1 Prediction Surface
+
+```{r prediction_surface}
+pred_df <- as.data.frame(pred_uk)
+names(pred_df) <- c("x", "y", "z_pred", "z_var")
+
+ggplot(pred_df, aes(x, y)) +
+  geom_tile(aes(fill = z_pred)) +
+  scale_fill_viridis_c() +
+  geom_point(data = sp_df_df, aes(x, y), color = "white", size=0.5) +
+  theme_minimal() +
+  ggtitle("Kriging Prediction Surface")
+```
+
+### 4.2 Prediction Uncertainty
+
+```{r uncertainty}
+ggplot(pred_df, aes(x, y)) +
+  geom_tile(aes(fill = sqrt(z_var))) +
+  scale_fill_viridis_c(option = "magma") +
+  theme_minimal() +
+  ggtitle("Prediction Standard Error")
+```
+
+
+### 4.3 Parameter Estimation
+
+Now let's see what the estimated coefficients are using the GLS method:
+
+```{r}
+nugget       <- fit_vgram$var_model$psill[1]
+partial_sill <- fit_vgram$var_model$psill[2]
+range_par    <- fit_vgram$var_model$range[2]
+
+## 3. Build covariance matrix
+df <- sp_df@coords
+D  <- as.matrix(dist(df[, c("x", "y")]))
+Sigma <- partial_sill * exp(-D / range_par) + diag(nugget, nrow(df))
+
+## 4. Construct design matrix and response
+X <- model.matrix(~ X1 + X2, data = data.frame(df))
+z <- sp_df@data$z
+
+## 5. GLS estimates
+Sigma_inv <- solve(Sigma)
+beta_hat <- solve(t(X) %*% Sigma_inv %*% X) %*% (t(X) %*% Sigma_inv %*% z)
+
+beta_hat
+
+## 6. Standard errors
+beta_var <- solve(t(X) %*% Sigma_inv %*% X)
+beta_se  <- sqrt(diag(beta_var))
+
+# 95% CI
+beta_hat + 1.96*beta_se
+beta_hat - 1.96*beta_se
+```
+
+The estimates are now much better.
+
+
+## 5. Model Validation
+
+### 5.1 Cross-Validation
+```{r uk_crossval}
+uk_cv <- krige.cv(z ~ X1 + X2, sp_df, fit_vgram$var_model, nfold=5)
+```
+
+### 5.2 Diagnostic Plots
+```{r diagnostics}
+# Residual Q-Q plot
+ggplot(data.frame(Residuals = uk_cv$residual), aes(sample = Residuals)) +
+  stat_qq() + 
+  stat_qq_line() +
+  ggtitle("Q-Q Plot of Residuals")
+
+# Prediction vs Observed
+ggplot(data.frame(Observed = uk_cv$observed, 
+                 Predicted = uk_cv$observed - uk_cv$residual),
+       aes(Observed, Predicted)) +
+  geom_point() +
+  geom_abline(slope=1, color="red") +
+  ggtitle("Predicted vs Observed")
+```
+
+
+## 6. Key Mathematical Concepts
+
+### 6.1 Covariance Matrix Structure
+
+For $n$ spatial locations, the covariance matrix is:
+
+$$
+\mathbf{K} = \begin{bmatrix}
+k(\mathbf{x}_1, \mathbf{x}_1) & \cdots & k(\mathbf{x}_1, \mathbf{x}_n) \\
+\vdots & \ddots & \vdots \\
+k(\mathbf{x}_n, \mathbf{x}_1) & \cdots & k(\mathbf{x}_n, \mathbf{x}_n)
+\end{bmatrix}
+$$
+
+### 6.2 Variogram Model Comparison
+
+| Case          | Variogram Form                      |
+|---------------|-------------------------------------|
+| No spatial dependence | $\gamma(h) = c_0$ for $h > 0$ |
+| Exponential    | $\gamma(h) = c_0 + c_1(1 - e^{-h/a})$ |
+| Gaussian       | $\gamma(h) = c_0 + c_1(1 - e^{-(h/a)^2})$ |
+
+## 7. Conclusion
+
+This implementation demonstrates:
+1. Spatial dependence modeling using variograms
+
+2. GP-based spatial prediction (kriging)
+
+3. Model validation techniques
+
+```{r session_info}
+sessionInfo()
+```
+
+
+
+
+
+
