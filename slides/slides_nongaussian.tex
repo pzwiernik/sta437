@@ -292,7 +292,7 @@ This may be much more dramatic for smaller companies.
 	Marginal CDF: $F_1(x_1)=\P(X_1\leq x_1)=\lim_{x_2\to \infty}\cdots\lim_{x_m\to\infty}F(x_1,x_2,\ldots,x_m)$.
 	(similar for any other margin)\\[5mm]	
 	\begin{block}{}
-	If $f$ is the corresponding density, then:
+	If $f$ is the corresponding density of $X$, then:
 	$$
 	f(x_1,\ldots,x_m)\;=\;\frac{\partial^m}{\partial x_1\cdots\partial x_m}F(x_1,\ldots,x_m)
 	$$
@@ -301,7 +301,7 @@ This may be much more dramatic for smaller companies.
 	F(x_1,\ldots,x_m)\;=\;\int_{-\infty}^{x_1}\cdots \int_{-\infty}^{x_m} f(y_1,\ldots,y_m){\rm d}y_1\cdots {\rm d} y_m. 
 	$$		
 	\end{block}
-		If $U\sim U[0,1]$ then $F(u)=u$ $u\in [0,1]$.
+		If $U\sim U[0,1]$ then $F(u)=u$ for all $u\in [0,1]$.
 
 \end{frame}
 
@@ -325,9 +325,11 @@ For example, the copula $C(\bs u)=u_1\cdots u_m$ corresponds to a $m$ independen
 % Slide 2: Sklar's Theorem
 \begin{frame}{Sklar's Theorem}
 \begin{block}{Theorem (Sklar, 1959)}
-Let $X = (X_1, \ldots, X_m)$ be a random vector with joint CDF $F$ and marginals $F_1, \ldots, F_m$. There exists a unique copula $C$ such that:
-\[ F(x_1, \dots, x_m) = C(F_1(x_1), \dots, F_m(x_m)). \]
-Conversely, given marginals $F_1, \ldots, F_m$ and a copula $C$, the joint CDF $F$ is defined by the same formula.
+Let $X = (X_1, \ldots, X_m)$ be a \textbf{continuous} random vector with joint CDF $F$ and marginals $F_1, \ldots, F_m$. There exists a unique copula $C$ such that:
+\begin{equation}\label{eq:copula}
+	F(x_1, \dots, x_m) = C(F_1(x_1), \dots, F_m(x_m)). 
+\end{equation}
+Conversely, given marginals $F_1, \ldots, F_m$ and a copula $C$, $F$ in \eqref{eq:copula} is a CDF of a multivariate distribution with given margins.
 \end{block}
 \begin{itemize}
     \item $C$ captures \textbf{dependence structure}.
@@ -337,38 +339,26 @@ Conversely, given marginals $F_1, \ldots, F_m$ and a copula $C$, the joint CDF $
 
 % Slide 3: Understanding Sklar's Theorem
 \begin{frame}{Understanding Sklar's Theorem}
-\begin{itemize}
-    \item When $m = 1$, $C(u) = u$, the identity function on $[0, 1]$.\\[5mm]
-    \item If $X$ is continuous with CDF $F$, then $F(X) \sim U(0, 1)$. \\[3mm]
+%    \item When $m = 1$, $C(u) = u$, the identity function on $[0, 1]$.\\[5mm]
+\begin{alertblock}{}
+If $X$ is continuous with CDF $F$, then $F(X) \sim U(0, 1)$. 	
+\end{alertblock}
     \textbf{Proof:} If $X$ is continuous, $F$ is strictly increasing on the support. Hence
     \[
     \mathbb{P}(F(X) \leq u) = \mathbb{P}(X \leq F^{-1}(u)) = F(F^{-1}(u)) = u.
     \]
-%    \item In higher dimensions:
-%    \[ F(x_1, \ldots, x_m) = C(F_1(x_1), \ldots, F_m(x_m)). \]
-\end{itemize}
-\end{frame}
-
-% Slide 4: Copulas from Uniform Marginals
-\begin{frame}{}
-\begin{itemize}
-    \item Let $X = (X_1, \ldots, X_m)$ with CDF $F$.
-    \item Define $U_i = F_i(X_i)$, where $F_i$ are the marginal CDFs.
-    \item The transformed variables $U = (U_1, \ldots, U_m)$ have uniform marginals.
-    \[ \mathbb{P}(U_1 \leq u_1, \ldots, U_m \leq u_m) = C(u_1, \ldots, u_m). \]
-    \item Also note that 
-\begin{equation}\label{eq:cop1}
-    \mathbb{P}(U_1 \leq u_1, \ldots, U_m \leq u_m) = F(F_1^{-1}(u_1),\ldots,F_m^{-1}(u_m))	
+    \vspace{-7mm}
+\begin{block}{}
+	Let $X = (X_1, \ldots, X_m)$ with CDF $F$ and margins $F_i$. Define $U_i := F_i(X_i)$.
+	\begin{itemize}
+		\item The transformed variables $U = (U_1, \ldots, U_m)$ have uniform marginals.
+    \[ \mathbb{P}(U_1 \leq u_1, \ldots, U_m \leq u_m) =: C(u_1, \ldots, u_m). \]
+    \item Also $C(\bs u)$ is given explicitly in terms of $F$ and $F_i$'s:
+    \begin{equation}\label{eq:cop1}
+    C(\bs u)=\mathbb{P}(F_1(X_1) \leq u_1, \ldots, F_m(X_m) \leq u_m) = F(F_1^{-1}(u_1),\ldots,F_m^{-1}(u_m))	
 \end{equation}
-    and so the copula can be computed explicitly.
-    \item Sklar's theorem ensures $C$ is unique for continuous distributions.
-\end{itemize}
-\begin{alertblock}{}
-	Given copula $C$ and margins $F_i$ we easily get the corresponding  distribution using \eqref{eq:cop1}:
-	$$
-	F(x_1,\ldots,x_m)\;=\;C(F_1(x_1),\ldots,F_m(x_m)).
-	$$
-\end{alertblock}
+	\end{itemize}
+\end{block}
 \end{frame}
 
 % Slide 5: Example of a Copula
@@ -400,6 +390,9 @@ Conversely, given marginals $F_1, \ldots, F_m$ and a copula $C$, the joint CDF $
 		\x^{(t)}_i \;:=\; F_i^{-1}(\bs u^{(t)}_i)\qquad\mbox{for all }i=1,\ldots,m, t=1,\ldots,n.
 		$$
 		The sample $\x^{(1)},\ldots,\x^{(n)}$ has the right marginals and the right dependence structure. 
+		$$
+		\P(\x_i^{(t)}\leq s_i)=\P(F_i^{-1}(\bs u_i^{(t)})\leq s_i)=\P(\bs u_i^{(t)}\leq F_i(s_i))=F_i(s_i).
+		$$
 	\end{block}
 	\medskip
 	We will later show how to sample from some popular copula models. 
@@ -408,10 +401,7 @@ Conversely, given marginals $F_1, \ldots, F_m$ and a copula $C$, the joint CDF $
 
 % Slide 6: Invariance under Transformations
 \begin{frame}{Invariance under Monotone Transformations}
-Copulas are invariant under monotone transformations. 
-
-
-\begin{alertblock}{}
+\begin{alertblock}{Copulas are invariant under monotone transformations. }
 	Consider $Y_i := f_i(X_i)$, where $f_i$ are strictly increasing transformations. Then the copula of $X$ is the same as the copula of $Y$. 
 \end{alertblock}
 Proof outline: Let $G$ be the CDF of $Y$ and $G_i$ the marginal CDF of $Y_i$
@@ -453,18 +443,22 @@ Let $\Phi$ be the CDF of $N(0,1)$ with PDF $\phi$. Let $f(\x;\Sigma)$ be the PDF
 \begin{alertblock}{The density of the Gaussian copula $C(\bs u;\Sigma)$}
 	Using the general formula, we get:
 	\[ c(\mathbf{u}; \Sigma) \;=\; \frac{f(\x;\Sigma)}{\prod_{i=1}^m \phi(x_i)}\;=\; \det(\Sigma)^{-1/2} \exp\left(-\frac{1}{2} \mathbf{x}^\top (\Sigma^{-1} - I_m) \mathbf{x}\right), \]
-	where $x_i=\Phi^{-1}(u_i)$.
+	where $\x=(\Phi^{-1}(u_1),\ldots,\Phi^{-1}(u_m))$.
 \end{alertblock}
  \end{frame}
 
 \begin{frame}{Sampling from the Gaussian copula $C(\bs u;\Sigma)$}
-	Sample $\z^{(1)},\ldots,\z^{(n)}\sim N_m(\bs 0,\Sigma)$.\\[3mm]
-	
-	Transform $\bs u^{(t)}_i=\Phi(\z^{(t)}_i)$ for all $i=1,\ldots,m$ and $t=1,\ldots,n$. \\[3mm]
-	
-	The sample $\bs u^{(1)},\ldots,\bs u^{(n)}$ comes from the Gaussian copula. \\[3mm]
-	
-	As described earlier, we can now transform this sample to get arbitrary margins.
+Let $\Sigma$ be a correlation matrix.\\[3mm]
+\begin{itemize}
+	\item Sample $\z^{(1)},\ldots,\z^{(n)}\sim N_m(\bs 0,\Sigma)$.\\[3mm]
+	\item Transform $\bs u^{(t)}_i=\Phi(\z^{(t)}_i)$ for all $i=1,\ldots,m$ and $t=1,\ldots,n$. \\[3mm]
+	\item The sample $\bs u^{(1)},\ldots,\bs u^{(n)}$ comes from the Gaussian copula. \\[3mm]
+\end{itemize}	
+	As described earlier, we can now transform this sample to get arbitrary margins.\\[3mm]
+	\begin{block}{}
+		The Gaussian copula model can still handle quite general distributions. Yet, it retains some of the computational advantages of the Gaussian distribution.
+	\end{block}
+
 \end{frame}
 
 \begin{frame}{Steps to Estimate a Copula: normalize data}
@@ -472,12 +466,13 @@ Let $\Phi$ be the CDF of $N(0,1)$ with PDF $\phi$. Let $f(\x;\Sigma)$ be the PDF
 	
 	We assume the CDF $F$ of the data satisfies $F(\x)=C(F_1(x_1),\ldots,F_m(x_m))$.\\[3mm]
 	
-	However, \alert{the margins $F_i$ are not known!}.\\[3mm]
+	However, \alert{the margins $F_i$ are not known!}\\[3mm]
 	
-	Given a sample $\x_i^{(1)},\ldots,\x_i^{(n)}$ of $X_i$ we compute the \textbf{empirical CDF}
+	Given a sample $\x_i^{(1)},\ldots,\x_i^{(n)}$ of $X_i$ we compute the \textbf{empirical CDF} (proxy for $F_i$)
 	$$
 	\widehat F_i(x_i)\;:=\;\frac1n \sum_{t=1}^n \bs 1\{\x_i^{(t)}\leq x_i\}.
 	$$
+	\vspace{-5mm}
 \begin{alertblock}{}
 	Transform, the data using the empirical CDFs
 $$
