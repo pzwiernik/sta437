@@ -527,7 +527,7 @@ We can generate samples from the fitted Gaussian copula.
 \begin{frame}{Mixture of Gaussians}
 We combine simple models into a complex model by taking a mixture of $K$ multivariate Gaussian densities of the form:
 $$
-p(x)\;=\;\sum_{k=1}^K \pi_k N_m(x|\mu_k,\Sigma_k),
+p(x)\;=\;\sum_{k=1}^K \pi_k N_m(x|\mu_k,\Sigma_k)\quad\mbox{for }x\in \R^m,
 $$
 where $\pi_k\geq 0$, $\sum_{k=1}^K\pi_k=1$, and $N_m(x|\mu_k,\Sigma_k)$ is the $m$-dim Gaussian density.
 \begin{itemize}
@@ -566,11 +566,17 @@ Example:
 %	\end{figure*}
 \end{frame}
 
-\begin{frame}{}
-%\frametitle{Mixture of Gaussians: 2D example}
+\begin{frame}{Mixture of Gaussians: 2D example}
+Illustration of a mixture of three Gaussians in 2D.
 \begin{figure}
-\includegraphics[page=2,width=4.8in,trim={0 0 0 3cm},clip]{pics/raw.pdf}
+\includegraphics[width=4.8in]{pics/raw1.pdf}
 \end{figure}
+\vspace{-5mm}
+\begin{itemize}
+	\item [(a)] Contours of constant density of each of the mixture components, along with the mixing coefficients. 
+	\item [(b)] Contours of marginal density $p(\x)=\sum_{k=1}^K \pi_k N_m(\x|\mu_k,\Sigma_k)$.
+	\item [(c)] A surface plot of the distribution $p(\x)$.
+\end{itemize}
 \end{frame}
 
 % Slide 2: Why use Gaussian Mixtures?
@@ -606,9 +612,10 @@ Recall: \textcolor{blue}{$p(x)\;=\;\sum_{k=1}^K \pi_k N_m(x|\mu_k,\Sigma_k)$}.\\
 \end{frame}
 
 \begin{frame}{Yet another illustration}
-The quantities $p(z|x)$ are called responsibilities.
+The quantities $p(z|x)$ are called responsibilities.\\[3mm]
+Consider 500 points drawn from a mixture of three Gaussians. 
 \begin{figure}
-\includegraphics[page=8,width=4.8in,trim={0 0 0 3cm},clip]{pics/raw.pdf}
+\includegraphics[width=4.8in]{pics/raw2.pdf}
 \end{figure}
 \end{frame}
 
@@ -741,7 +748,7 @@ $$
 
 \begin{frame}{Visualization of EM Algorithm}
 \begin{figure}
-\includegraphics[page=17,width=4.8in,trim={0 0 0 4.7cm},clip]{pics/raw.pdf}
+\includegraphics[width=4.2in]{pics/raw3.pdf}
 \end{figure}
 \end{frame}
 
