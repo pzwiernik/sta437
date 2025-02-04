@@ -16,10 +16,31 @@
 
 \maketitle
 
+\begin{frame}{Modelling non-Gaussian distributions}
+	Gaussian distribution has many properties that makes it very appealing.\\[2mm]
+	
+	It does however has some limitations:
+	\begin{itemize}
+		\item Cannot be used to model multimodal populations.
+		\item Is not suitable for modelling processes with extreme events. 
+		\item Not-suitable for modelling asymmetric distributions. \\[3mm]
+	\end{itemize}
+	
+	Often we want to retain some of the advantages of the Gaussian distribution removing one or all of its limitations.\\[3mm]
+	We focus on three some approaches: 
+	\begin{itemize}
+		\item spherical and elliptical distributions
+		\item copula modelling
+		\item Gaussian mixtures
+	\end{itemize}
+\end{frame}
+
+
 \begin{frame}{Table of contents}
 \setbeamertemplate{section in toc}[sections numbered]
 \tableofcontents%[hideallsubsections]
 \end{frame}
+
 
 \section{Elliptical distributions}
 
@@ -34,7 +55,10 @@
 \begin{frame}{Why Study Elliptical Distributions?}
     \begin{itemize}
         \item Generalize the multivariate normal distribution.\\[5mm]
-        \item Model data with heavy tails or outliers.\\[5mm]
+        \item Model data with heavy tails or outliers.
+        \begin{itemize}
+        \item higher probability of extreme events\\[5mm]
+        \end{itemize}
         \item Maintain symmetry and linear correlation structures.\\[5mm]
         \item Applications in finance, insurance, and environmental studies.
     \end{itemize}
@@ -53,15 +77,16 @@ A random vector $X \in \mathbb{R}^m$ has a \emph{spherical distribution} if for 
     X \overset{d}{=} U X.
   \end{equation*}	
 \end{alertblock}
-Characteristic function satisfies: $\psi_X(\bs t)=\psi_{UX}(\bs t)=\psi_X(U^\top \bs t)$ and so \textbf{equivalently} $\psi_X(\bs t)$ depends only on $\|\bs t\|$. Thus, the same applies to the density: $$f_X(\x)\;=\;h(\|\bs x\|)\qquad\mbox{for some }h\mbox{ (generator)}.$$
+\textbf{\alert{Example:}} $X\sim N_m(\bs 0,I_m)$ or more generally $X\sim N_m(\bs 0,\sigma^2 I_m)$.
+\begin{block}{Density generator and dependence on the norm}
+	Characteristic function satisfies: $\psi_X(\bs t)=\psi_{UX}(\bs t)=\psi_X(U^\top \bs t)$ and so \textbf{equivalently} $\psi_X(\bs t)$ depends only on $\|\bs t\|$. The same applies to the density: $$f_X(\x)\;=\;h(\|\bs x\|)\qquad\mbox{for some }h\mbox{ (generator)}.$$
+\end{block}
 %e.g. $X\sim N_m(\bs 0_m,I_m)$ then $h(s)=\tfrac{1}{(2\pi)^{m/2}}e^{-\tfrac12 s}$
   \end{frame}
 
 % Slide: Examples of Spherical Distributions
 \begin{frame}{Examples of Spherical Distributions}
-Standard normal distribution $Z \sim N_m(0, I_m)$ is a simple example.
-\bigskip
-
+The case $X\sim N_m(\bs 0,\sigma^2 I_m)$ has a simple generalization.\\[3mm]
 \begin{block}{Spherical scale mixture of normals}
 	If $Z \sim N_m(0, I_m)$ and a random variable $\tau > 0$ is independent of $Z$, then:
       \begin{equation*}
@@ -75,20 +100,26 @@ $$    UX \;=\; \frac{1}{\sqrt{\tau}} UZ \;\overset{d}{=}\; \frac{1}{\sqrt{\tau}}
 
 % Slide: Moment Structure of Spherical Distributions
 \begin{frame}{Moment Structure of Spherical Distributions}
-Spherical symmetry implies:
-      \begin{align*}
-        \mathbb{E}[X] &= 0, \\
-        \var(X) &= c I_m, \quad \mbox{for some }c \geq 0.
-      \end{align*}  
-      \textbf{Indeed:} $\var(X)=\var(UX)=U \var(X)U^\top$ for any $U\in O(m)$ 
-\bigskip
-
-For $X = \frac{1}{\sqrt{\tau}} Z$ with $Z \sim N(0, I_m)$, $\tau>0$, $\tau\indep Z$:
-      \begin{equation*}
-        \var(X) = \mathbb{E}[\tau^{-1}] I_m.
-      \end{equation*}
-\textbf{Indeed:} $\E[X]=\E[\tfrac{1}{\sqrt{\tau}}Z]=\E[\tfrac{1}{\sqrt{\tau}}]\E[Z]=\bs 0_m$ and so 
-$$\var(X)\;=\;\E XX^\top -\E[X]\E[X]^\top\;=\;\E[\tfrac{1}{\tau}ZZ^\top]\;=\;\E[\tfrac{1}{\tau}]\E[ZZ^\top]\;=\;\E[\tfrac{1}{\tau}]I_m$$
+\begin{alertblock}{Spherical symmetry implies:}
+  $\bullet$\quad      $\mu\;=\;\mathbb{E}[X] \;=\; 0$, \\
+  $\bullet$\quad      $\Sigma\;=\;\var(X) \;=\; c I_m$, \quad for some $c \geq 0$. 
+      \end{alertblock}
+      \medskip
+      
+      \textbf{Indeed:} Let $\Sigma=\textcolor{blue}{U\Lambda U^\top} $ be the spectral decomposition.
+      \begin{itemize}
+      	\item $\Sigma=\var(X)=\var(VX)=V \var(X)V^\top=V\textcolor{blue}{U\Lambda U^\top} V^\top$ for any $V\in O(m)$.
+      	\item take $V=U^\top$ to show that $\Sigma$ must be diagonal, $\Sigma=\Lambda$.
+      	\item take $V$ to be all the \alert{permutation matrices} to conclude that $\Lambda=c I_m$.  
+      \end{itemize} 
+%\bigskip
+%
+%For $X = \frac{1}{\sqrt{\tau}} Z$ with $Z \sim N(0, I_m)$, $\tau>0$, $\tau\indep Z$:
+%      \begin{equation*}
+%        \var(X) = \mathbb{E}[\tau^{-1}] I_m.
+%      \end{equation*}
+%\textbf{Indeed:} $\E[X]=\E[\tfrac{1}{\sqrt{\tau}}Z]=\E[\tfrac{1}{\sqrt{\tau}}]\E[Z]=\bs 0_m$ and so 
+%$$\var(X)\;=\;\E XX^\top -\E[X]\E[X]^\top\;=\;\E[\tfrac{1}{\tau}ZZ^\top]\;=\;\E[\tfrac{1}{\tau}]\E[ZZ^\top]\;=\;\E[\tfrac{1}{\tau}]I_m$$
 \end{frame}
 
 % Slide: Independence of Norm and Direction
@@ -132,47 +163,14 @@ A formal proof uses polar coordinates, see the notes.
 \begin{frame}{Elliptical Distribution $E(\mu,\Sigma)$}
 Recall that $Z\sim N_m(\bs 0_m,I_m)$ then $X=\mu+\Sigma^{1/2}Z\sim N_m(\mu,\Sigma)$.
 \begin{block}{Elliptical distribution}
-A random vector $X \in \mathbb{R}^m$ has an elliptical distribution if:
+A random vector $X \in \mathbb{R}^m$ has an elliptical distribution \alert{$E(\mu,\Sigma)$} if:
   \begin{equation*}
     X = \mu + \Sigma^{1/2} Z,
   \end{equation*}
   where $Z$ is a spherical random vector.	
 \end{block}
-The density of $X\sim E(\mu,\Sigma)$ is of the form $$f_X(\x)\;=\;c_m \sqrt{\det{\Sigma^{-1}}}h((\x-\mu)^\top\Sigma^{-1}(\x-\mu)).$$
-The generator $g$ controls the shape of the distribution (and its tails in particular). 
-\end{frame}
-
-% Slide: Why Elliptical Distributions?
-\begin{frame}{Again: Why Elliptical Distributions?}
-    \begin{itemize}
-        \item Generalize the multivariate normal distribution.\\[5mm]
-        \item Model data with heavy tails or outliers.\\[5mm]
-        \item Maintain symmetry and linear correlation structures.\\[5mm]
-        \item Applications in finance, insurance, and environmental studies.
-    \end{itemize}
-\end{frame}
-
-% Slide: Scale Mixtures of Normals
-\begin{frame}{Scale Mixtures of Normals}
-Scale mixture of normals is a special class of elliptical distributions. 
-\bigskip
-
-  \textbf{Stochastic representation:}
-  \begin{equation*}
-    X = \mu + \frac{1}{\sqrt{\tau}} \Sigma^{1/2} Z,
-  \end{equation*}
-  where $Z \sim N_m(0, I_m)$ and $\tau > 0$ is independent of $Z$.
-  \vspace{0.5cm}
-  \begin{block}{Special Cases of Scale Mixture of Normals}
-  	  \begin{itemize}
-    \item $\tau \equiv 1$: Multivariate normal.
-    \item $\tau \sim \frac{1}{k} \chi^2_k$: Multivariate $t$-distribution with $k$ degrees of freedom.
-    \begin{itemize}
-    \item Smaller $k$ means heavier tails. Gaussian is the limit $k\to \infty$.
-    \end{itemize}
-    \item $\tau \sim \text{Exp}(1)$: Multivariate Laplace.
-  \end{itemize}
-    \end{block}
+The density of $X\sim E(\mu,\Sigma)$ is of the form $$f_X(\x)\;=\;c_m \sqrt{\det{\Sigma^{-1}}}h\big((\x-\mu)^\top\Sigma^{-1}(\x-\mu)\big).$$
+The generator $h$ controls the shape of the distribution (and its tails in particular). 
 \end{frame}
 
 % Slide: Covariance and Correlation
@@ -193,6 +191,93 @@ $$
 $$
 exactly as in the Gaussian case.
 \end{frame}
+
+
+% Slide: Why Elliptical Distributions?
+\begin{frame}{Again: Why Elliptical Distributions?}
+    \begin{itemize}
+        \item Generalize the multivariate normal distribution.\\[5mm]
+        \item Model data with heavy tails or outliers.\\[5mm]
+        \item Maintain symmetry and linear correlation structures.\\[5mm]
+        \item Applications in finance, insurance, and environmental studies.
+    \end{itemize}
+\end{frame}
+
+% Slide: Scale Mixtures of Normals
+\begin{frame}{Scale Mixtures of Normals (particularly tractable subclass)}
+Scale mixture of normals is a special class of elliptical distributions. 
+\bigskip
+
+  \textbf{Stochastic representation:}
+  \begin{equation*}
+    X = \mu + \textcolor{blue}{\frac{1}{\sqrt{\tau}}} \Sigma^{1/2} \textcolor{blue}{Z},
+  \end{equation*}
+  where $Z \sim N_m(0, I_m)$ and $\tau > 0$ is independent of $Z$.
+  \vspace{0.5cm}
+  \begin{block}{Special Cases of Scale Mixture of Normals}
+  	  \begin{itemize}
+    \item $\tau \equiv 1$: Multivariate normal.
+    \item $\tau \sim \frac{1}{k} \chi^2_k$: Multivariate $t$-distribution with $k$ degrees of freedom.
+    \begin{itemize}
+    \item Smaller $k$ means heavier tails. Gaussian is the limit $k\to \infty$.
+    \end{itemize}
+    \item $\tau \sim \text{Exp}(1)$: Multivariate Laplace.
+  \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Its about the tails (say $m=10$)}
+	For scale mixture of normals:
+	$$
+	Y:=\|X-\mu\|_\Sigma^2\;=\;(X-\mu)^\top \Sigma^{-1}(X-\mu)\;=\;\tfrac{1}{\tau}\|Z\|^2\;\overset{d}{=}\;\tfrac{1}{\tau} \chi^2_m.
+	$$
+	\begin{center}
+		\includegraphics[scale=.7]{pics/SNMtails.pdf}
+	\end{center}
+\end{frame}
+
+\begin{frame}{}
+Some tails are \alert{much} heavier than Gaussian. \\[3mm]
+
+In the plot above we study $Y=\|X-\mu\|_\Sigma^2$ for $X$: normal, multivariate t, Laplace. 
+	\begin{table}[h]
+    \centering
+    \begin{tabular}{lcccc}
+        \hline
+        \textbf{Case} & $P(Y > 75)$ & $P(Y > 500)$ & $P(Y > 1000)$ & $P(Y > 10000)$ \\
+        \hline
+        Gaussian & 0.000 & 0.000 & 0.000 & 0.000 \\
+        $t_{100}$ & 0.000 & 0.000 & 0.000 & 0.000 \\
+        $t_{20}$ & 0.000 & 0.000 & 0.000 & 0.000 \\
+        $t_{5}$ & 0.019 & 0.000 & 0.000 & 0.000 \\
+        Laplace & 0.124 & 0.020 & 0.010 & 0.001 \\
+        $t_{1}$ & 0.277 & 0.109 & 0.077 & 0.024 \\
+        \hline
+    \end{tabular}
+    \caption{Proportion of Samples Exceeding Thresholds}
+    \label{tab:proportion_thresholds}
+\end{table}
+\end{frame}
+
+\begin{frame}[fragile]{Simple illustration}
+In the notes we provide an example of four stocks: Apple, Microsoft, Google, Amazon.\\[3mm]
+Compare the empirical distribution of the Mahalanobis distance with $\chi^2_4$ (Gaussian).\\[3mm]
+\begin{minipage}{7cm}
+	\includegraphics[scale=.5]{pics/SMN2.pdf}
+\end{minipage}\begin{minipage}{8cm}
+	Empirical density seems to be more concentrated around zero.\\[3mm]
+	But it has much heavier tails. 
+	\begin{itemize}
+		\item $\P(\chi^2_4>20)\approx 0$. 
+		\item $\P(Y>20)\approx 0.03$
+	\end{itemize}
+\end{minipage}
+\smallskip
+
+This may be much more dramatic for smaller companies.
+\end{frame}
+
+
 
 \section{Copula models}
 
@@ -442,7 +527,6 @@ We can generate samples from the fitted Gaussian copula.
 	\end{center}
 \end{frame}
 
-\section{Gaussian Mixture Models}
 
 % Slide 1: Definition of GMMs
 \begin{frame}{Mixture of Gaussians}
