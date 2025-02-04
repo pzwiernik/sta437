@@ -68,9 +68,9 @@ The midterms are short (1 hour) and they focus on simple conceptual/theory quest
 | **3** | MVN: Conditional distribution, conditional independence.     | [notes3](./lectures/lecture3.pdf) | LSM: [tut3](./tutorials/tutorial3.pdf)<br> [code](./tutorials/tutorial3.html) | 22 Jan |   |
 | **4** | Estimation for MVN models <br> Gaussian Processes: basic definitions and examples      | [notes4](./lectures/lecture4.pdf)| DL: [tut4](./tutorials/tutorial4.Rmd)  | 29 Jan |  |
 | 5 | Non-Gaussian distributions: elliptical distributions, copulas   | [slides5](./slides/slides_nongaussian.pdf) | **midterm1**  | 5 Feb|  |
-| 6 | Non-Gaussian distributions: Gaussian mixtures<br>Principal Component Analysis: definition, basic examples  | [slides5](./slides/slides_nongaussian.pdf) | SCh  | 12 Feb|  |
+| 6 | Non-Gaussian distributions: Gaussian mixtures<br>Principal Component Analysis: definition, basic examples  | [slides5](./slides/slides_nongaussian.pdf) | ML  | 12 Feb|  |
 | 7 | Reading week <br/> (no class/tutorial)  | - | - | - | Final project out | 
-| 8 | Principal Component Analysis: Scree plot, Computations<br> Laplacian eigenmap and UMAP |  | ML | 26 Feb |  |
+| 8 | Principal Component Analysis: Scree plot, Computations<br> Laplacian eigenmap and UMAP |  | SCh | 26 Feb |  |
 | 9 | Canonical Correlation Analysis (CCA) |  | RZ | 5 Mar|  |
 | 10 | Graphical models: basic definitions <br> Gaussian Graphical models  |  | **midterm2**| 12 Mar| |
 | 11 | Graphical models: log-linear models, Ising model | | DL | 19 Mar| |
