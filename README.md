@@ -75,7 +75,7 @@ The midterms are short (1 hour) and they focus on simple conceptual/theory quest
 | 10 | Graphical models: basic definitions <br> Gaussian Graphical models  |  | **midterm2**| 12 Mar| |
 | 11 | Graphical models: log-linear models, Ising model | | DL | 19 Mar| |
 | 12 |  Factor Analysis models, Independent Component Analysis |  | SCh  | 26 Mar |  |
-| 13 | Introduction to tensor methods  |  | LSM| Apr 2| **Final Project due** |
+| 13 | If time permits: Introduction to tensor methods  |  | LSM| Apr 2| **Final Project due** |
 
 
 
