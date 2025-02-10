@@ -13,6 +13,7 @@ More details can be found in [syllabus](syllabus2025.pdf) and [piazza](https://p
 ***
 
 ### Announcements:
+- Feb 10: The midterm 1 with solutions is available: [Section 101](./exams/midterm1_101_sols.pdf), [Section 201](./exams/midterm1_201_sols.pdf).
 - Jan 30: By popular demand, the time of the office hours has changed. 
 - Jan 10: The syllabus has been uploaded.
 - Jan 9: Some notes for the upcoming tutorial session are linked below.
