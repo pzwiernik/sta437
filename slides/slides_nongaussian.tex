@@ -483,15 +483,17 @@ The transformed data matrix $\bs U$ contains samples coming from $U(0,1)$.
 
 
 \begin{frame}{Steps to Estimate a Copula: Fit the copula family}
+Previous slide: \;\;$\x^{(t)}\to \bs u^{(t)}$ using the empirical CDFs.\\[5mm]
 In the next step, we fit the data to the given copula family. \\[3mm]
 
-Often this is done by maximizing the log-likelihood $\sum_{t=1}^n \log c(\bs u^{(t)})$.\\[3mm]
-
-In the case of the Gaussian copula $C(\bs u;\Sigma)$:
+Often this is done by maximizing the log-likelihood $\sum_{t=1}^n \log c(\bs u^{(t)})$.
+\begin{block}{The Gaussian copula case $C(\bs u;\Sigma)$}
+	The goal is to estimate $\Sigma$ based on the likelihood. 
 \begin{itemize}
 	\item Transform the data to standard Gaussian margins: $\y^{(t)}_i=\Phi^{-1}(\bs u^{(t)}_i)$.
 	\item Fit the Gaussian likelihood for $N_m(\bs 0,\Sigma)$ with the sample covariance  $S_n=\tfrac1n \Y^\top \Y$.
-\end{itemize}
+\end{itemize}	
+\end{block}
 \end{frame}
 
 
@@ -503,16 +505,32 @@ We can generate samples from the fitted Gaussian copula.
 
 
 
-% Slide 9: Applications of Copulas
-\begin{frame}{Applications of Copulas}
-\begin{itemize}
-    \item \textbf{Finance:} Modeling dependencies in asset returns.
-    \item \textbf{Insurance:} Understanding risks in correlated claims.
-    \item \textbf{Environmental Science:} Joint modeling of extreme events (e.g., floods).
-    \item \textbf{Medical Statistics:} Modeling dependence in survival times.
-\end{itemize}
-\end{frame}
+%% Slide 9: Applications of Copulas
+%\begin{frame}{Applications of Copulas}
+%\begin{itemize}
+%    \item \textbf{Finance:} Modeling dependencies in asset returns.
+%    \item \textbf{Insurance:} Understanding risks in correlated claims.
+%    \item \textbf{Environmental Science:} Joint modeling of extreme events (e.g., floods).
+%    \item \textbf{Medical Statistics:} Modeling dependence in survival times.
+%\end{itemize}
+%\end{frame}
 
+\begin{frame}{Simulating Realistic Financial Portfolios with Gaussian Copulas}
+	\textbf{Goal:}
+Use Gaussian copulas to model and generate synthetic financial returns that preserve real-world dependencies but remain flexible in capturing tail dependencies. This method is widely used in risk management, portfolio optimization, and even in synthetic data generation for AI models in finance.
+\begin{itemize}
+	\item After fitting a copula model simulate synthetic data from it.
+	\item Apply the inverse transformations to get to the original scale: $X_i^{\text{new}} = F_i^{-1}(U_i^{\text{sim}})$
+\end{itemize}
+This creates synthetic but realistic asset returns that match observed dependencies!
+\begin{block}{Applications:}
+\begin{itemize}
+	\item Stress Testing \& Risk Management
+	\item Portfolio Optimization
+	\item Synthetic Data for AI Models
+\end{itemize}
+\end{block}
+\end{frame}
 
 \section{Gaussian mixture models}
 
