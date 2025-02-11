@@ -630,7 +630,7 @@ Recall: \textcolor{blue}{$p(x)\;=\;\sum_{k=1}^K \pi_k N_m(x|\mu_k,\Sigma_k)$}.\\
 \end{frame}
 
 \begin{frame}{Yet another illustration}
-The quantities $p(z|x)$ are called responsibilities.\\[3mm]
+The conditional probabilities $p(z|x)$ are called responsibilities.\\[3mm]
 Consider 500 points drawn from a mixture of three Gaussians. 
 \begin{figure}
 \includegraphics[width=4.8in]{pics/raw2.pdf}
@@ -644,9 +644,9 @@ Recall: $\textcolor{blue}{p(x|\boldsymbol\pi,\boldsymbol\mu,\boldsymbol\Sigma)=\
 \medskip
 
 \begin{itemize}
-	\item Represent the dataset $\{x_1,\ldots,x_N\}$ as $\boldsymbol X\in \mathbb R^{N\times m}$.
-	\item The latent variable is represented by a vector $\boldsymbol z\in \mathbb R^N$.
-	\item The log-likelihood takes the form $$\log p(\boldsymbol X|\boldsymbol\pi,\boldsymbol\mu,\boldsymbol\Sigma)=\sum_{n=1}^N\log\left(\sum_{k=1}^K\pi_k N_m(x_n|\mu_k,\Sigma_k)\right)$$
+	\item Represent the dataset $\{x^{(1)},\ldots,x^{(n)}\}$ as $\boldsymbol X\in \mathbb R^{n\times m}$.
+	\item The latent variable is represented by a vector $\boldsymbol z\in \mathbb R^n$.
+	\item The log-likelihood takes the form $$\log p(\boldsymbol X|\boldsymbol\pi,\boldsymbol\mu,\boldsymbol\Sigma)=\sum_{i=1}^n\log\left(\sum_{k=1}^K\pi_k N_m(x^{(n)}|\mu_k,\Sigma_k)\right)$$
 \end{itemize}
 %\begin{figure}
 %\includegraphics[page=9,width=1.8in,trim={16.5cm 3.5cm 0cm 8cm},clip]{./raw.pdf}
@@ -654,16 +654,16 @@ Recall: $\textcolor{blue}{p(x|\boldsymbol\pi,\boldsymbol\mu,\boldsymbol\Sigma)=\
 \end{frame}
 
 \begin{frame}{Maximum Likelihood ($\boldsymbol \mu$)}
-Recall: $\log p(\boldsymbol X|\boldsymbol\pi,\boldsymbol\mu,\boldsymbol\Sigma)=\sum_{n=1}^N\log\left(\sum_{k=1}^K\pi_k N_m(x_n|\mu_k,\Sigma_k)\right)$.
+Recall: $\log p(\boldsymbol X|\boldsymbol\pi,\boldsymbol\mu,\boldsymbol\Sigma)=\sum_{i=1}^n\log\left(\sum_{k=1}^K\pi_k N_m(x^{(i)}|\mu_k,\Sigma_k)\right)$.
 \begin{itemize}
-%	\item The log-likelihood takes the form $$\log p(\boldsymbol X|\boldsymbol\pi,\boldsymbol\mu,\boldsymbol\Sigma)=\sum_{n=1}^N\log\left(\sum_{k=1}^K\pi_k N_m(x_n|\mu_k,\Sigma_k)\right)$$
+%	\item The log-likelihood takes the form $$\log p(\boldsymbol X|\boldsymbol\pi,\boldsymbol\mu,\boldsymbol\Sigma)=\sum_{n=1}^n\log\left(\sum_{k=1}^K\pi_k N_m(x_n|\mu_k,\Sigma_k)\right)$$
 	\item Differentiating wrt $\mu_k$ and setting to zero gives:
 	\begin{eqnarray*}
-		0&=&\sum_{n=1}^N\frac{\pi_k N(x_n|\mu_k,\Sigma_k)}{\sum_j \pi_j N(x_n|\mu_j,\Sigma_j)}\Sigma_k^{-1}(x_n-\mu_k)\;=\; \sum_{n=1}^N p(z_n=k|x_n)\Sigma_k^{-1}(x_n-\mu_k)\\[2mm]\pause
-		&=&\Sigma_k^{-1}\left(\sum_{n=1}^N p(z_n=k|x_n)x_n-\mu_k\textcolor{red!80!green!20!blue}{\sum_{n=1}^N p(z_n=k|x_n)}\right).
+		0&=&\sum_{i=1}^n\frac{\pi_k N(x^{(i)}|\mu_k,\Sigma_k)}{\sum_j \pi_j N(x^{(i)}|\mu_j,\Sigma_j)}\Sigma_k^{-1}(x^{(i)}-\mu_k)\;=\; \sum_{i=1}^n p(z^{(i)}=k|x^{(i)})\Sigma_k^{-1}(x^{(i)}-\mu_k)\\[2mm]\pause
+		&=&\Sigma_k^{-1}\left(\sum_{i=1}^n p(z^{(i)}=k|x^{(i)})x^{(i)}-\mu_k\textcolor{red!80!green!20!blue}{\sum_{i=1}^n p(z^{(i)}=k|x^{(i)})}\right).
 	\end{eqnarray*} 	
-	\item Equivalently (as $\Sigma_k$ is positive definite) $$\mu_k\;=\;\sum_n \frac{p(z=k|x_n)}{N_k}x_n,\qquad N_k=\textcolor{red!80!green!20!blue}{\sum_n p(z=k|x_n)}.$$
-	\item Simple interpretation: the MLE given by the weighted mean of the data weighted by the posterior $p(z=k|x_n)$.
+	\item Equivalently (as $\Sigma_k$ is positive definite) $$\mu_k\;=\;\sum_{i=1}^n \frac{p(z=k|x^{(i)})}{N_k}x^{(i)},\qquad N_k=\textcolor{red!80!green!20!blue}{\sum_i p(z=k|x^{(i)})}.$$
+	\item Simple interpretation: the MLE given by the weighted mean of the data weighted by the posterior $p(z=k|x^{(i)})$.
 \end{itemize}
 %\begin{figure}
 %\includegraphics[page=9,width=1.8in,trim={16.5cm 3.5cm 0cm 8cm},clip]{./raw.pdf}
@@ -687,14 +687,14 @@ Recall: $\log p(\boldsymbol X|\boldsymbol\pi,\boldsymbol\mu,\boldsymbol\Sigma)=\
 %\end{frame}
 
 \begin{frame}{Maximum Likelihood ($\boldsymbol \Sigma,\boldsymbol \pi$)}
-Recall: $\log p(\boldsymbol X|\boldsymbol\pi,\boldsymbol\mu,\boldsymbol\Sigma)=\sum_{n=1}^N\log\left(\sum_{k=1}^K\pi_k N_m(x_n|\mu_k,\Sigma_k)\right)$.
+Recall: $\log p(\boldsymbol X|\boldsymbol\pi,\boldsymbol\mu,\boldsymbol\Sigma)=\sum_{i=1}^n\log\left(\sum_{k=1}^K\pi_k N_m(x^{(i)}|\mu_k,\Sigma_k)\right)$.
 \begin{itemize}
 	\item Differentiating wrt $\Sigma_k$ and setting to zero gives:
-	$$\Sigma_k\;=\;\sum_n \frac{p(z=k|x_n)}{N_k}(x_n-\mu_k)(x_n-\mu_k)^\top.$$
+	$$\Sigma_k\;=\;\sum_{i=1}^n \frac{p(z=k|x^{(i)})}{N_k}(x^{(i)}-\mu_k)(x^{(i)}-\mu_k)^\top.$$
 	\item Again data points weighted by posterior probabilities.\\[.4cm]
 	\item Finally, for the weights $\pi_k$ the MLE is
 $$
-\pi_k\;=\;\frac{N_k}{\sum_{j=1}^K N_j}\;=\;\frac{N_k}{N},\qquad N_k=\sum_n p(z=k|x_n).
+\pi_k\;=\;\frac{N_k}{\sum_{j=1}^K N_j}\;=\;\frac{N_k}{N},\qquad N_k=\sum_{i=1}^n p(z=k|x^{(i)}).
 $$
 \end{itemize}
 %\begin{figure}
@@ -720,13 +720,13 @@ $$
 \begin{frame}{Motivating the EM algorithm}
 \begin{itemize}
 	\item The MLE \textcolor{red}{does not have a closed form solution.}
-	\item The estimates depend on the posterior probabilities $p(z=k|x_n)$, which themselves depend on those parameters.
-	\item Indeed, recall that $$p(z=k|x_n)\;=\;\frac{\pi_k N_m(x_n|\mu_k,\Sigma_k)}{\sum_{j=1}^K \pi_j N_m(x_n|\mu_j,\Sigma_j)}.
+	\item The estimates depend on the posterior probabilities $p(z=k|x^{(i)})$, which themselves depend on those parameters.
+	\item Indeed, recall that $$p(z=k|x^{(i)})\;=\;\frac{\pi_k N_m(x^{(i)}|\mu_k,\Sigma_k)}{\sum_{j=1}^K \pi_j N_m(x^{(i)}|\mu_j,\Sigma_j)}.
 $$
 \item Iterative solution (EM algorithm):
 \begin{itemize}
 \item Initialize the parameters to some values.
-\item [\textcolor{red}{E-step}] Update the posteriors $p(z=k|x_n)$.
+\item [\textcolor{red}{E-step}] Update the posteriors $p(z=k|x^{(i)})$.
 \item [\textcolor{red}{M-step}] Update model parameters $\boldsymbol\pi,\boldsymbol\mu,\boldsymbol\Sigma$.
 \item Repeat.
 \end{itemize}
@@ -746,11 +746,11 @@ $$
 \begin{frame}[label=GMEM]{EM algorithm for Gaussian mixtures}
 	\begin{itemize}
 		\item Initialize $\boldsymbol\pi,\boldsymbol\mu,\boldsymbol\Sigma$.
-		\item \textcolor{red}{E-step}: for each $k,n$ compute the posterior probabilities $$p(z=k|x_n)\;=\;\frac{\pi_k N_m(x_n|\mu_k,\Sigma_k)}{\sum_{j=1}^K \pi_j N_m(x_n|\mu_j,\Sigma_j)}.$$
+		\item \textcolor{red}{E-step}: for each $k=1,\ldots,K$ and $i=1,\ldots,n$  compute the posterior probabilities $$p(z=k|x^{(i)})\;=\;\frac{\pi_k N_m(x^{(i)}|\mu_k,\Sigma_k)}{\sum_{j=1}^K \pi_j N_m(x^{(i)}|\mu_j,\Sigma_j)}.$$
 		\item \textcolor{red}{M-step}: Re-estimate model parameters
 		\begin{align*}
-			\mu_k^{\rm new} & =\sum_{n=1}^N \frac{p(z=k|x_n)}{N_k}x_n,\qquad N_k=\sum_{n=1}^N p(z=k|x_n),\\
-			\Sigma_k^{\rm new} & = \sum_{n=1}^N \frac{p(z=k|x_n)}{N_k}(x_n-\mu_k^{\rm new})(x_n-\mu_k^{\rm new})^\top,\\
+			\mu_k^{\rm new} & =\sum_{i=1}^n \frac{p(z=k|x^{(i)})}{N_k}x^{(i)},\qquad N_k=\sum_{i=1}^n p(z=k|x^{(i)}),\\
+			\Sigma_k^{\rm new} & = \sum_{i=1}^n \frac{p(z=k|x^{(i)})}{N_k}(x^{(i)}-\mu_k^{\rm new})(x^{(i)}-\mu_k^{\rm new})^\top,\\
 			\pi_k^{\rm new} & = \frac{N_k}{N}.
 		\end{align*}
 		\item Evaluate the log-likelihood and check for convergence. 
@@ -774,7 +774,7 @@ $$
 \begin{frame}{The General EM algorithm}
 Consider a general setting with latent variables.
 \begin{itemize}
-	\item Observed dataset $\boldsymbol{X}\in \mathbb R^{N\times D}$, latent variables $\boldsymbol{Z}\in \mathbb R^{N\times K}$.
+	\item Observed dataset $\boldsymbol{X}\in \mathbb R^{n\times m}$, latent variables $\boldsymbol{Z}\in \mathbb R^{n\times p}$.
 	\end{itemize}
 Maximize the log-likelihood  \textcolor{purple}{$\log p(\boldsymbol{X}|\theta)=\log\left(\sum_{\boldsymbol Z}p(\boldsymbol X,\boldsymbol Z|\theta)\right)$}.
 \begin{itemize}
@@ -797,15 +797,15 @@ which is tractable in many applications.
 \begin{itemize}
 %	\item We confirm earlier formulas for the Gaussian mixture.
 	\item If $z$ was observed, the MLE would be trivial
-	$${\small \log p(\boldsymbol X,\boldsymbol Z|\theta)=\sum_{n=1}^N \log p(x_n,z_n|\theta)=\sum_{n=1}^N\sum_{k=1}^K \textcolor{blue}{1\!\!1(z_n\!=\!k)}\log\left(\pi_kN(x_n|\mu_k,\Sigma_k)\right).}$$
+	$${\small \log p(\boldsymbol X,\boldsymbol Z|\theta)=\sum_{i=1}^n \log p(x^{(i)},z^{(i)}|\theta)=\sum_{i=1}^n\sum_{k=1}^K \textcolor{blue}{1\!\!1(z^{(i)}\!=\!k)}\log\left(\pi_kN(x^{(i)}|\mu_k,\Sigma_k)\right).}$$
 \end{itemize}
-For the E-step: $p(\boldsymbol{Z}|\boldsymbol{X},\theta)=\prod_{n=1}^N p(z_n|\boldsymbol{X},\theta)$ we have
+For the E-step: $p(\boldsymbol{Z}|\boldsymbol{X},\theta)=\prod_{i=1}^n p(z^{(i)}|\boldsymbol{X},\theta)$ we have
 $$
-p(z_n=k|\boldsymbol{X},\theta)=p(z_n=k|x_n,\theta)=\frac{\pi_k N_m(x_n|\mu_k,\Sigma_k)}{\sum_{j=1}^K \pi_j N_m(x_n|\mu_j,\Sigma_j)}.
+p(z^{(i)}=k|\boldsymbol{X},\theta)=p(z^{(i)}=k|x^{(i)},\theta)=\frac{\pi_k N_m(x^{(i)}|\mu_k,\Sigma_k)}{\sum_{j=1}^K \pi_j N_m(x^{(i)}|\mu_j,\Sigma_j)}.
 $$
-For the M-step: ${\small \mathbb E(1\!\!1(z_n=k)|\boldsymbol{X},\theta^{\rm old})=p(z_n=k|\boldsymbol{X},\theta^{\rm old})}$ and so 
+For the M-step: ${\small \mathbb E(1\!\!1(z^{(i)}=k)|\boldsymbol{X},\theta^{\rm old})=p(z^{(i)}=k|\boldsymbol{X},\theta^{\rm old})}$ and so 
 $$
-{\small \mathbb E\Big(\log p(\boldsymbol X,\boldsymbol Z|\theta)\Big|\boldsymbol{X},\theta^{\rm old}\Big)\;=\;\sum_{n=1}^N\sum_{k=1}^K \textcolor{blue}{p(z_n=k|\boldsymbol{X},\theta^{\rm old})}\log\left(\pi_kN(x_n|\mu_k,\Sigma_k)\right).}
+{\small \mathbb E\Big(\log p(\boldsymbol X,\boldsymbol Z|\theta)\Big|\boldsymbol{X},\theta^{\rm old}\Big)\;=\;\sum_{i=1}^n\sum_{k=1}^K \textcolor{blue}{p(z^{(i)}=k|\boldsymbol{X},\theta^{\rm old})}\log\left(\pi_kN(x^{(i)}|\mu_k,\Sigma_k)\right).}
 $$
 Maximizing gives the formulas on Slide~\ref{GMEM}.
 %\begin{figure}
