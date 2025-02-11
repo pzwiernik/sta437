@@ -404,11 +404,11 @@ If $X$ is continuous with CDF $F$, then $F(X) \sim U(0, 1)$.
 \begin{alertblock}{Copulas are invariant under monotone transformations. }
 	Consider $Y_i := f_i(X_i)$, where $f_i$ are strictly increasing transformations. Then the copula of $X$ is the same as the copula of $Y$. 
 \end{alertblock}
-Proof outline: Let $G$ be the CDF of $Y$ and $G_i$ the marginal CDF of $Y_i$
+Proof: Let $G$ be the CDF of $Y$ and $G_i$ the marginal CDF of $Y_i$
     \begin{itemize}
     \item By \eqref{eq:cop1}, equiv. show $F(F_1^{-1}(u_1), \ldots, F_m^{-1}(u_m))=G(G_1^{-1}(u_1), \ldots, G_m^{-1}(u_m))$
-        \item $G_i(y_i)=\P(Y_i\leq y_i)=\P(f_i(X_i)\leq y_i)=\P(X_i\leq f_i^{-1}(y_i))=F_i(f_i^{-1}(y_i))$ and, in particular, $G_i^{-1}=f_i\circ F_i^{-1}$.
-        \item Thus, $\{Y_i\leq G_i^{-1}(u_i)\}=\{f(X_i)\leq f_i(F^{-1}_i(u_i))\}=\{X_i\leq F^{-1}_i(u_i)\}$ and so  
+        \item $G_i(y_i)=\P(Y_i\leq y_i)=\P(f_i(X_i)\leq y_i)=\P(X_i\leq f_i^{-1}(y_i))=F_i(f_i^{-1}(y_i))$.
+        \item Thus, $\{Y_i\leq G_i^{-1}(u_i)\}=\{F_i(f_i^{-1}(Y_i))\leq u_i\}=\{F_i(X_i)\leq u_i\}=\{X_i\leq F^{-1}_i(u_i)\}$ and so  
       \begin{eqnarray*}
       	&&G(G_1^{-1}(u_1),\ldots, G_m^{-1}(u_m))= \P\left(\bigcap_{i=1}^m \{Y_i\leq G^{-1}_i(u_i)\}\right)\\
       	&=&\P\left(\bigcap_{i=1}^m \{X_i\leq F^{-1}_i(u_i)\}\right)=F(F_1^{-1}(u_1), \ldots, F_m^{-1}(u_m)).
