@@ -421,7 +421,7 @@ Proof: Let $G$ be the CDF of $Y$ and $G_i$ the marginal CDF of $Y_i$
 The PDF of a copula $C$ is obtained by differentiating its CDF:
     \[ c(\mathbf{u}) = \frac{\partial^m C(\mathbf{u})}{\partial u_1 \cdots \partial u_m}. \]
     
-    Recall $C(\bs u)=F(F_1^{-1}(u_1),\ldots, F_m^{-1}(u_m))$. Using the chain rule:
+    Recall $C(\bs u)=F(F_1^{-1}(u_1),\ldots, F_m^{-1}(u_m))$. By chain rule and inverse function theorem:
     \[ c(\mathbf{u}) = \frac{f(\mathbf{x})}{\prod_{i=1}^m f_i(x_i)},\qquad \mbox{where } x_i=F_i^{-1}(u_i)\mbox{ for all }i \]
     where $f$ is the joint density and $f_i$ are marginal densities.
     \bigskip
@@ -470,15 +470,15 @@ Let $\Sigma$ be a correlation matrix.\\[3mm]
 	
 	Given a sample $\x_i^{(1)},\ldots,\x_i^{(n)}$ of $X_i$ we compute the \textbf{empirical CDF} (proxy for $F_i$)
 	$$
-	\widehat F_i(x_i)\;:=\;\frac1n \sum_{t=1}^n \bs 1\{\x_i^{(t)}\leq x_i\}.
+	\widehat F_i(x_i)\;:=\;\frac1n \sum_{t=1}^n \bs 1\{\x_i^{(t)}\leq x_i\}\;\approx\;\P(X_i\leq x_i)\;=\;F_i(x_i).
 	$$
 	\vspace{-5mm}
 \begin{alertblock}{}
-	Transform, the data using the empirical CDFs
+	Transform, each row in the data matrix $\X$ using the empirical CDFs
 $$
-\bs u^{(t)}_i\;=\;\widehat F_i(\x^{(t)}_i).
+\bs u^{(t)}_i\;=\;\widehat F_i(\x^{(t)}_i)\quad\mbox{for } i=1,\ldots,m.
 $$
-This transforms the data matrix $\X$ to $\bs U$ with uniform marginals. 
+The transformed data matrix $\bs U$ contains samples coming from $U(0,1)$.
 \end{alertblock}\end{frame}
 
 
