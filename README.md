@@ -69,7 +69,7 @@ The midterms are short (1 hour) and they focus on simple conceptual/theory quest
 | **3** | MVN: Conditional distribution, conditional independence.     | [notes3](./lectures/lecture3.pdf) | LSM: [tut3](./tutorials/tutorial3.pdf)<br> [code](./tutorials/tutorial3.html) | 22 Jan |   |
 | **4** | Estimation for MVN models <br> Gaussian Processes: basic definitions and examples      | [notes4](./lectures/lecture4.pdf)| DL: [tut4](./tutorials/tutorial4.Rmd)  | 29 Jan |  |
 | **5** | Non-Gaussian distributions: elliptical distributions, copulas   | [slides5](./slides/slides_nongaussian.pdf)<br>[notes5](./lectures/lecture5.pdf) | **midterm1**  | 5 Feb|  |
-| **6** | Non-Gaussian distributions: Copulas (cont'd), Gaussian mixtures  | [slides5](./slides/slides_nongaussian.pdf) | ML: [tut5](./tutorials/tutorial5.pdf) <br> [code](./tutorials/tutorial5_simulation.R) | 12 Feb|  |
+| **6** | Non-Gaussian distributions: Copulas (cont'd), Gaussian mixtures  | [slides6](./slides/slides_nongaussian.pdf) | ML: [tut5](./tutorials/tutorial5.pdf) <br> [code](./tutorials/tutorial5_simulation.R) | 12 Feb|  |
 |  | Reading week <br/> (no class/tutorial)  | - | - | - | Final project out | 
 | 7 | Principal Component Analysis: definition, basic examples <br> Principal Component Analysis: Scree plot, Computations | [slides7](./slides/slides_pca.pdf) | SCh | 26 Feb |  |
 | 8 | Laplacian eigenmap and UMAP <br> Canonical Correlation Analysis (CCA) |  | RZ | 5 Mar|  |
