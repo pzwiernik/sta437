@@ -1,0 +1,128 @@
+\documentclass[11pt,handout,aspectratio=169]{beamer}
+
+
+\input{./defs.tex}
+
+\title[STA437-Week1]{STA 437/2005: \\ Methods for Multivariate Data}
+\subtitle[]{Weeks 8: Covariance matrix estimation}
+\author[Piotr Zwiernik]{Piotr Zwiernik}
+\institute[UofT]{University of Toronto}
+\date{}
+
+
+%\usepackage{Sweave}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Covariance matrix estimation}
+	We started our discussion of PCA on the population level. 
+	\begin{itemize}
+		\item maximizing $\bs u^\top \Sigma \bs u$ gives a direction of the highest variance of $X\in \R^m$. \\[5mm]
+	\end{itemize}
+	
+	In practice we have no access to $\Sigma\in \mathbb S^m_+$.\\[5mm]
+	
+	The main approach is to estimate $\Sigma$ using the sample covariance matrix $S_n$.\\[5mm]
+	
+	Recall that $S_n$ is almost unbiased.\\[5mm] 
+	It can be shown that it is a consistent estimator of $\Sigma$.\\[5mm]
+	In other words, if $n$ is ``very large'', $S_n$ should be a good estimator of $\Sigma$.  
+\end{frame}
+
+\begin{frame}{High-dimensional problems}
+	How large $n$ has to be generally depends on $m$.\\[5mm]
+	This is intuitively clear because $\Sigma$ has $\binom{m}{2}=\tfrac{m(m+1)}{2}$ parameters to estimate.\\[5mm]
+\alert{Classical asymptotics} lets $n\to \infty$ keeping $m$ fixed. \\[5mm]
+\textcolor{blue}{High-dimensional asymptotics} studies estimation when both $m,n\to \infty$.\begin{itemize}
+	\item We assume $m/n\to \gamma\in [0,1)$.
+\end{itemize}\end{frame}
+
+\begin{frame}{Why does it matter?}
+	Suppose that $\Sigma=I_m$. If $S_n$ is close to $\Sigma$ all its eigenvalues should be close to $1$. \\[5mm]
+	Consider a simple example: $m=3$, $n=1000$. Sample $S_n$ several times and look at the histogram of eigenvalues. \\
+	\begin{minipage}{7cm}
+	\includegraphics[scale=.45]{pics/HDcov3}		
+	\end{minipage}
+\begin{minipage}{6.5cm}
+	Indeed! A \textbf{sharp} concentration around 1.\\[5mm]
+	Arguably, this is a very extreme situation.\\[5mm]
+	In typical applications the ration $n/m$ is much smaller. 
+\end{minipage}
+\end{frame}
+
+\begin{frame}{}
+  Consider now the eigenvalue distribution in the same setting but with much higher $m$. \\[5mm]
+
+Take $n=1000$, $m=200$  and $m=500$. 
+  \begin{center}
+    \includegraphics[width=0.45\textwidth]{pics/HDcov1.pdf}
+    \includegraphics[width=0.45\textwidth]{pics/HDcov2.pdf}
+  \end{center}
+  The eigenvalues deviate from 1, following the \alert{Marchenko-Pastur law}.
+\end{frame}
+
+\begin{frame}{Marchenko-Pastur Law}
+Marchenko-Pastur Law gives the limiting distribution of the eigenvalues of $S_n$ ($\Sigma=I_m$) in the limiting case when $m/n \to \gamma$.\\[5mm]
+
+\begin{block}{Marchenko-Pastur Law}
+	Let $\lambda_{\min}:=(1-\sqrt{\gamma})^2$, $\lambda_{\max}:=(1+\sqrt{\gamma})^2$. Then MP Law has density
+	$$
+	f_{\mathrm{MP}}(\lambda) = \frac{1}{2\pi\gamma\lambda}\sqrt{(\lambda_{\max}-\lambda)(\lambda-\lambda_{\min})}\qquad \mbox{for }\lambda\in [\lambda_{\min},\lambda_{\max}].
+	$$
+\end{block}
+\end{frame}
+
+\begin{frame}{Alternative Estimators}
+	This example shows that $S_n$ is not a good estimator of $\Sigma$ when $m/n$ is too large.\\[5mm]
+	General approach: if there is some additional structure in $\Sigma$, exploit it.
+	\begin{itemize}
+		\item This stabilizes the estimators.\\[5mm]
+	\end{itemize}
+	This approach may be problematic if you exploited structure that is not there. \\[5mm]
+	We now review some common approaches that work well in a wide-range of scenarios. 
+\end{frame}
+
+\begin{frame}{Alternative Estimators Overview}
+  \textbf{Linear Shrinkage}: \hl{$\widehat{\Sigma}_{\text{ls}} = (1 - \lambda) S_n + \lambda I_m$} for some $\lambda\in (0,1)$.
+  \begin{itemize}
+  	\item Reduces variance by shrinking towards $I_m$.\\[5mm]
+  \end{itemize}
+  
+ 
+  \textbf{Graphical Lasso}: We consider penalized Gaussian log-likelihood. Define
+   \[\widehat{K} \;:=\; \arg\min_{K\in \mathbb S^m_+ }\{\textcolor{blue}{\mathrm{tr}(S_nK)-\log\det(K)}+\alert{\lambda\|K\|_1}\},\]
+   where $\|K\|_1=\sum_{i\neq j}|K_{ij}|$ ($\ell_1$-penalty). Finally, 
+  \hl{$\widehat \Sigma_{\text{glasso}}=\widehat K^{-1}$}.
+  \begin{itemize}
+  	\item Promotes sparsity in the precision matrix.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Alternative Estimators Continued}
+  \textbf{Factor Models}: Suppose $\Sigma$ has the form
+  $\Sigma = LL^\top + \Psi$ 
+  where $L\in \R^{m\times r}$ for $r<m$ and $\Psi$ is diagonal.
+  \begin{itemize}
+  	\item We will show how to exploit this in estimation.
+  	\item Probabilistic PCA gives one example with $\Psi=\sigma^2 I_m$. \\[5mm]
+  \end{itemize}
+  
+  
+  \textbf{Thresholding-Based Methods}: If $\Sigma$ has zeros, it is natural to estimate
+  \[\widehat{\Sigma}_{\text{thresh}} = \{(S_n)_{ij} \cdot \mathbb{I}(|(S_n)_{ij}|>\tau)\}_{i,j}.\]
+  Sets small covariance entries to zero.
+\end{frame}
+
+\begin{frame}{Tyler's Scatter Estimator}
+  For elliptical distributions, $\Sigma$ satisfies:
+  \[\sum_i \frac{1}{x^{(i)\top}\Sigma^{-1}x^{(i)}}x^{(i)}x^{(i)\top} = \frac{n}{m}\Sigma.\]
+  Computed using fixed-point iterations:
+  \[\hat{\Sigma}^{(k+1)} = \frac{m}{n}\sum_{i}\frac{x^{(i)}x^{(i)\top}}{x^{(i)\top}(\hat{\Sigma}^{(k)})^{-1}x^{(i)}}.\]
+\end{frame}
+
+
+
+\end{document}
+
