@@ -116,13 +116,27 @@ Marchenko-Pastur Law gives the limiting distribution of the eigenvalues of $S_n$
 \end{frame}
 
 \begin{frame}{Tyler's Scatter Estimator}
-  For elliptical distributions, $\Sigma$ satisfies:
-  \[\sum_i \frac{1}{x^{(i)\top}\Sigma^{-1}x^{(i)}}x^{(i)}x^{(i)\top} = \frac{n}{m}\Sigma.\]
-  Computed using fixed-point iterations:
+This is a popular estimator in robust statistics. \\[4mm]
+If $X\sim E(\bs 0,\Sigma)$ then $Z=\Sigma^{-1/2}X$ is spherical; $Z/\|Z\|$ is uniform on the unit sphere.\\[4mm]
+Then $\tfrac1m I_m=\var(Z/\|Z\|)=\E(\tfrac{1}{\|Z\|^2}ZZ^\top)=\E(\tfrac{1}{X^\top \Sigma^{-1}X}\Sigma^{-1/2}XX^\top \Sigma^{-1/2})$.\\[4mm]
+Equivalently $\E(\tfrac{1}{X^\top \Sigma^{-1}X}XX^\top)=\tfrac1m \Sigma$. Consider a sample version of this equation:
+  \[\sum_{i=1}^n \frac{1}{x^{(i)\top}\Sigma^{-1}x^{(i)}}x^{(i)}x^{(i)\top} = \frac{n}{m}\Sigma.\]
+  Under mild conditions, there is a unique solution; computed using fixed-point iterations:
   \[\hat{\Sigma}^{(k+1)} = \frac{m}{n}\sum_{i}\frac{x^{(i)}x^{(i)\top}}{x^{(i)\top}(\hat{\Sigma}^{(k)})^{-1}x^{(i)}}.\]
 \end{frame}
 
-
+\begin{frame}{Summary}
+	Estimating the covariance matrix in modern applications raises many challenges. \\[5mm]
+	If $\Sigma$ satisfies some structure, we could exploit it to stabilize estimation. \\[5mm]
+	We study some structures that can appear in  practice.
+	\begin{itemize}
+		\item Diagonal plus low rank.
+		\item $\Sigma$ or $\Sigma^{-1}$ sparse.\\[5mm]
+	\end{itemize}  
+	
+	This is an active are of research. Links to random matrix theory.
+	
+\end{frame}
 
 \end{document}
 
