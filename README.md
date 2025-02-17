@@ -71,12 +71,12 @@ The midterms are short (1 hour) and they focus on simple conceptual/theory quest
 | **5** | Non-Gaussian distributions: elliptical distributions, copulas   | [slides5](./slides/slides_nongaussian.pdf)<br>[notes5](./lectures/lecture5.pdf) | **midterm1**  | 5 Feb|  |
 | **6** | Non-Gaussian distributions: Copulas (cont'd), Gaussian mixtures  | [slides6](./slides/slides_nongaussian.pdf) | ML: [tut5](./tutorials/tutorial5.pdf) <br> [code](./tutorials/tutorial5_simulation.R) | 12 Feb|  |
 |  | Reading week <br/> (no class/tutorial)  | - | - | - | Final project out | 
-| 7 | Principal Component Analysis: definition, basic examples <br> Principal Component Analysis: Scree plot, Computations | [slides7](./slides/slides_pca.pdf) | SCh | 26 Feb |  |
-| 8 | Laplacian eigenmap and UMAP <br> Canonical Correlation Analysis (CCA) |  | RZ | 5 Mar|  |
-| 9 | Graphical models: basic definitions <br> Gaussian Graphical models  |  | **midterm2**| 12 Mar| |
-| 10 | Graphical models: log-linear models, Ising model | | DL | 19 Mar| |
-| 11 |  Factor Analysis models, Independent Component Analysis |  | SCh  | 26 Mar |  |
-| 12 | If time permits: Introduction to tensor methods  |  | LSM| Apr 2| **Final Project due** |
+| 7 | Principal Component Analysis: definition, basic examples  | [slides7](./slides/slides_pca.pdf) | SCh | 26 Feb |  |
+| 8 | Principal Component Analysis: Scree plot, Computations <br> Covariance matrix estimation | [slides8](./slides/slides_pca_supplement.pdf) | RZ | 5 Mar|  |
+| 9 | Laplacian eigenmap and UMAP <br> Canonical Correlation Analysis (CCA)  |  | **midterm2**| 12 Mar| |
+| 10 | Graphical models, conditional independence <br> Gaussian Graphical models | | DL | 19 Mar| |
+| 11 |  Graphical models: log-linear models, Ising model |  | SCh  | 26 Mar |  |
+| 12 | Factor Analysis models, Independent Component Analysis <br> Course review  |  | LSM| Apr 2| **Final Project due** |
 
 
 
