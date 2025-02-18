@@ -1,0 +1,103 @@
+\documentclass[11pt,handout,aspectratio=169]{beamer}
+
+
+\input{./defs.tex}
+
+\title[STA437-Week1]{STA 437/2005: \\ Methods for Multivariate Data}
+\subtitle[]{Week 9: Non-linear Dimension Reduction Techniques}
+\author[Piotr Zwiernik]{Piotr Zwiernik}
+\institute[UofT]{University of Toronto}
+\date{}
+
+
+%\usepackage{Sweave}
+
+\begin{document}
+
+\maketitle
+
+
+\begin{frame}{Why Principal Component Analysis may not be enough?}
+  \textbf{Why go beyond PCA?} \newline
+  PCA captures variance through linear projections but struggles with:
+  \begin{itemize}
+    \item Non-linear relationships.
+    \item Complex manifolds.\\[6mm]
+  \end{itemize}
+  {We explore MDS, UMAP and its relationship with PCA.}
+\end{frame}
+
+\begin{frame}{}
+	\begin{center}
+		\alert{\Huge Multi-dimensional Scaling (MDS)}
+	\end{center}
+\end{frame}
+
+% Slide: Problem Setup
+\begin{frame}{Problem Setup}
+Consider a \alert{dissimilarity} matrix $\Delta=(\delta_{ij})\in \R^{n\times n}$: $\delta_{ii}=0$ for all $i$, $\delta_{ij}\geq 0$ for all $i\neq j$. \\[5mm]
+
+In classical MDS: there exist $\x_1,\ldots,\x_n\in \R^m$ such that $\delta_{ij}=\|\x_i-\x_j\|$.\\[5mm]
+In general we have $n$ objects and $\delta_{ij}$ is a measure of their dissimilarity (small if similar). There need not a Euclidean distance defining this metric. 
+\begin{alertblock}{Multidimensional Scaling}
+	Find a configuration of points $\y_1,\ldots,\y_n$ in $\R^d$ ($d<\!\!<n$) such that:
+	$$
+	\|\y_i-\y_j\|\;\approx\;\delta_{ij}.
+	$$ 
+\end{alertblock}
+\end{frame}
+
+% Slide: Distance Matrix Algebra
+\begin{frame}{Classical MDS: $\delta_{ij}=\|\x_i-\x_j\|$}
+If $\delta_{ij}=\|\x_i-\x_j\|$, we have:
+\[\delta_{ij}^2 \;=\; (\mathbf{x}_i - \mathbf{x}_j)^{\top}(\mathbf{x}_i - \mathbf{x}_j)\;=\;(\X\X^\top)_{i,i}+(\X\X^\top)_{j,j}-2(\X\X^\top)_{i,j}.\]
+The Hadamard product $\Delta\odot\Delta=[\delta_{ij}^2]$ can be written as:
+	\[\Delta \odot \Delta = \mathrm{diag}(\mathbf{X}\mathbf{X}^{\top}) \mathbf{1} \mathbf{1}^{\top} + \mathbf{1} \mathbf{1}^{\top} \mathrm{diag}(\mathbf{X}\mathbf{X}^{\top}) - 2\mathbf{X}\mathbf{X}^{\top}\]
+	Reintroducing the centering matrix $H = I_n - \frac{1}{n}\mathbf{1}\mathbf{1}^{\top}$, we obtain
+	\[B \;:=\; -\frac{1}{2} H (\Delta \odot \Delta) H\;=\;H\X (H\X)^\top \;=\;\tilde\X\tilde\X^\top.\]
+	This matrix contains all inner products $\tilde\x_i^\top\tilde\x_j$ for $1\leq i,j\leq n$.
+\end{frame}
+
+% Slide: Centering the Matrix
+\begin{frame}{}
+
+\end{frame}
+
+% Slide: Eigen-decomposition
+\begin{frame}{Eigen-decomposition for Dimensionality Reduction}
+\[B = V \Lambda V^{\top}\]
+\[\mathbf{Y} = U_d \Lambda_d^{1/2}\]
+$U_d$: top $d$ eigenvectors.
+$\Lambda_d$: top $d$ eigenvalues.
+\end{frame}
+
+\begin{frame}{Duality Between MDS and PCA}
+Classical MDS and PCA are closely connected. Here is the key insight:
+\begin{itemize}
+    \item \textbf{PCA}: Finds principal components from the eigenvectors of $(H\mathbf{X})^{\top}H\mathbf{X}$.
+    \item \textbf{MDS}: Finds embeddings from the eigenvectors of $H\mathbf{X}(H\mathbf{X})^{\top}$.
+\end{itemize}
+Both methods rely on the singular value decomposition (SVD) of $H\mathbf{X}$.
+\end{frame}
+
+% Slide: Detailed Explanation of Duality
+\begin{frame}{Detailed Explanation of Duality}
+\textbf{Singular Value Decomposition (SVD):}
+\[ H\mathbf{X} = U \tilde{\Lambda}^{1/2} V^{\top} \]
+\begin{itemize}
+    \item MDS uses $U$ (left singular vectors) and $\tilde{\Lambda}$ (singular values).
+    \item PCA uses $V$ (right singular vectors) and $\tilde{\Lambda}$ (singular values).
+\end{itemize}
+This shows that MDS and PCA are dual methods, analyzing complementary covariance structures.
+\end{frame}
+
+% Slide: Key Result
+\begin{frame}{Key Result}
+\textbf{Theorem:} Classical MDS on distances is equivalent to PCA on the centered data matrix. 
+\[ H\mathbf{X}(H\mathbf{X})^{\top} = U \tilde{\Lambda} U^{\top} \]
+\[ (H\mathbf{X})^{\top}H\mathbf{X} = V \tilde{\Lambda} V^{\top} \]
+\textbf{Conclusion:} The MDS embedding and PCA scores are both derived from $H\mathbf{X}$ but use different components of the SVD.
+\end{frame}
+
+\end{document}
+
