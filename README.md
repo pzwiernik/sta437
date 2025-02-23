@@ -76,9 +76,9 @@ The midterms are short (1 hour) and they focus on simple conceptual/theory quest
 | 7 | Principal Component Analysis: definition, basic examples  | [slides7](./slides/slides_pca.pdf) | SCh | 26 Feb |  |
 | 8 | Principal Component Analysis: Scree plot, Computations <br> Covariance matrix estimation | [slides8](./slides/slides_pca_supplement.pdf) | RZ | 5 Mar|  |
 | 9 | Laplacian eigenmap and UMAP <br> Autoencoders  | [slides9](./slides/slides_dim_reduction.pdf) | **midterm2**| 12 Mar| |
-| 10 |Canonical Correlation Analysis (CCA)<br> Graphical models, conditional independence   | | DL | 19 Mar| |
-| 11 |  Gaussian Graphical models<br>Graphical models: log-linear models, Ising model |  | SCh  | 26 Mar |  |
-| 12 | Factor Analysis models, Independent Component Analysis <br> Course review  |  | LSM| Apr 2| **Final Project due** |
+| 10 |Canonical Correlation Analysis (CCA)<br> Factor Analysis (FA)   | | DL | 19 Mar| |
+| 11 |  Graphical models, conditional independence <br> Gaussian Graphical models |  | SCh  | 26 Mar |  |
+| 12 | Graphical models: log-linear models, Ising model <br> Course review  |  | LSM| Apr 2| **Final Project due** |
 
 
 
