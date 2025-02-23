@@ -86,7 +86,7 @@ The midterms are short (1 hour) and they focus on simple conceptual/theory quest
 
 ## Final project
 
-**Submissions:** Groups of size 1-2. You have two datasets to choose from. Submit a PDF file with a carefully described data analysis and the code used. 
+**Submissions:** Groups of size 1-2. You have two datasets to choose from. Submit a PDF file with a carefully described data analysis and the code used. Deadline: April 1st.
  
 **Expectations and grading:** This is an open-ended project that is aimed at forcing you to use some of the multivariate methods for a real dataset. Although there is no right question here, we look for quality analysis that uses the range of methods discussed in class. To help you focus, we gave a list of possible questions that could be addressed. But there is no need to answer them - get creative and follow your curiosity. If the provided dataset is to big, feel free to take a smaller portion. The only real goal here is to learn the methods. 
  
