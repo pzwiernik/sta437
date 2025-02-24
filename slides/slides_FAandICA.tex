@@ -1,0 +1,141 @@
+\documentclass[11pt,handout,aspectratio=169]{beamer}
+
+
+\input{./defs.tex}
+
+\title[STA437-Week1]{STA 437/2005: \\ Methods for Multivariate Data}
+\subtitle[]{Weeks 10: Factor Analysis and Independent Component Analysis}
+\author[Piotr Zwiernik]{Piotr Zwiernik}
+\institute[UofT]{University of Toronto}
+\date{}
+
+
+%\usepackage{Sweave}
+
+\begin{document}
+
+\maketitle
+\section{Introduction}
+\begin{frame}{Low-dimensional structures in multivariate statistics}
+	In probabilistic PCA we had ...\\[5mm]
+	
+	Our goal in this lecture is to discuss other related techniques widely used in practice.\\[5mm]
+	In all this cases the covariance matrix $\Sigma$ or higher order moments of $X$ have a special strutcture,  \\[5mm]
+	Our goal is to explain why these models are important and how they can be learned.
+\end{frame}
+
+\section{Factor Analysis }
+
+\begin{frame}{}
+	\begin{center}
+		{\Huge \alert{Factor Analysis}}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Factor Analysis: Motivating Examples}
+\begin{block}{Example: Capital Asset Pricing Model (CAPM)}
+	Models stock returns based on a common factor; the \alert{market return}. For each stock:
+	\[ X_i \;=\; \mu_i + w_i Z + \eps_i \]
+This is one of the most basic models in finance.
+\end{block}
+\begin{alertblock}{Example: Human Intelligence}
+	Cognitive abilities modeled by latent \alert{intelligence factor}.\\[3mm]
+	This could be further generalized to account for multiple types of intelligence.
+\end{alertblock}
+\end{frame}
+
+\begin{frame}{ICA: Motivating Examples}
+    \textbf{Example: Cocktail Party Problem}
+    \begin{itemize}
+        \item Separate mixed audio signals into independent sources.
+        \item Modeled as: \[ X = WZ \]
+    \end{itemize}
+    \textbf{Example: EEG/MEG Analysis}
+    \begin{itemize}
+        \item Extract independent brain signals from mixed recordings.
+    \end{itemize}
+\end{frame}
+
+\section{Factor Analysis Model}
+
+\begin{frame}{Factor Analysis Model}
+    \begin{itemize}
+        \item Observed variable: \[ X = \mu + WZ + \eps \]
+        \item Assumptions:
+        \begin{itemize}
+            \item $Z \sim N_r(0, I_r)$
+            \item $\eps \sim N_m(0, \Psi)$ (diagonal covariance matrix)
+        \end{itemize}
+        \item Covariance structure: \[ \Sigma = WW^T + \Psi \]
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Factor Analysis Identifiability}
+    \begin{itemize}
+        \item Non-uniqueness: $W$ is not uniquely identified.
+        \item Solutions:
+        \begin{itemize}
+            \item Choose an arbitrary constraint (e.g., $W^T\Psi^{-1}W$ diagonal).
+            \item Apply varimax rotation for interpretability.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\section{Independent Component Analysis (ICA)}
+
+\begin{frame}{ICA Model}
+    \begin{itemize}
+        \item Observed signal: \[ X = WZ \]
+        \item Assumes $Z$ has independent non-Gaussian components.
+        \item Identifiability result: Unique up to permutation and scaling.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{ICA: Non-Gaussianity Principle}
+    \begin{itemize}
+        \item Gaussian components remain Gaussian under rotation.
+        \item Non-Gaussian components allow identification.
+        \item Theorem (Comon): If at most one component is Gaussian, $W$ is identifiable up to permutation and scaling.
+    \end{itemize}
+\end{frame}
+
+\section{Estimation Methods}
+
+\begin{frame}{Factor Analysis Estimation: MLE}
+    \begin{itemize}
+        \item Log-likelihood maximization.
+        \item EM algorithm: iteratively estimates $W$ and $\Psi$.
+        \item J\"oreskog's method: Spectral decomposition approach.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{ICA Estimation: Method of Moments}
+    \begin{itemize}
+        \item Uses higher-order statistics (kurtosis, skewness).
+        \item JADE algorithm: Estimates mixing matrix via cumulants.
+        \item Contrast functions: Measures independence.
+    \end{itemize}
+\end{frame}
+
+\section{Choosing Number of Components}
+
+\begin{frame}{Choosing the Number of Factors}
+    \begin{itemize}
+        \item Eigenvalue-based criteria (e.g., Kaiser's rule, Scree plot).
+        \item Information-theoretic approaches (AIC, BIC).
+        \item Parallel analysis: Compare to random eigenvalues.
+        \item Likelihood ratio tests for nested models.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Conclusion}
+    \begin{itemize}
+        \item Factor Analysis captures shared variance via latent factors.
+        \item ICA decomposes signals into independent components.
+        \item Estimation methods include MLE for FA and cumulant-based techniques for ICA.
+    \end{itemize}
+    \centering{\textbf{Thank you!}}
+\end{frame}
+
+\end{document}
+
