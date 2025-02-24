@@ -13,6 +13,8 @@ More details can be found in [syllabus](syllabus2025.pdf) and [piazza](https://p
 ***
 
 ### Announcements:
+- Feb 21: The [final project](#final-project) is released. The deadline for submissions is April 1.
+- Feb 20: Midterm 1 results are out.
 - Feb 10: The midterm 1 with solutions is available: [Section 101](./exams/midterm1_101_sols.pdf), [Section 201](./exams/midterm1_201_sols.pdf).
 - Jan 30: By popular demand, the time of the office hours has changed. 
 - Jan 10: The syllabus has been uploaded.
@@ -74,9 +76,9 @@ The midterms are short (1 hour) and they focus on simple conceptual/theory quest
 | 7 | Principal Component Analysis: definition, basic examples  | [slides7](./slides/slides_pca.pdf) | SCh | 26 Feb |  |
 | 8 | Principal Component Analysis: Scree plot, Computations <br> Covariance matrix estimation | [slides8](./slides/slides_pca_supplement.pdf) | RZ | 5 Mar|  |
 | 9 | Laplacian eigenmap and UMAP <br> Autoencoders  | [slides9](./slides/slides_dim_reduction.pdf) | **midterm2**| 12 Mar| |
-| 10 |Canonical Correlation Analysis (CCA)<br> Graphical models, conditional independence   | | DL | 19 Mar| |
-| 11 |  Gaussian Graphical models<br>Graphical models: log-linear models, Ising model |  | SCh  | 26 Mar |  |
-| 12 | Factor Analysis models, Independent Component Analysis <br> Course review  |  | LSM| Apr 2| **Final Project due** |
+| 10 |Canonical Correlation Analysis (CCA)<br> Factor Analysis (FA)   | | DL | 19 Mar| |
+| 11 |  Graphical models, conditional independence <br> Gaussian Graphical models |  | SCh  | 26 Mar |  |
+| 12 | Graphical models: log-linear models, Ising model <br> Course review  |  | LSM| Apr 2| **Final Project due** |
 
 
 
@@ -84,7 +86,65 @@ The midterms are short (1 hour) and they focus on simple conceptual/theory quest
 
 ## Final project
 
-TBA
+**Submissions:** Groups of size 1-2. You have two datasets to choose from. Submit a PDF file with a carefully described data analysis and the code used. Deadline: April 1st.
+ 
+**Expectations and grading:** This is an open-ended project that is aimed at forcing you to use some of the multivariate methods for a real dataset. Although there is no right question here, we look for quality analysis that uses the range of methods discussed in class. To help you focus, we gave a list of possible questions that could be addressed. But there is no need to answer them - get creative and follow your curiosity. If the provided dataset is to big, feel free to take a smaller portion. The only real goal here is to learn the methods. 
+ 
+**Note:** Be to the point. Avoid AI-generated long and meaningless descriptions. *You should be ready to answer questions about your work (methods used and conclusions, not implementation details)*. We prepared the data in R but feel free to prepare your analysis using Python or Julia. 
+
+### Option 1: Autism Brain Imaging Data Exchange (ABIDE) dataset ([access the data](https://drive.google.com/drive/folders/1ai5mjIR2NeQJfDv9eaJ36mjgF8XvvTZQ))
+This dataset contains brain activity recordings from 47 individuals who participated in a study at Yale University. The data come from functional MRI (fMRI) scans, which measure brain activity over time.
+Each subject has a matrix (196 × 110) representing their brain activity.
+- 196 → The number of time points recorded during the scan.
+- 110 → The number of brain regions tracked.
+In addition to the fMRI data, there is a demographic table with information about each subject:
+- `DX_GROUP` → Diagnosis (1 = Autism, 2 = Control).
+- `AGE_AT_SCAN` → Age at the time of the scan.
+- `SEX` → Gender (1 = Male, 2 = Female).
+ 
+Guiding Questions for Analysis
+1. Understanding Brain Connectivity:
+  - How can we detect patterns of brain connectivity from these fMRI recordings?
+  - Can we identify distinct functional networks in the brain using this data?
+2. Comparing Groups (Autism vs. Control):
+  - Do brain connectivity patterns differ between individuals with Autism and the Control group?
+  - Are there specific brain regions that show different activity between groups?
+3. Exploring Demographic Factors:
+  - Does age influence brain connectivity patterns?
+  - Are there any differences in connectivity between males and females?
+4. Finding Unique Relationships:
+  - Are there connectivity patterns that are specific to individuals with Autism but not present in the Control group?
+  - Can we use this data to predict diagnosis based on brain activity alone?
+ 
+### Option 2: Credit Default Swap (CDS) dataset ([access the data](code/CDS_data.RData))
+ 
+Imagine a company takes out a big loan. The lender worries: What if the company can’t pay it back? To manage this risk, financial markets offer Credit Default Swaps (CDS)—a type of insurance for loans.
+- A company buying a CDS contract makes regular payments (like insurance premiums).
+- If the company defaults (fails to pay its debt), the CDS seller compensates the buyer.
+- The cost of this insurance is called the CDS spread, which works like a risk score:
+    - Higher spreads → Markets see the company as riskier.
+    - Lower spreads → Markets think the company is safer.
+ 
+This dataset includes CDS spreads for over 600 companies across 10 different time periods (tenors). Since spreads vary over time and across companies, analyzing them can reveal how financial markets assess risk under different conditions.
+ 
+Guiding Questions for Analysis
+ 
+1. Risk Patterns & Market Conditions
+  - How do CDS spreads behave in calm vs. crisis periods (e.g., during COVID-19)?
+  - Are some industries or companies consistently seen as high-risk?
+ 
+2. Multivariate Relationships & Dependencies
+  - How do CDS spreads for different maturities (short-term vs. long-term) move together for the same company?
+  - Can we use Principal Component Analysis (PCA) or Canonical Correlation Analysis (CCA) to find key risk factors driving CDS spreads?
+ 
+3. Clustering & Risk Groups
+  - Can we identify clusters of companies that have similar risk trends? (e.g., using hierarchical clustering or k-means)
+  - Do companies within the same industry tend to have similar CDS spread behavior?
+ 
+4. Advanced Dependency Analysis
+  - How do time-varying dependencies between companies evolve? (e.g., using copulas to measure joint risk behavior)
+  - Can we model the spillover effect—how risk changes in one company affect others?
+ 
 
 
 
