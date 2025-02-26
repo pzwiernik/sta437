@@ -44,30 +44,23 @@ This is one of the most basic models in finance.
 \end{alertblock}
 \end{frame}
 
-\begin{frame}{ICA: Motivating Examples}
-    \textbf{Example: Cocktail Party Problem}
-    \begin{itemize}
-        \item Separate mixed audio signals into independent sources.
-        \item Modeled as: \[ X = WZ \]
-    \end{itemize}
-    \textbf{Example: EEG/MEG Analysis}
-    \begin{itemize}
-        \item Extract independent brain signals from mixed recordings.
-    \end{itemize}
-\end{frame}
-
 \section{Factor Analysis Model}
 
 \begin{frame}{Factor Analysis Model}
-    \begin{itemize}
-        \item Observed variable: \[ X = \mu + WZ + \eps \]
-        \item Assumptions:
+The model assumes the following stochastic representation of $X=(X_1,\ldots,X_m)$:
+\[ X = \mu + WZ + \eps, \]
+where
         \begin{itemize}
-            \item $Z \sim N_r(0, I_r)$
-            \item $\eps \sim N_m(0, \Psi)$ (diagonal covariance matrix)
+            \item $Z \sim N_r(0, I_r)$,
+            \item $\eps \sim N_m(0, \Psi)$ (diagonal covariance matrix),
+            \item $Z\indep \eps$.
         \end{itemize}
-        \item Covariance structure: \[ \Sigma = WW^T + \Psi \]
-    \end{itemize}
+$X$ is Gaussian with the induced covariance structure: \[ \Sigma \;=\; \textcolor{blue}{WW^T} + \alert{\Psi}. \]
+\begin{alertblock}{}
+	Note that this model equals to Probabilistic PCA if $\Psi=\sigma^2I_m$.\\[4mm]
+	The general model does not give an analytic formula for the MLE. 
+\end{alertblock}
+
 \end{frame}
 
 \begin{frame}{Factor Analysis Identifiability}
@@ -81,7 +74,29 @@ This is one of the most basic models in finance.
     \end{itemize}
 \end{frame}
 
+\begin{frame}{Number of factors}
+	ss
+\end{frame}
+
+\begin{frame}{Application}
+	sss
+\end{frame}
+
 \section{Independent Component Analysis (ICA)}
+
+\begin{frame}{ICA: Motivating Examples}
+    \textbf{Example: Cocktail Party Problem}
+    \begin{itemize}
+        \item Separate mixed audio signals into independent sources.
+        \item Modeled as: \[ X = WZ \]
+    \end{itemize}
+    \textbf{Example: EEG/MEG Analysis}
+    \begin{itemize}
+        \item Extract independent brain signals from mixed recordings.
+    \end{itemize}
+\end{frame}
+
+
 
 \begin{frame}{ICA Model}
     \begin{itemize}
