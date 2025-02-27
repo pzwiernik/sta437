@@ -13,6 +13,7 @@ More details can be found in [syllabus](syllabus2025.pdf) and [piazza](https://p
 ***
 
 ### Announcements:
+- Feb 27: I added an [appendix](#appendix-report-structure-and-guidelines-for-the-final-project) describing the structure for the final project paper.
 - Feb 21: The [final project](#final-project) is released. The deadline for submissions is April 1.
 - Feb 20: Midterm 1 results are out.
 - Feb 10: The midterm 1 with solutions is available: [Section 101](./exams/midterm1_101_sols.pdf), [Section 201](./exams/midterm1_201_sols.pdf).
@@ -144,8 +145,31 @@ Guiding Questions for Analysis
 4. Advanced Dependency Analysis
   - How do time-varying dependencies between companies evolve? (e.g., using copulas to measure joint risk behavior)
   - Can we model the spillover effect—how risk changes in one company affect others?
- 
 
+
+## Appendix: Report Structure and Guidelines for the Final Project
+
+This appendix provides guidelines on how to structure your final project report. While the project remains open-ended, following this structure will help ensure a clear and well-organized submission.
+
+### 1. Introduction
+- Motivation: Why is this dataset interesting for you? What makes it suitable for multivariate analysis
+-	Research Question: What are you trying to uncover in the data? If you follow a guiding question, state it here.
+-	Brief Summary of Methods: Mention which multivariate methods you expect to use and why.
+-	Background (Optional): If applicable, briefly mention any relevant literature, prior knowledge, or similar analyses.
+
+### 2. Data and Preprocessing 
+- Description of the Dataset: Provide basic summary statistics and visualizations of the dataset.
+- Include summary tables and histograms/boxplots where relevant.
+- Handling of Missing Data: Describe any missing values and the steps taken to address them.
+- Transformations: Mention if any transformations (e.g., normalization, log-scaling) were applied.
+
+ ### 3. Methodology
+ Describe the multivariate methods used and justify their relevance to your research question.
+
+ ### 4. Results
+- Data Summaries: Present key findings from visualizations and descriptive statistics.
+- Interpretation of Findings.
+- How do the results answer your research question? Were the results expected or surprising?
 
 
 
