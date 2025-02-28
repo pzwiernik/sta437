@@ -165,11 +165,11 @@ This appendix provides guidelines on how to structure your final project report.
 - Handling of Missing Data: Describe any missing values and the steps taken to address them.
 - Transformations: Mention if any transformations (e.g., normalization, log-scaling) were applied.
 
- ### 3. Methodology
+ ### 3. Methodology 
  
  Describe the multivariate methods used and justify their relevance to your research question.
 
- ### 4. Results
+ ### 4. Results 
  
 - Data Summaries: Present key findings from visualizations and descriptive statistics.
 - Interpretation of Findings.
