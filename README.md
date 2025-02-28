@@ -152,21 +152,25 @@ Guiding Questions for Analysis
 This appendix provides guidelines on how to structure your final project report. While the project remains open-ended, following this structure will help ensure a clear and well-organized submission.
 
 ### 1. Introduction
+
 - Motivation: Why is this dataset interesting for you? What makes it suitable for multivariate analysis
 -	Research Question: What are you trying to uncover in the data? If you follow a guiding question, state it here.
 -	Brief Summary of Methods: Mention which multivariate methods you expect to use and why.
 -	Background (Optional): If applicable, briefly mention any relevant literature, prior knowledge, or similar analyses.
 
 ### 2. Data and Preprocessing 
+
 - Description of the Dataset: Provide basic summary statistics and visualizations of the dataset.
 - Include summary tables and histograms/boxplots where relevant.
 - Handling of Missing Data: Describe any missing values and the steps taken to address them.
 - Transformations: Mention if any transformations (e.g., normalization, log-scaling) were applied.
 
  ### 3. Methodology
+ 
  Describe the multivariate methods used and justify their relevance to your research question.
 
  ### 4. Results
+ 
 - Data Summaries: Present key findings from visualizations and descriptive statistics.
 - Interpretation of Findings.
 - How do the results answer your research question? Were the results expected or surprising?
