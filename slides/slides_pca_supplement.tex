@@ -34,9 +34,12 @@
 \begin{frame}{High-dimensional problems}
 	How large $n$ has to be generally depends on $m$.\\[5mm]
 	This is intuitively clear because $\Sigma$ has $\binom{m}{2}=\tfrac{m(m+1)}{2}$ parameters to estimate.\\[5mm]
-\alert{Classical asymptotics} lets $n\to \infty$ keeping $m$ fixed. \\[5mm]
+\alert{Classical asymptotics} lets $n\to \infty$ keeping $m$ fixed.\begin{itemize}
+	\item Applicable if $n$ is way larger than $m$.\\[5mm]
+\end{itemize} 
 \textcolor{blue}{High-dimensional asymptotics} studies estimation when both $m,n\to \infty$.\begin{itemize}
 	\item We assume $m/n\to \gamma\in [0,1)$.
+	\item May be appplicable in much general contexts.
 \end{itemize}\end{frame}
 
 \begin{frame}{Why does it matter?}
@@ -102,8 +105,8 @@ Marchenko-Pastur Law gives the limiting distribution of the eigenvalues of $S_n$
 
 \begin{frame}{Alternative Estimators Continued}
   \textbf{Factor Models}: Suppose $\Sigma$ has the form
-  $\Sigma = LL^\top + \Psi$ 
-  where $L\in \R^{m\times r}$ for $r<m$ and $\Psi$ is diagonal.
+  $\Sigma = WW^\top + \Psi$ 
+  where $W\in \R^{m\times r}$ for $r<m$ and $\Psi$ is diagonal.
   \begin{itemize}
   	\item We will show how to exploit this in estimation.
   	\item Probabilistic PCA gives one example with $\Psi=\sigma^2 I_m$. \\[5mm]
