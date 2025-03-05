@@ -55,22 +55,39 @@ where
             \item $\eps \sim N_m(0, \Psi)$ (diagonal covariance matrix),
             \item $Z\indep \eps$.
         \end{itemize}
-$X$ is Gaussian with the induced covariance structure: \[ \Sigma \;=\; \textcolor{blue}{WW^T} + \alert{\Psi}. \]
-\begin{alertblock}{}
-	Note that this model equals to Probabilistic PCA if $\Psi=\sigma^2I_m$.\\[4mm]
-	The general model does not give an analytic formula for the MLE. 
-\end{alertblock}
-
+        \bigskip 
+        \begin{block}{The latent factors $Z$}
+        	As the two examples suggest, often in this context $Z$ has a specific interpretation.
+        \end{block}
 \end{frame}
 
-\begin{frame}{Factor Analysis Identifiability}
+\begin{frame}{Parametrization and identifiability}
+	$X=\mu+WZ+\eps$ is Gaussian with the induced covariance structure: \[ \Sigma \;=\; \textcolor{blue}{WW^T} + \alert{\Psi}. \]
+	Note that this model equals to Probabilistic PCA if $\Psi=\sigma^2I_m$.\\[4mm]
+	The general model does not give an analytic formula for the MLE. \\[4mm]
+\begin{alertblock}{Lack of identifiability}
+	As for PPCA, $W$ is not uniquely identified.
+	\begin{itemize}
+		\item Replacing $W$ with $WU$ for $U\in O(m)$ does not change the distribution.
+		\item This has important consequences for model intepretability.
+	\end{itemize}
+\end{alertblock}
+\end{frame}
+
+\begin{frame}{Dealing with non-uniqueness of $W$}
+\textbf{Approach 1: } Constraint $W$ so that $W^T\Psi^{-1}W$ diagonal.
     \begin{itemize}
-        \item Non-uniqueness: $W$ is not uniquely identified.
-        \item Solutions:
-        \begin{itemize}
-            \item Choose an arbitrary constraint (e.g., $W^T\Psi^{-1}W$ diagonal).
-            \item Apply varimax rotation for interpretability.
-        \end{itemize}
+        \item Multiply $X=\mu+WZ+\eps$ by $\Psi^{-1/2}$ to get $\tilde X=\tilde \mu+\tilde WZ+\tilde \eps$ with $\tilde\eps\sim N(0,I_m)$.
+        \item We have $W^T\Psi^{-1}W=\tilde W^\top \tilde W$ so this corresponds to orthogonality of the columns of $\tilde W^\top$.
+    \end{itemize}
+    \bigskip
+    
+    \textbf{Approach 2: } Apply varimax rotation for interpretability.
+    \begin{itemize}
+    	\item Consider any $W\in \R^{m\times r}$. We find $U$ such that $WU$ more interpretable. 
+    	\item Define $M\in \R^{m\times r}$ by $M_{ij}=\frac{(WU)_{ij}^2}{\sum_{k=1}^r (WU)_{ij}^2}$ then find the appropriate $U$ maximizing: 
+    	$$\|M-\tfrac1m \bs 1_m\bs 1_m^\top M\|^2_F.$$
+    	\item This results with solutions such that each column of $M$ has a bunch of big entries and the remaining ones are negligible.
     \end{itemize}
 \end{frame}
 
