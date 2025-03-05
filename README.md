@@ -75,7 +75,7 @@ The midterms are short (1 hour) and they focus on simple conceptual/theory quest
 | **5** | Non-Gaussian distributions: elliptical distributions, copulas   | [slides5](./slides/slides_nongaussian.pdf)<br>[notes5](./lectures/lecture5.pdf) | **midterm1**  | 5 Feb|  |
 | **6** | Non-Gaussian distributions: Copulas (cont'd), Gaussian mixtures  | [slides6](./slides/slides_nongaussian.pdf) | ML: [tut5](./tutorials/tutorial5.pdf) <br> [code](./tutorials/tutorial5_simulation.R) | 12 Feb|  |
 |  | Reading week <br/> (no class/tutorial)  | - | - | - | Final project out | 
-| **7** | Principal Component Analysis: definition, basic examples, Scree plot  | [slides7](./slides/slides_pca.pdf) | SCh | 26 Feb |  |
+| **7** | Principal Component Analysis: definition, basic examples, Scree plot  | [slides7](./slides/slides_pca.pdf)<br>[notes7](./lectures/lecture7.pdf) | SCh | 26 Feb |  |
 | 8 | Principal Component Analysis: Affine Subspace Approximation <br> Computations, Covariance matrix estimation | [slides8](./slides/slides_pca_supplement.pdf) | RZ | 5 Mar|  |
 | 9 | Laplacian eigenmap and UMAP <br> Autoencoders  | [slides9](./slides/slides_dim_reduction.pdf) | **midterm2**| 12 Mar| |
 | 10 |Canonical Correlation Analysis (CCA)<br> Factor Analysis (FA)   | | DL | 19 Mar| |
