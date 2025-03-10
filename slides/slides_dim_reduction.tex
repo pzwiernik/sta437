@@ -166,7 +166,7 @@ Let $\Y\in \R^{n\times d}$ be the embedded data matrix. Recall $L=D-W$ and $L\bs
 \begin{alertblock}{Proposition}
 We have:\qquad $\frac{1}{2}\sum_{i,j} W_{ij}\|\y_i - \y_j\|^2 \;=\; \text{tr}(\Y^{\top} L \Y)\;=\;\textcolor{gray}{\text{tr}(\Y^{\top} D \Y)-\text{tr}(\Y^{\top} W \Y)}$
 \end{alertblock}
-Proof: As for MDS we can show that the matrix $E=\|\y_i-\y_j\|^2$ takes the form
+Proof: As for MDS we can show that the matrix $E=[\|\y_i-\y_j\|^2]_{i,j}$ takes the form
 $$
 E\;=\;{\rm diag}(\Y\Y^\top)\bs 1\bs 1^\top+\bs 1\bs 1^\top{\rm diag}(\Y\Y^\top)-2\Y\Y^\top
 $$
@@ -176,7 +176,7 @@ $D$ is diagonal and $E$ has zeros on the diagonal and so $\tfrac12\tr(W E)=-\tfr
 \end{frame}
 
 \begin{frame}{Introducing constraints to the optimization problem}
-	\begin{block}{Constraint 1}
+	\begin{block}{Constraint 1 (Fixing scale)}
 		To avoid trivial solutions it is convenient to assume $\Y^\top D \Y=I_d$.\\[2mm]
 %		\qquad$\bullet$ \quad we  also assume $\Y^{\top} D \mathbf{1} = \mathbf{0}$.
 	\end{block}
@@ -218,6 +218,11 @@ Note that PCA joins points that are far from each other in the original dataset.
     \begin{center}
         \alert{\Huge Uniform Manifold Approximation and Projection (UMAP)}
     \end{center}
+    \begin{itemize}
+    \item This is a popular, state-of-the-art method. 
+    	\item It relies on various choices that are not fully theoretically justified. 
+    	\item We provide a high level overview.
+    \end{itemize}
 \end{frame}
 
 % Slide: Introduction to UMAP
@@ -265,6 +270,9 @@ Define ``probabilities'' of $i,j$ being connected based on neighbor distances:
 Symmetrize probabilities:
     $$p_{ij} = p_{j|i} + p_{i|j} - p_{j|i}p_{i|j}.$$
     Note that the closest neighbor gets always connected with pr. 1.
+    \begin{itemize}
+    	\item This about $p_{ij}$ as edge weights.
+    \end{itemize}
 \end{frame}
 
 % Slide: Step 2 - Data Graph in the Embedding Space
