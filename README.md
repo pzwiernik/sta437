@@ -13,6 +13,7 @@ More details can be found in [syllabus](syllabus2025.pdf) and [piazza](https://p
 ***
 
 ### Announcements:
+- Mar 12: Final project deadline has been extended to April 8.
 - Feb 28: The final exam date has been released. The exam will take place on **28 Apr**, 2-5pm, in BR 200.
 - Feb 27: I added an [appendix](#appendix-report-structure-and-guidelines-for-the-final-project) describing the structure for the final project paper.
 - Feb 21: The [final project](#final-project) is released. The deadline for submissions is April 1.
