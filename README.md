@@ -80,8 +80,8 @@ The midterms are short (1 hour) and they focus on simple conceptual/theory quest
 | **8** | Principal Component Analysis: Affine Subspace Approximation <br> Computations, Covariance matrix estimation | [slides8](./slides/slides_pca_supplement.pdf)<br>[notes8](./lectures/lecture8.pdf)  | RZ: [tut8](./tutorials/tut8-exercise.pdf)<br>[code](./tutorials/tut8-code.Rmd) <br>[code pdf](./tutorials/tut8-code.pdf)| 5 Mar|  |
 | **9** | Multidimensional Scaling <br> Laplacian eigenmap and UMAP   | [slides9](./slides/slides_dim_reduction.pdf)<br>[notes9](./lectures/lecture9.pdf) | **midterm2**| 12 Mar| |
 | 10 |Canonical Correlation Analysis (CCA)<br> Factor Analysis (FA)   | [slidesFA](./slides/slides_FAandICA.pdf)| DL | 19 Mar| |
-| 11 |  Graphical models, conditional independence <br> Gaussian Graphical models |  | SCh  | 26 Mar |  |
-| 12 | Graphical models: log-linear models, Ising model <br> Course review  |  | LSM| Apr 2| **Final Project due** |
+| 11 |  Conditional independence  <br> Graphical models |  | SCh  | 26 Mar |  |
+| 12 | Gaussian Graphical models <br> Ising model  |  | LSM| Apr 2|  |
 
 
 
