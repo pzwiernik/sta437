@@ -4,7 +4,7 @@
 \input{./defs.tex}
 
 \title[STA437-Week1]{STA 437/2005: \\ Methods for Multivariate Data}
-\subtitle[]{Weeks 10: Factor Analysis and Independent Component Analysis}
+\subtitle[]{Week 10: Factor Analysis}
 \author[Piotr Zwiernik]{Piotr Zwiernik}
 \institute[UofT]{University of Toronto}
 \date{}
@@ -17,20 +17,30 @@
 \maketitle
 \section{Introduction}
 \begin{frame}{Low-dimensional structures in multivariate statistics}
-	In probabilistic PCA we had ...\\[5mm]
-	
-	Our goal in this lecture is to discuss other related techniques widely used in practice.\\[5mm]
-	In all this cases the covariance matrix $\Sigma$ or higher order moments of $X$ have a special strutcture,  \\[5mm]
-	Our goal is to explain why these models are important and how they can be learned.
+Discussing covariance matrix estimation we mentioned some special structures that are routinely assumed in multivariate statistics. \\[4mm]
+
+We will discuss in detail two such constraints:
+\begin{itemize}
+	\item $\Sigma=L+S$ where $L$ is low-rank and $S$ is sparse. 
+	\item the inverse of $\Sigma^{-1}$ is sparse.\\[4mm]
+\end{itemize}
+
+In Factor Analysis: $\Sigma=WW^\top +\Psi$ with $W\in \R^{m\times r}$, $\Psi$ diagonal.\\[4mm]
+
+We explain here how such structure can occur by discussing motivating examples.
+
 \end{frame}
+
+
+
 
 \section{Factor Analysis }
 
-\begin{frame}{}
-	\begin{center}
-		{\Huge \alert{Factor Analysis}}
-	\end{center}
-\end{frame}
+%\begin{frame}{}
+%	\begin{center}
+%		{\Huge \alert{Factor Analysis}}
+%	\end{center}
+%\end{frame}
 
 \begin{frame}{Factor Analysis: Motivating Examples}
 \begin{block}{Example: Capital Asset Pricing Model (CAPM)}
@@ -48,23 +58,21 @@ This is one of the most basic models in finance.
 
 \begin{frame}{Factor Analysis Model}
 The model assumes the following stochastic representation of $X=(X_1,\ldots,X_m)$:
-\[ X = \mu + WZ + \eps, \]
-where
-        \begin{itemize}
-            \item $Z \sim N_r(0, I_r)$,
-            \item $\eps \sim N_m(0, \Psi)$ (diagonal covariance matrix),
-            \item $Z\indep \eps$.
-        \end{itemize}
-        \bigskip 
+\[ X = \mu + WZ + \eps, \qquad Z\sim N_r(0, I_r),\quad \eps \sim N_m(0, \Psi), \quad Z\indep \eps,\]
+where $\Psi$ is a diagonal covariance matrix.
         \begin{block}{The latent factors $Z$}
         	As the two examples suggest, often in this context $Z$ has a specific interpretation.
         \end{block}
+      \bigskip     
+In PPCA we have the same representation with $\Psi=\sigma^2 I_m$ (isotropic noise).\\[4mm]
+
+In FA more emphasis on interpreting the latent factors.
 \end{frame}
 
 \begin{frame}{Parametrization and identifiability}
 	$X=\mu+WZ+\eps$ is Gaussian with the induced covariance structure: \[ \Sigma \;=\; \textcolor{blue}{WW^T} + \alert{\Psi}. \]
-	Note that this model equals to Probabilistic PCA if $\Psi=\sigma^2I_m$.\\[4mm]
-	The general model does not give an analytic formula for the MLE. \\[4mm]
+%	Note that this model equals to Probabilistic PCA if $\Psi=\sigma^2I_m$.\\[4mm]
+%	Unlike in PPCA there is no analytic formula for the MLE. \\[4mm]
 \begin{alertblock}{Lack of identifiability}
 	As for PPCA, $W$ is not uniquely identified.
 	\begin{itemize}
@@ -82,92 +90,170 @@ where
     \end{itemize}
     \bigskip
     
-    \textbf{Approach 2: } Apply varimax rotation for interpretability.
+    \textbf{Approach 2: } Apply \alert{varimax rotation} for interpretability.
     \begin{itemize}
-    	\item Consider any $W\in \R^{m\times r}$. We find $U$ such that $WU$ more interpretable. 
+    	\item Consider any $\widehat W\in \R^{m\times r}$. We find $U$ such that $\widehat WU$ more interpretable. 
     	\item Define $M\in \R^{m\times r}$ by $M_{ij}=\frac{(WU)_{ij}^2}{\sum_{k=1}^r (WU)_{ij}^2}$ then find the appropriate $U$ maximizing: 
     	$$\|M-\tfrac1m \bs 1_m\bs 1_m^\top M\|^2_F.$$
     	\item This results with solutions such that each column of $M$ has a bunch of big entries and the remaining ones are negligible.
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Number of factors}
-	ss
+\begin{frame}{Fitting the factor analysis model}
+Data: $\x_1,\ldots,\x_n$ from the model $X=\textcolor{blue}{\mu}+\textcolor{blue}{W}Z+\eps$, $\eps\sim N(0,\textcolor{blue}{\Psi})$.\\[3mm]
+	The most canonical way to estimate the parameters is via the maximum likelihood. \\[3mm]
+	The MLE is not given in a closed form. 
+	\begin{itemize}
+		\item We could use the EM algorithm.
+	\end{itemize}
+	\begin{block}{Alternatively use the fact that MLE has closed form if $\Psi=\sigma^2 I_m$.}
+	Suppose $\Psi$ is known.\\[3mm] Denote $\tilde X=\Psi^{-1/2}X$, $\tilde \mu=\Psi^{-1/2}\mu$, $\tilde W=\Psi^{-1/2}W$ and $\tilde\eps =\Psi^{-1/2}\eps\sim N(0,I_m)$
+	$$\tilde X=\tilde \mu+\tilde W Z+\tilde \eps. \quad(\mbox{PPCA with $\sigma^2=1$})$$
+	\end{block}
 \end{frame}
 
-\begin{frame}{Application}
-	sss
-\end{frame}
-
-\section{Independent Component Analysis (ICA)}
-
-\begin{frame}{ICA: Motivating Examples}
-    \textbf{Example: Cocktail Party Problem}
-    \begin{itemize}
-        \item Separate mixed audio signals into independent sources.
-        \item Modeled as: \[ X = WZ \]
-    \end{itemize}
-    \textbf{Example: EEG/MEG Analysis}
-    \begin{itemize}
-        \item Extract independent brain signals from mixed recordings.
-    \end{itemize}
-\end{frame}
-
-
-
-\begin{frame}{ICA Model}
-    \begin{itemize}
-        \item Observed signal: \[ X = WZ \]
-        \item Assumes $Z$ has independent non-Gaussian components.
-        \item Identifiability result: Unique up to permutation and scaling.
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{ICA: Non-Gaussianity Principle}
-    \begin{itemize}
-        \item Gaussian components remain Gaussian under rotation.
-        \item Non-Gaussian components allow identification.
-        \item Theorem (Comon): If at most one component is Gaussian, $W$ is identifiable up to permutation and scaling.
-    \end{itemize}
-\end{frame}
-
-\section{Estimation Methods}
-
-\begin{frame}{Factor Analysis Estimation: MLE}
-    \begin{itemize}
-        \item Log-likelihood maximization.
-        \item EM algorithm: iteratively estimates $W$ and $\Psi$.
-        \item J\"oreskog's method: Spectral decomposition approach.
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{ICA Estimation: Method of Moments}
-    \begin{itemize}
-        \item Uses higher-order statistics (kurtosis, skewness).
-        \item JADE algorithm: Estimates mixing matrix via cumulants.
-        \item Contrast functions: Measures independence.
-    \end{itemize}
-\end{frame}
-
-\section{Choosing Number of Components}
+\begin{frame}{}
+\begin{block}{}
+	Define $\tilde S_n=\Psi^{-1/2}S_n\Psi^{-1/2}$ with spectral decomposition $\tilde S_n=U\tilde\Lambda U^\top$. The MLE:
+	$$
+	\widehat W\;=\;U_r \Theta R,
+	$$
+	where:
+	\begin{itemize}
+		\item $R$ is \emph{any} orthogonal matrix, $U_r$ first $r$ columns of $U$,
+		\item $\Theta$ is a diagonal matrix with $i$-th entry equal to $\sqrt{\max\{0,\tilde \lambda_i-1\}}$.
+	\end{itemize}
+\end{block}
+We can now apply this iteratively, where the update on $\Psi$ 
+	\end{frame}
 
 \begin{frame}{Choosing the Number of Factors}
-    \begin{itemize}
-        \item Eigenvalue-based criteria (e.g., Kaiser's rule, Scree plot).
-        \item Information-theoretic approaches (AIC, BIC).
-        \item Parallel analysis: Compare to random eigenvalues.
-        \item Likelihood ratio tests for nested models.
-    \end{itemize}
+Determining the number of latent factors \( r \) is critical in factor analysis.\\[4mm]  
+Overestimating \( r \) leads to overfitting, underestimating \( r \) leads to loss of structure.\\[4mm]
+There are several common method. We focus on Horn's Parallel Analysis (PA).
+%Common methods:
+%    \begin{itemize}
+%      \item Scree plots (eigenvalue-based heuristics)
+%      \item Information-theoretic criteria (AIC, BIC)
+%      \item Velicer's MAP test
+%      \item \textbf{Horn's Parallel Analysis (PA)}
+%    \end{itemize}
+%    \medskip
+%    
+\begin{alertblock}{Key ideas of Horn's Parallel Analysis}
+	If no latent signal, the sample \textbf{correlation} matrix should resemble the identity matrix.\\[4mm]
+	Depending on $(n,m)$ the actual eigenvalues can still be far from 1.
+\end{alertblock}
+
+ PA compares eigenvalues of observed data with those obtained from Monte Carlo simulations of purely random noise.\end{frame}
+
+
+
+\begin{frame}{The algorithm}
+  \begin{enumerate}
+    \item Compute eigenvalues \( \lambda_1 \geq \lambda_2 \geq \dots \geq \lambda_m \) of sample correlation matrix \( R_n \), where
+    \begin{equation}
+      R_n = D^{-1/2} S_n D^{-1/2}.
+    \end{equation}
+    \item Generate \( B \) simulated datasets \( X^{(b)} \in \mathbb{R}^{n \times m} \) from \( \mathcal{N}(0,1) \).
+    \item Compute sample correlation matrices \( R_n^{(b)} \) for each simulated dataset.
+    \item Compute average null eigenvalues:
+    \begin{equation}
+      \lambda_j^{\text{random}} = \frac{1}{B} \sum_{b=1}^{B} \lambda_j^{(b)}, \quad j = 1, \dots, m.
+    \end{equation}
+    \item Retain factors where
+    \begin{equation}
+      \lambda_j > \lambda_j^{\text{random}}.
+    \end{equation}
+  \end{enumerate}
 \end{frame}
 
-\begin{frame}{Conclusion}
+
+\begin{frame}{Application: Factor Analysis on Personality Traits Data}
+We analyze real survey data from the \texttt{bfi} dataset in the \texttt{psych} R package.\\[4mm]
+The dataset consists of 2,800 responses to 25 personality-related questions.\\[4mm]
+These questions measure the Big Five Personality Traits:
     \begin{itemize}
-        \item Factor Analysis captures shared variance via latent factors.
-        \item ICA decomposes signals into independent components.
-        \item Estimation methods include MLE for FA and cumulant-based techniques for ICA.
+      \item Neuroticism (N)
+      \item Extraversion (E)
+      \item Conscientiousness (C)
+      \item Agreeableness (A)
+      \item Openness (O)
     \end{itemize}
-    \centering{\textbf{Thank you!}}
+Responses are on the 1-6 scale indicating agreement strength.\\[4mm]
+
+We discard demographic variables (gender, age, education).
 \end{frame}
+
+\begin{frame}{Factor Analysis Results}
+\alert{PA} suggests retaining \textbf{five} factors, matching the Big Five personality traits (nice!).\\[4mm]
+Factor loadings after \alert{varimax rotation} confirm that the extracted factors correspond to the expected latent traits.
+\begin{center}
+    \includegraphics[width=0.3\linewidth]{pics/FA.pdf}	
+\end{center}
+\end{frame}
+
+\begin{frame}{Summary}
+	Factor Analysis is a popular method in multivariate statistics. \\[4mm]
+	It is similar to PPCA and it has clear motivating examples. \\[4mm]
+	The lack of identifiability creates a chalange in the interetation of factor loadings.\\[4mm]
+	Choosing the number of factors (if there is no clear insight) may be also hard. 
+	\begin{itemize}
+		\item Horn's Parallel Analysis is a simple solution that tends to perform well in practice.\\[4mm]
+	\end{itemize}
+	The resulting form of the covariance matrix $\Sigma=WW^\top +\Psi$ can be exploited and generalized in many creative ways. 
+\end{frame}
+
+%\section{Independent Component Analysis (ICA)}
+%
+%\begin{frame}{ICA: Motivating Examples}
+%    \textbf{Example: Cocktail Party Problem}
+%    \begin{itemize}
+%        \item Separate mixed audio signals into independent sources.
+%        \item Modeled as: \[ X = WZ \]
+%    \end{itemize}
+%    \textbf{Example: EEG/MEG Analysis}
+%    \begin{itemize}
+%        \item Extract independent brain signals from mixed recordings.
+%    \end{itemize}
+%\end{frame}
+%
+%
+%
+%\begin{frame}{ICA Model}
+%    \begin{itemize}
+%        \item Observed signal: \[ X = WZ \]
+%        \item Assumes $Z$ has independent non-Gaussian components.
+%        \item Identifiability result: Unique up to permutation and scaling.
+%    \end{itemize}
+%\end{frame}
+%
+%\begin{frame}{ICA: Non-Gaussianity Principle}
+%    \begin{itemize}
+%        \item Gaussian components remain Gaussian under rotation.
+%        \item Non-Gaussian components allow identification.
+%        \item Theorem (Comon): If at most one component is Gaussian, $W$ is identifiable up to permutation and scaling.
+%    \end{itemize}
+%\end{frame}
+%
+%\section{Estimation Methods}
+%
+%\begin{frame}{Factor Analysis Estimation: MLE}
+%    \begin{itemize}
+%        \item Log-likelihood maximization.
+%        \item EM algorithm: iteratively estimates $W$ and $\Psi$.
+%        \item J\"oreskog's method: Spectral decomposition approach.
+%    \end{itemize}
+%\end{frame}
+%
+%\begin{frame}{ICA Estimation: Method of Moments}
+%    \begin{itemize}
+%        \item Uses higher-order statistics (kurtosis, skewness).
+%        \item JADE algorithm: Estimates mixing matrix via cumulants.
+%        \item Contrast functions: Measures independence.
+%    \end{itemize}
+%\end{frame}
+
 
 \end{document}
 
