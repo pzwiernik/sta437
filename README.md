@@ -13,12 +13,13 @@ More details can be found in [syllabus](syllabus2025.pdf) and [piazza](https://p
 ***
 
 ### Announcements:
+- Mar 16: Midterm 2 with solutions is available: [Section 101](./exams/midterm2_101_sols.pdf), [Section 201](./exams/midterm2_201_sols.pdf).
 - Mar 12: Final project deadline has been extended to April 8.
 - Feb 28: The final exam date has been released. The exam will take place on **28 Apr**, 2-5pm, in BR 200.
 - Feb 27: I added an [appendix](#appendix-report-structure-and-guidelines-for-the-final-project) describing the structure for the final project paper.
 - Feb 21: The [final project](#final-project) is released. The deadline for submissions is April 1.
 - Feb 20: Midterm 1 results are out.
-- Feb 10: The midterm 1 with solutions is available: [Section 101](./exams/midterm1_101_sols.pdf), [Section 201](./exams/midterm1_201_sols.pdf).
+- Feb 10: Midterm 1 with solutions is available: [Section 101](./exams/midterm1_101_sols.pdf), [Section 201](./exams/midterm1_201_sols.pdf).
 - Jan 30: By popular demand, the time of the office hours has changed. 
 - Jan 10: The syllabus has been uploaded.
 - Jan 9: Some notes for the upcoming tutorial session are linked below.
