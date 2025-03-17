@@ -82,7 +82,7 @@ The midterms are short (1 hour) and they focus on simple conceptual/theory quest
 | **9** | Multidimensional Scaling <br> Laplacian eigenmap and UMAP   | [slides9](./slides/slides_dim_reduction.pdf)<br>[notes9](./lectures/lecture9.pdf) | **midterm2**| 12 Mar| |
 | 10 |Canonical Correlation Analysis (CCA)<br> Factor Analysis (FA)   | [slidesFA](./slides/slides_FAandICA.pdf)| DL | 19 Mar| |
 | 11 |  Conditional independence  <br> Graphical models | [slidesCIndep](./slides/slides_CIndep.pdf) | SCh  | 26 Mar |  |
-| 12 | Gaussian Graphical models <br> Ising model  |  | LSM| Apr 2|  |
+| 12 | Gaussian Graphical models <br> Ising model  | (pre-recorced) | LSM| Apr 2|  |
 
 
 
