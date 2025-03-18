@@ -150,12 +150,13 @@ There are several common method. We focus on Horn's Parallel Analysis (PA).
 
 
 \begin{frame}{Horn's Parallel Analysis}
+Based on the observed data $\bs X\in \R^{n\times m}$:
   \begin{enumerate}
     \item Compute eigenvalues \( \lambda_1 \geq \lambda_2 \geq \dots \geq \lambda_m \) of sample correlation matrix \( R_n \), where
     \begin{equation}
       R_n = D^{-1/2} S_n D^{-1/2}.
     \end{equation}
-    \item Generate \( B \) simulated datasets \( X^{(b)} \in \mathbb{R}^{n \times m} \) from \( \mathcal{N}(0,1) \).
+    \item Generate \( B \) simulated datasets \(\bs X^{(b)} \in \mathbb{R}^{n \times m} \) from \( {N}_m(\bs 0,I_m) \).
     \item Compute sample correlation matrices \( R_n^{(b)} \) for each simulated dataset.
     \item Compute average null eigenvalues:
     \begin{equation}
