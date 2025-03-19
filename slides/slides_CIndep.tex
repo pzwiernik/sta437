@@ -16,11 +16,13 @@
     tabsize=2                         % Set tab size to 2 spaces
 }
 \usepackage{multirow}
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes}
 
 \input{./defs.tex}
 
 \title[STA437-Week1]{STA 437/2005: \\ Methods for Multivariate Data}
-\subtitle[]{Week 11: Conditional independence}
+\subtitle[]{Week 11-12: Conditional independence and graphical models}
 \author[Piotr Zwiernik]{Piotr Zwiernik}
 \institute[UofT]{University of Toronto}
 \date{}
@@ -559,6 +561,608 @@ Let $R=V\setminus \{i,j\}$. The following are equivalent:
 %Central Limit Theorem provides the biggest motivation for Gaussian distributions.\end{beamercolorbox}
 \end{frame}
 
+
+\section{Undirected graphical models}
+
+\begin{frame}[plain,noframenumbering]{}
+\begin{center}
+	{\Huge \textcolor{DarkRed}{Undirected graphical models}}
+\end{center}
+\end{frame}
+
+
+\subsection{Modelling with graphs}
+\begin{frame}[plain,noframenumbering]{}
+\begin{center}
+	{\huge \textcolor{DarkRed}{Graph factorizations}}
+\end{center}
+\end{frame}
+
+\begin{frame}{Factorization}
+	$G=$ an undirected graph with nodes $\{1,\ldots,m\}$ and cliques $C_1,\ldots,C_k$.\\
+	We say that density $f(\bs x)$ \textbf{\alert{factorizes according to $G$} }if for all $\bs x\in \cX$
+	$$
+	f(\bs x)\;=\;\phi_{C_1}(\bs x_{C_1})\cdots \phi_{C_k}(\bs x_{C_k}),
+	$$ 
+	where $\phi_C(\bs x_C)\geq 0$. 	(a notion of simplicity)\\[.3cm]
+	
+	\begin{alertblock}{For example}
+		$$
+	\tikzstyle{vertex}=[circle,fill=black,minimum size=5pt,inner sep=0pt]
+\tikzstyle{hidden}=[circle,draw,minimum size=5pt,inner sep=0pt]
+  \begin{tikzpicture}[scale=.6,baseline=5mm]
+  \node[vertex] (1) at (0,2)  [label=left:$1$] {};
+    \node[vertex] (2) at (2,2) [label=right:$2$]{};
+    \node[vertex] (3) at (2,0) [label=right:$3$]{};
+    \node[vertex] (4) at (0,0) [label=left:$4$]{};
+     \draw[line width=.3mm] (2) to (1);
+    \draw[line width=.3mm] (3) to (2);
+    \draw[line width=.3mm] (3) to (4);
+    \draw[line width=.3mm] (4) to (1);
+    \draw[line width=.3mm] (1) to (3);
+  \end{tikzpicture}\qquad f(\bs x)=\phi_{123}(x_1,x_2,x_3)\phi_{134}(x_1,x_3,x_4).
+	$$
+	\end{alertblock}
+This gives an alternative characterisation of $X_2\indep X_4|(X_1,X_3)$.
+\end{frame}
+
+\begin{frame}[label=HC]{Hammersley-Clifford theorem}
+Let $f>0$ be a dentity function for $\bs X=(X_1,\ldots,X_m)$. Then the following are equivalent:\\[.3cm]
+\begin{enumerate}
+	\item [(F)] $f$ factorizes according to $G$. \\[.4cm]
+	\item [(G)] $X_A\indep X_B|X_C$ whenever $C$ \alert{separates} $A$ and $B$ in $G$.\\[.4cm]
+	\item [(P)] $X_i\indep X_j|X_{V\setminus \{i,j\}}$ whenever $i,j$ not connected by an edge in $G$.
+\end{enumerate}
+\bigskip
+
+The graph represents conditional independence.\\[.5cm]
+
+\end{frame}
+
+
+\begin{frame}{Graphical model $\cM(G)$}
+	$G$ a graph with $m$ nodes representing a random vector $X=(X_1,\ldots,X_m)$.\\[.3cm]
+	$\cM(G)$ is the family of all distributions of $X$ that factorize according to $G$. \\[.3cm]
+	By the Hammersley-Clifford theorem this can be equivalently described by conditional independences. (we work with positive distributions only)
+	\bigskip
+	
+	Model families that admit suitable factorizations are described in later parts:
+\begin{enumerate}
+	\item \textcolor{SeaGreen!80!black}{log-linear models} for multivariate discrete data
+	\item graphical \textcolor{SeaGreen!80!black}{Gaussian models} for multivariate Gaussian data.
+\end{enumerate}
+This drives modelling for more complicated (non-parametric) settings.
+\end{frame}
+
+
+\subsection{Gaussian graphical models}
+\begin{frame}[plain,noframenumbering]{}
+\begin{center}
+	{\huge \textcolor{DarkRed}{Gaussian graphical models (GGMs)}}
+\end{center}
+\end{frame}
+
+
+\begin{frame}{The Gaussian case}
+\begin{alertblock}{For a Gaussian distribution in $\cM(G)$:}
+		The  non-edges of $G$ correspond to conditional independences $X_i\indep X_j|X_{V\setminus \{i,j\}}$ or equivalently \alert{$\mathbf{K_{ij}=0}$}.
+		\begin{itemize}
+			\item Indeed, $\rho_{ij|V\setminus \{i,j\}}=-\tfrac{K_{ij}}{\sqrt{K_{ii}K_{jj}}}$.
+		\end{itemize}
+\end{alertblock}
+\medskip
+
+\begin{alertblock}{Two main estimation problems:}
+	Consider an \emph{iid} sample $X^{1},\ldots,X^n$ from $\cM(G)$.\\[.2cm]
+The partial correlation of the sample will have no zeros.
+\begin{enumerate}
+	\item [(i)] Estimate $\Sigma$ for a fixed graph $G$.
+	\item [(ii)] Estimate the graph in a statistically meaningful way.
+\end{enumerate} 
+\end{alertblock}
+\end{frame}
+
+
+\begin{frame}[fragile,label=samplcov]{On concentration of the covariance matrix}
+%	The covariance matrix has ${m+1\choose 2}$ parameters. 
+	\begin{lstlisting}
+> K <- matrix(c(1,0,1/2,0,1,1/2,1/2,1/2,1),3,3); Sig <- solve(K)
+> set.seed(1)
+> X10 <- mvrnorm(10,c(0,0,0),Sig); S10 <- cov(X10)
+> X100 <- mvrnorm(100,c(0,0,0),Sig); S100 <- cov(X100)
+> X1000 <- mvrnorm(1000,c(0,0,0),Sig); S1000 <- cov(X1000)
+> solve(S10); solve(S100); solve(S1000)
+          [,1]     [,2]      [,3]
+[1,] 1.9379597 1.616762 0.8595338
+[2,] 1.6167622 4.076235 2.1360457
+[3,] 0.8595338 2.136046 1.6042403
+           [,1]       [,2]      [,3]
+[1,] 1.04792019 0.08406772 0.5781926
+[2,] 0.08406772 0.93313405 0.3880432
+[3,] 0.57819258 0.38804318 1.1148584
+            [,1]        [,2]      [,3]
+[1,]  0.88842341 -0.02029737 0.4710935
+[2,] -0.02029737  0.90492134 0.4558757
+[3,]  0.47109348  0.45587568 0.9628081\end{lstlisting}
+Without regularization estimating a covariance matrix is a hard problem.\\[.2cm]
+Estimating the graph seems easier! (at least in this favorable case)
+\end{frame}
+
+\begin{frame}{The Gaussian likelihood function}
+	The sample covariance matrix of the sample $X^{1},\ldots,X^n$ is
+	$$S=\frac{1}{n}\sum_{i=1}^n(X^i-\bar X)(X^i-\bar X)^T.$$
+The log-likelihood is
+$$\log L(\mu,K)\;=\;\tfrac{n}{2}\log\det K-\tfrac{n}{2}\tr(KS)-\tfrac{n}{2}(\bar X-\mu)^T K(\bar X-\mu).$$
+For fixed $K$ we get $\hat\mu=\bar X$ giving the \alert{profile likelihood}
+$$
+\log L(\hat \mu,K)\;=\;\tfrac{n}{2}\log\det K-\tfrac{n}{2}\tr(KS).
+$$
+\end{frame}
+
+\begin{frame}{Maximizing the likelihood over $\mathcal M(G)$}
+$\cM(G)$ consists of PD matrices $K$ such that $K_{ij}=0$ for $ij\notin E$. \\[.3cm]
+
+	Optimizing $\log L(\hat \mu,K)$ over $\cM(G)$ is a convex optimization problem.\\[.3cm]
+	The MLE is the \textcolor{SeaGreen}{unique} point $\hat\Sigma$ such that:
+	\begin{enumerate}
+		\item [(i)] $\hat\Sigma_{ii}=S_{ii}$ for all $i$, and $\hat\Sigma_{ii}=S_{ii}$ for all edges $ij\in G$,
+		\item [(ii)] $\hat K_{ij}=0$ for all $ij\notin G$.
+	\end{enumerate}
+	\begin{alertblock}{Maximization}
+		Typically numerically using a block \textcolor{SeaGreen}{coordinate-descent} scheme (\texttt{ggmfit}).
+		%If $G$ is decomposable, the MLE admits a closed-form solution.
+	\end{alertblock}
+		\begin{alertblock}{The deviance}
+		Gives the likelihood ratio statistic to test against the unconstrained model. 
+	\end{alertblock}
+\end{frame}
+
+\begin{frame}[fragile]{}
+	Using \texttt{gRbase}, \texttt{gRim}, \texttt{RBGL}:
+\begin{lstlisting}
+> data(carcass)
+# generate model: use plot(gen.carc) to see the graph
+> glist <- list(c("Fat11","Fat12","Meat12", "Meat13"), c("Fat11","Fat12","Fat13","LeanMeat"),c("Meat11","Meat12","Meat13"),c("Meat11","Fat13","LeanMeat"))
+#cmod specifies graphical Gaussian model ('c' for continuous)
+> gen.carc <- cmod(glist,data=carcass,fit=TRUE)
+# the deviance is large
+> gen.carc$fitinfo$dev; 1-pchisq(gen.carc$fitinfo$dev,6)
+[1] 19.78537
+[1] 0.003023752
+> qgraph::qgraph(-cov2cor(gen.carc$fitinfo$K))
+# more direct way that also gives more flexibility
+> carcfit <- ggmfit(S.carc,n=nrow(carcass),glist,eps = 1e-14,iter=10000)
+
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[plain,noframenumbering]{}
+\begin{center}
+	{\huge \textcolor{DarkRed}{Structure learning in GGMs}}
+\end{center}
+\end{frame}
+
+\begin{frame}{Model selection methods}
+How to learn the graph:\\[.4cm]
+\begin{itemize}
+	\item Stepwise methods,\\[.4cm]
+	\item Convex optimization,\\[.4cm]
+\end{itemize}	
+\end{frame}
+
+
+\begin{frame}[fragile,label=carcass_stepwise]{Stepwise methods}
+%	\begin{alertblock}{Stepwise backward model selection}
+	The \texttt{stepwise} function in \texttt{gRim} performs stepwise model selection based on a variety of criteria (AIC, BIC, etc)	
+	\begin{lstlisting}
+sat.carc <- cmod(~.^.,data=carcass); n <- nrow(carcass)
+test.carc <- stepwise(sat.carc,details=1,criterion="aic",type="decomposable",k=log(n))
+# plot(test.carc) or using the qgraph package
+Sigma.hat <- solve(test.carc$fitinfo$K)
+qgraph::qgraph(Sigma.hat,graph="pcor") 
+\end{lstlisting}
+%	\end{alertblock}
+%	\begin{alertblock}{BIC model selection}
+%		s
+%	\end{alertblock}
+\begin{center}
+%	{\tiny\begin{table}[ht]
+%\centering
+%\begin{tabular}{rrrrrrrr}
+%  \hline
+% & F11 & M11 & F12 & M12 & F13 & M13 & LM \\ 
+%  \hline
+%F11 & 0.44 & 0.02 & -0.20 & -0.07 & -0.16 & 0.05 & 0.10 \\ 
+%  M11 & 0.02 & 0.16 & -0.03 & -0.06 & -0.04 & -0.05 & -0.03 \\ 
+%  F12 & -0.20 & -0.03 & 0.54 & 0.06 & -0.20 & -0.04 & 0.09 \\ 
+%  M12 & -0.07 & -0.06 & 0.06 & 0.14 & 0.00 & -0.09 & 0.00 \\ 
+%  F13 & -0.16 & -0.04 & -0.20 & 0.00 & 0.55 & 0.00 & 0.07 \\ 
+%  M13 & 0.05 & -0.05 & -0.04 & -0.09 & 0.00 & 0.16 & -0.02 \\ 
+%  LM & 0.10 & -0.03 & 0.09 & 0.00 & 0.07 & -0.02 & 0.27 \\ 
+%   \hline
+%\end{tabular}
+%\end{table}}
+\includegraphics[scale=.4]{pics/carcass}
+\end{center}
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]{Learning the graph in high-dimension}
+\begin{alertblock}{Graphical lasso}
+	If the dimension $m$ is large then the number of possible models is too large.\\[.2cm]
+
+
+Following the same idea as in the lasso regression we maximize
+$$
+L_{\rm pen}(K,\hat \mu)\;=\;\log\det (K)-\tr(SK)-\alert{\lambda \|K\|_1}.
+$$
+See the package \texttt{glasso} and \texttt{EBICglasso} (finds an optimal $\lambda$).
+\end{alertblock}
+\begin{block}{Example: Personality traits}
+\begin{lstlisting}
+> d <- read.table("./data/personality0.txt"); S <- cor(d)
+# the partial correlation graph of the data is dense
+> qgraph::qgraph(S,graph="pcor")
+# the glasso graph is much sparser
+> qgraph::qgraph(S,graph="glasso",sampleSize=nrow(d),layout="spring")
+\end{lstlisting}
+	The estimated graph has  137 edges compared to 496 of the full graph.
+\end{block}
+\end{frame}
+
+\begin{frame}[plain,label=pers_lasso]{}
+	\begin{center}
+		\includegraphics[scale=.9]{pics/personality_lasso}
+	\end{center}
+\end{frame}
+
+
+
+
+\subsection{Log-linear models}
+
+\begin{frame}[plain,noframenumbering]{}
+\begin{center}
+	{\huge \textcolor{DarkRed}{Log-linear models}}
+\end{center}
+\end{frame}
+
+
+\begin{frame}{Hierarchical models}
+	State space $\cX=\cX_1\times \cdots\times \cX_m$,\quad  $|\cX_i|<+\infty$.\\[.2cm]
+	Simplicial complex: $\cC_0$ set of subsets of $\{1,\ldots,m\}$ such that
+	\begin{itemize}
+	\item $\{i\}\in \cC_0$ for all $i=1,\ldots,m$,
+	\item $C\in \cC_0$ and $A\subset C$ then $A\in \cC_0$
+\end{itemize}
+
+	\alert{Generators}: Denote by $\cC$ the maximal elements of $\cC_0$.\\[.4cm]
+	
+
+	\begin{beamercolorbox}[wd=\paperwidth,sep=3pt]{important}
+		\textbf{The model}: $p(x)\;=\;\prod_{C\in \cC} \phi_C(x_C)$, \;\;where $\phi_C>0$.
+	\end{beamercolorbox}
+	\bigskip
+	
+	\textcolor{SeaGreen}{Main effect model}: $\cC=\{\{1\},\ldots,\{m\}\}$.\\[.3cm]
+	\textcolor{SeaGreen}{Pairwise interaction model}: $\cC=\{\mbox{all pairs}\}$.\\
+	\qquad $\bullet$ more generally: edges of a graph with m nodes.
+\end{frame}
+
+\begin{frame}{Graphical and non-graphical models}
+	(Graphical) hierarchical models: $\cC$ be the set of maximal cliques of $G$.\\[.3cm]
+	Hammersley-Clifford theorem (Slide~\ref{HC}) gives equivalent description in terms of conditional independences.\\[.3cm]
+	
+		\begin{beamercolorbox}[wd=\paperwidth,sep=3pt]{goldbox}
+Not every hierarchical model is graphical.\\
+\quad$\bullet$ e.g. no three-way interaction models with $\cC=\{\{1,2\},\{1,3\},\{2,3\}\}$.		
+\medskip
+	
+	Not every graphical model is a pairwise interaction model. \\
+\quad$\bullet$ e.g. $\cC=\{\{1,2,3\}\}$.\\[.3cm]
+	\end{beamercolorbox}
+	\medskip
+	
+Two remarks:
+\begin{itemize}
+\item Both pairwise interaction models and graphical models are represented by graphs but the graphs encode different information. 
+	\item Every pairwise interaction model with underlying graph $G$ is contained in graphical model over $G$. (so the conditional independence information is retained)
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Fitting log-linear models in \texttt{R}}
+The function \texttt{loglin()} fits general log-linear models. We focus here on the ones represented by graphs, that is, graphical or pairwise. \\[.3cm]
+
+The \texttt{gRim} package has a function \texttt{dmod()} to define and fit hierarchical log-linear models for a fixed set of generators. 	
+\begin{lstlisting}
+> data(lizard)
+> mliz <- dmod(list(c("species","height"),c("species","diam")),data=lizard) 	
+> mliz
+
+Model: A dModel with 3 variables
+ -2logL    :        1604.43 mdim :    5 aic :      1614.43 
+ ideviance :          23.01 idf  :    2 bic :      1634.49 
+ deviance  :           2.03 df   :    2 
+\end{lstlisting}
+{\small On \texttt{data(lizard)}: Behaviour characteristics of 409 lizards were recorded: species (\texttt{anoli}, \texttt{dist}), perch diameter (\texttt{<=4}, \texttt{>4}), and perch height (\texttt{>4.75},\texttt{<=4.75}).}
+\end{frame}
+
+%\begin{frame}{}
+%	In case of non-hierarchical models use \texttt{glm()}.
+%\end{frame}
+
+\begin{frame}[fragile]{Testing conditional independence}
+If the data is given in form of a contingency table it is convinient to use \texttt{gRim}'s \texttt{ciTest\_table}.
+ 
+\begin{lstlisting}
+> ciTest_table(lizard,set=c("height","diam","species"))
+Testing height _|_ diam | species 
+Statistic (DEV):    2.026 df: 2 p-value: 0.3632 method: CHISQ
+Slice information:
+  statistic p.value df species
+1     0.178  0.6731  1   anoli
+2     1.848  0.1741  1    dist
+
+
+> ciTest_table(lizard,set=c("diam","species","height"))
+Testing diam _|_ species | height 
+Statistic (DEV):   14.024 df: 2 p-value: 0.0009 method: CHISQ
+Slice information:
+  statistic   p.value df height
+1     2.903 0.0884377  1  >4.75
+2    11.122 0.0008533  1 <=4.75
+\end{lstlisting}
+Notice the \texttt{df} calculation, which in general may be complicated.
+
+\end{frame}
+%> ciTest_table(lizard,set=c("height","species","diam"))
+%Testing height _|_ species | diam 
+%Statistic (DEV):   11.823 df: 2 p-value: 0.0027 method: CHISQ
+%Slice information:
+%  statistic  p.value df diam
+%1     9.243 0.002364  1  <=4
+%2     2.580 0.108239  1   >4
+
+
+%\begin{frame}[fragile]{Decomposable graphs}
+%	This is particularly useful if computations can be done locally for each $C_i$ and then glued back together.\\[.3cm]
+%	This typically can be done as long as $G$ is \textbf{\alert{decomposable}}, that is, it has no induced cycles of length $\geq 4$. \\[.3cm]	
+%	(write how to use R to check it)
+%	
+%	To generate a random decomposable graph write in R:
+%	\begin{lstlisting}
+%library(GLSE)	
+%n <- 10
+%edge <- 20
+%A <-decGraph (n,edge) # Generate a decomposable graph.
+%Graph <- graph_from_adjacency_matrix(A, mode = "undirected")
+%plot(Graph)	
+%	\end{lstlisting}
+%\end{frame}
+
+
+\begin{frame}{Model selection}
+In general graphical lasso approach is hard to perform. \\
+\quad {\small $\bullet$ c.f. Ling-Loh, Wainwright, \textit{Structure estimation for discrete graphical models: Generalized covariance matrices and their inverses}}
+
+\bigskip
+Typical strategies:
+\begin{enumerate}
+	\item [(i)] using conditional independence tests,
+	\item [(ii)] heuristic search to optimize some information criterion,
+	\item [(iii)] Bayesian methods involving MCMC.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Stepwise methods}
+	For stepwise methods of type (ii) typically the penalized likelihood criteria like BIC or AIC are used. For a set of models $M_j$ the criterion we minimize is:
+	$$
+	-2\log L(j) + k \dim M_j,
+	$$
+	where $k=2$ for AIC and $k=\log n$ for BIC.\\[.3cm]
+	Stepwise methods either start with the full graph or the empty graph.
+		\begin{lstlisting}
+> data(reinis); m.init <- dmod(~.^., data=reinis)
+> m.reinis <- stepwise(m.init) # AIC criterion
+> m.reinis.2 <- stepwise(m.init,k=log(sum(reinis))) # BIC criterion
+> plot(m.reinis); plot(m.reinis.2)		
+\end{lstlisting}
+\begin{center}
+	\includegraphics[scale=.3]{pics/reinis}\qquad\qquad \includegraphics[scale=.3]{pics/reinis2}
+\end{center}
+\end{frame}
+
+\begin{frame}{Modelling large data sets}
+		\begin{beamercolorbox}[wd=\paperwidth,sep=3pt]{important}
+With $>10$ variables stepwise methods are computationally prohibitive. 
+	\end{beamercolorbox}
+	\bigskip
+	
+Possible strategies:\\[.3cm]
+\begin{enumerate}
+	\item Use MCMC (\texttt{BDgraph} package)
+	\item Focus on \alert{decomposable models} (\texttt{gRapHD} package).\\[.3cm]
+	\item Rely on simpler models (e.g. pairwise interaction models). \\[.3cm]
+	\item Restrict to very simple graphs (e.g. trees).
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile,plain]{Bayesian Structure Learning using Birth-Death MCMC}
+\texttt{bdgraph.mpl} in the package \texttt{BDgraph} can be used for discrete data. Consider the data table $X$ defined in Slide~\ref{DepAnx}.
+\begin{lstlisting}
+> install.packages("BDgraph"); library(BDgraph)
+> X.fit <- bdgraph.mpl(X,method="dgm-binary",g.prior=.5)
+> A <- X.fit$p_links+t(X.fit$p_links)
+> qgraph::qgraph(A,layout="spring")
+\end{lstlisting}
+\begin{center}
+	\includegraphics[scale=.4]{pics/BDgraphDA}
+\end{center}
+\end{frame}
+
+
+\begin{frame}{Binary Ising model}
+	Consider a log-linear model with only pairwise interactions.\\[.3cm]
+	If $\cX=\{-1,1\}^m$ then $$f(x)\;=\;\tfrac{1}{Z(h,B)}\exp\left(\sum_i h_i x_i+\sum_{i<j}\beta_{ij}x_i x_j \right),$$
+	where $h\in \R^m$ and $B=[\beta_{ij}]$ has zeros on the diagonal.\\[.3cm]
+	Likelihood is hard to handle because $Z(h,B)$ is intractable if $m$ is large.\\
+	\bigskip
+	
+	This will be our first encounter with pseudo-likelihood methods.
+\end{frame}
+
+
+\begin{frame}{Pseudo-likelihood approach}
+\begin{alertblock}{Logistic regression}
+Denoting \textcolor{blue}{$\eta_k=h_k+\sum_{i\neq k}\beta_{ik}x_i$}, the full conditional distributions satisfy
+	$$
+	\log p(x_k|x_{-k})=\eta_k x_k-\log(e^{-\eta_k}+e^{\eta_k })
+	$$ 
+	and so, if $p= p(1|x_{-k})$, then 
+	$$
+	\log \frac{p}{1-p}\;=\;2\eta_k\;=\;2h_k+\sum_{i\neq k}2\beta_{ik}x_i
+	$$
+\end{alertblock}
+\begin{alertblock}{$\ell_1$-regularized logistic regression (Ravikumar et al, 2010)}
+	Having observed $x^{(1)},\ldots,x^{(n)}$, to learn the support of $B$, we can optimize for each $k$ the logistic regression given the data. Alternatively we can maximize
+	$$
+	\sum_{i=1}^n \sum_{k\in V} \log p(x_k^{(i)}|x_{-k}^{(i)})\;-\;\lambda \|B\|_1.
+	$$
+\end{alertblock}
+\end{frame}
+
+\begin{frame}[fragile,label=DepAnx]{Using \texttt{IsingFit}}
+	\begin{lstlisting}
+> install.packages("IsingFit"); library(IsingFit)
+> ncsdata=read.table(file="./data/DepressionAnxiety.txt") 
+> colnames(ncsdata)=c("depr", "inte", "weig", "mSle", "moto", "mFat", "repr", "conc", "suic", "anxi", "even", "ctrl", "edge", "gFat", "irri", "gCon", "musc", "gSle") #Define variable names.
+# remove two variables that are perfectly correlated with each other in the sample
+> X <- (ncsdata[,-(10:11)])
+# run the high-dimensional Ising model selection problem
+> Res <- IsingFit(X,gamma = 0.5, plot=FALSE)
+# compare with the correlation network
+> lay <-averageLayout(Res$weiadj,cor(X), layout = "spring", repulsion = 1)
+> qgraph(cor(X),layout=lay,labels=colnames(X))
+> qgraph(Res$weiadj, layout = lay)
+# both graphs appear on the next slide
+\end{lstlisting}
+For a discussion of this dataset see:\\[.2cm]
+{\footnotesize Borsboom and Cramer, Network analysis: an integrative approach to the\\[-.2cm] structure of psychopathology, Annual review of clinical psychology, 9 (2013). }
+\end{frame}
+
+
+\begin{frame}{Two psychological disorders}
+\alert{About the study:}\\[.5cm]
+National Comorbidity Survey Replication  (NCS-R data)\\[.4cm]
+9282 observations of 18 binary variables such as:\\
+\texttt{depr} (Depressed mood), \texttt{inte} (Loss of interest), etc\\[.4cm]
+These are symptoms related to two disorders:\\ major depression and generalized anxiety disorder.\\[.4cm]
+Bridge variables: sleep problems, fatigue, and concentration problems.
+
+\end{frame}
+
+
+\begin{frame}{Two psychological disorders, continued}
+\alert{About the data:}\\[.5cm]
+Sparse contingency table: $872/65536$ nonzero cells. \\[.4cm]
+5667 out of 9282 respondents recorded no symptoms.\\[.4cm]
+two variables perfectly correlated with each other and other seven variables.\\[.4cm]
+\end{frame}
+
+
+
+\begin{frame}[label=depr_lasso]{}
+	\begin{center}
+		\includegraphics[scale=.5]{pics/depr_corr}\includegraphics[scale=.5]{pics/depr_lasso}
+	\end{center}
+	Note that basically all edges on the right are green.
+\end{frame}
+
+
+\section{Beyond the standard set-up}
+
+\begin{frame}[plain,noframenumbering]{}
+\begin{center}
+	{\Huge \textcolor{DarkRed}{Part 3: Beyond the standard set-up}}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[label=npn]{Nonparanormal distributions}
+	$(X_1,\ldots,X_m)$ has \textcolor{blue}{nonparanormal} distribution if $(f_1(X_1),\ldots,f_m(X_m))$ is Gaussian for some monotone functions $f_1,\ldots,f_m$.\\[.3cm]
+	The functions $f_i$ are treated again as nuisance parameters. The correlation matrix is estimated directly using \textcolor{blue}{rank correlation statistics}:\\[.2cm]
+	\begin{alertblock}{We can estimate the correlation matrix of $f(X)$ without knowing f!!}
+		If $\tau_{ij}={\rm cor}(\sgn(X_i-X_i'),\sgn(X_j-X_j'))$ is the \textcolor{blue}{Kendall's tau statistic} then
+	$$
+	\Sigma^0_{ij}:={\rm cor}(f(X_i),f(X_j))\;=\;\sin\left(\tfrac{\pi}{2}\tau_{ij}\right).
+	$$
+	\vspace{-.8cm}
+	\begin{itemize}
+		\item $\tau_{ij}$'s are invariant under monotone transformations on $X_i$'s.
+		\item $f(X)$ is Gaussian and in this case the formula follows by standard results.
+		\item the inverse $\Sigma^0$ holds the conditional independence structure of $X$.\\{\footnotesize ($f_i(X_i)\indep f_j(X_j)|{\rm rest}$ \qquad$\Leftrightarrow$\qquad $\beta_{ij}=0$ \qquad$\Leftrightarrow$\qquad $X_i \indep X_j|{\rm rest}$)}
+	\end{itemize}
+	\end{alertblock}
+\end{frame}
+
+
+\begin{frame}[label=npn2]{Estimating nonparanormal graphical models}
+		Compute \alert{Kendall's tau} coefficients from the data (c.f. Slide~\ref{tau}) 	$$
+	\hat \tau_{ij}\;=\;\tfrac{1}{{n\choose 2}}\sum_{1\leq t\leq t'\leq n}{\rm sign}(X_{it}-X_{it'}){\rm sign}(X_{jt}-X_{jt'}).
+	$$
+	Define $\hat S^\tau=\sin(\tfrac{\pi}{2}\hat\tau_{ij})$.\\[.3cm]
+	Concentration analysis based on U-statistics shows that
+	$$
+	\max_{ij}|\hat S^\tau_{ij}-\Sigma^0_{ij}|=\mathcal O\left(\sqrt{\tfrac{\log(mn)}{n}}\right).
+	$$
+	\begin{beamercolorbox}[wd=\paperwidth,sep=5pt]{important}
+		Based on $\hat S^\tau$ we can now employ any standard Gaussian procedure to learn the graph, e.g., graphical lasso.
+	\end{beamercolorbox}
+
+\end{frame}
+
+\begin{frame}[fragile]{Application using \texttt{huge} package}
+
+{\small Stock market data: closing prices from all stocks in the S\&P 500 for all the days that the market was open between Jan 1, 2003 and Jan 1, 2008. }
+	\begin{lstlisting}
+> library(huge); data(stockdata) # Load the data 
+> x = log(stockdata$data[2:1258,]/stockdata$data[1:1257,]) # Preprocessing 
+> colnames(x) <- stockdata$info[,1]
+> x.npn = huge.npn(x, npn.func="skeptic") # Nonparanormal + Kendal's tau
+> out.npn = huge(x.npn,method = "glasso")
+> plot(out.npn)
+# plot the graph corresponding to lambda=0.397
+> Khat <- (out.npn$icov[[15]]+t(out.npn$icov[[15]]))/2; colnames(Khat) <- rownames(Khat) <- colnames(x)
+> dev.off(); qgraph::qgraph(-cov2cor(Khat),layout="spring")
+	\end{lstlisting}
+	This is a rather large example to be handled by \texttt{qgraph} directly.
+	\begin{lstlisting}
+> qgraph(x.npn,graph="glasso",sampleSize=nrow(x),layout="spring")
+	\end{lstlisting}
+
+	{\scriptsize Zhao, T., Liu, H., Roeder, K., Lafferty, J., \& Wasserman, L. (2012). The huge package for high-dimensional undirected graph estimation in R. Journal of Machine Learning Research.}
+\end{frame}
+
+\begin{frame}{}
+The non-paranormal approach gives:
+\begin{center}
+	\includegraphics{pics/huge_stocks1}	
+\end{center}
+For comparison a direct Gaussian approach gives:
+\begin{center}
+	\includegraphics{pics/huge_stocks1_gauss}	
+\end{center}
+\end{frame}
+
+\begin{frame}{}
+\begin{center}
+	\includegraphics[scale=.8]{pics/huge_stocks2}	
+\end{center}
+Note that all edges are green.\\
+{\scriptsize (for visualizing such big networks may be worthwhile to learn the \texttt{visNetwork} package)}
+\end{frame}
 
 
 
