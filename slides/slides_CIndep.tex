@@ -36,6 +36,12 @@
 
 \begin{frame}[plain,noframenumbering]{}
 \begin{center}
+	{\Huge \textcolor{DarkRed}{Conditional independence}}
+\end{center}
+\end{frame}
+
+\begin{frame}[plain,noframenumbering]{}
+\begin{center}
 	{\huge \textcolor{DarkRed}{Basic definitions}}
 \end{center}
 \end{frame}
@@ -87,7 +93,8 @@ discrete:\;\;\;$f_X(x)=\sum_y f_{XY}(x,y)=\P(X=x)$.
 \begin{frame}{A cautionary note}
 
 	\begin{beamercolorbox}[wd=\paperwidth,sep=2pt]{notabene}	
-Note: $f_{X|Y}(x|y)\neq f_{Y|X}(y|x)$.\\[.3cm] Example: A medical test for a disease $D$ has outcomes + and - with probabilities\\ 
+Note: Large $f_{X|Y}(x|y)$ does not imply large $f_{Y|X}(y|x)$.\\[.5cm] 
+\textbf{Example:} A medical test for a disease $D$ has outcomes + and - with probabilities\\ 
 {\centering\begin{tabular}{l|ll}
   & $D$  & $D^c$ \\ \hline
 + & .009 & .099  \\
@@ -283,6 +290,7 @@ Test based on Kendell's $\tau$ statistic is implemented in \textsc{R} as \texttt
 [1] 0.01100592
  \end{lstlisting}
 \end{block}
+$\tau_{XY}$ is asymptotically normal under independence, which is used to construct p-values.
 \end{frame}
 
 
@@ -316,7 +324,7 @@ $X$ and $Y$ are uncorrelated but dependent!
 	We see that $X$ and $Y$ are highly dependent. 
 \end{frame}
 
-\begin{frame}[fragile,label=zerocor]{Test based on distance correlation}
+\begin{frame}[fragile,label=zerocor]{Test based on distance correlation (very high level)}
 \alert{Distance correlation} $\mathcal R(X,Y)$ provides a test which applies when 
 $X$, $Y$ are two random \textbf{vectors} of any dimensions.\\[.2cm]
 $\mathcal R(X,Y)=0$ if and only if $X$ and $Y$ are independent.\\[.2cm]
@@ -336,13 +344,14 @@ sample estimates:
       dCov       dCor    dVar(X)    dVar(Y) 
 0.03999654 0.21160982 0.17870935 0.19990601 
 \end{lstlisting}
-Here $R=1000$ is the number of the permutation bootstrap replications.
+Tends to be more powerful than the test based on Kendall's tau.
 \end{frame}
 
 \begin{frame}[fragile]{Another cautionary example}
-	Bowman\& Azzalini (1997) analyse aircraft wing span and speed data.	 \begin{center}
-	 \includegraphics[scale=.5]{pics/aircraft}	 	
-	 \end{center}
+	Bowman\&Azzalini (1997) analyse aircraft wing span and speed data.	 \\[4mm]
+%	\begin{center}
+%	 \includegraphics[scale=.5]{pics/aircraft}	 	
+%	 \end{center}
 	 \begin{lstlisting}
 > library(sm); set.seed(1); 
 > X <- aircraft$Span
@@ -354,35 +363,61 @@ Here $R=1000$ is the number of the permutation bootstrap replications.
 \end{lstlisting}
 \end{frame}
 
+\begin{frame}{Appendix: Asymptotic Likelihood Ratio Test}
+Consider a parametric model $\{\P_\theta: \theta\in \Theta\}$ and let $\Theta_0\subseteq \Theta$. Test \alert{$H_0:\theta^*\in\Theta_0$}.\\[4mm]
+Let $\ell(\theta)=\sum_{i=1}^n\log f(\x_i;\theta)$ be the log-likelihood. Compute the statistics: 
+$$
+\lambda_n\;:=\;2(\sup_{\theta\in \Theta}\ell(\theta)-\sup_{\theta\in \Theta_0}\ell(\theta))
+$$  
+\begin{alertblock}{Wilks' theorem (simplified version)}
+	Under $H_0$, if $\Theta$ and $\Theta_0$ are regular $\lambda_n\xrightarrow{d}\chi^2_d$, where d = $\dim(\Theta) - \dim(\Theta_0)$ is the difference in the number of parameters.
+\end{alertblock}
+
+\end{frame}
+
+\begin{frame}{Testing independence for discrete distributions}
+	\begin{block}{G-test}
+In the context of count data the LRT is called the \alert{G-test}.\end{block}
+\bigskip
+
+\textbf{Example (Testing Independence)}:\\[4mm]
+Suppose we have $X$ with $k$ possible values and $Y$ with $l$ possible values. \\[4mm]
+	The saturated model for $(X,Y)$ has dimension $kl-1$.\\[4mm]
+	The independence model $X\indep Y$ has dimension $(k-1)+(l-1)$.\\[4mm]
+	We could use LRT with $d=(k-1)(l-1)$.
+
+
+\end{frame}
+
+
 \begin{frame}[fragile]{Tests for discrete data}
-	\begin{alertblock}{$\chi^2$-test for discrete data}
+	\begin{alertblock}{$\chi^2$-test for discrete data (uses \texttt{library(DescTools)})}
    \begin{lstlisting}
 > M <- as.table(rbind(c(762, 327, 468), c(484, 239, 477)))
 > dimnames(M) <- list(gender = c("F", "M"),
 +                     party = c("Democrat","Independent", "Republican"))
 
-> (Xsq <- chisq.test(M))  # Prints test summary
+# Perform the LRT (G-test)
+> GTest_result <- GTest(M)
+# Print results
+> print(GTest_result)
 
-Pearsons Chi-squared test
-
-data:  M
-X-squared = 30.07, df = 2, p-value = 2.954e-07
-     
-> Xsq$expected   # expected counts under the null
-      party
-gender Democrat Independent Republican
-     F 703.6714    319.6453   533.6834
-     M 542.3286    246.3547   411.3166
+Log-likelihood ratio (G-test) test of independence without correctiondata:  MG = 30.017, X-squared df = 2, p-value = 3.034e-07
       \end{lstlisting}
 \end{alertblock}
 \texttt{df = 2} is the difference between $5$ (saturated model) and $3$ (independence)
 \end{frame}
 
+\begin{frame}[plain,noframenumbering]{}
+\begin{center}
+	{\huge \textcolor{DarkRed}{Testing conditional independence}}
+\end{center}
+\end{frame}
 
 
 \begin{frame}[fragile]{Testing conditional independence}
 Testing conditional independence is hard in general.\\[.2cm] 
-For discrete data we have the asymptotic $\chi^2$-test.\\[.2cm]
+(For discrete data we use the LRT.)\\[.2cm]
 
 Some parametric tests are implemented in the library \texttt{bnlearn}.\\
 Many non-parametric methods have been implemented in \texttt{CondIndTest}
@@ -425,14 +460,6 @@ F                           & 373        & 6\%           & 341        & \textbf{
 	In R:
 	\begin{lstlisting}
 > library(gRim); data(UCBAdmissions)
-> bnlearn::ci.test(x = "Gender" , y = "Admit", z = "Dept", test="x2",data = as.data.frame(UCBAdmissions))
-
-Pearsons X^2
-data:  Gender ~ Admit | Dept
-x2 = 0, df = 6, p-value = 1
-alternative hypothesis: true value is greater than 0
-
-# gRim gives a slightly more refined output
 > gRim::ciTest(as.data.frame(UCBAdmissions),set=~Gender+Admit+Dept)
 
 set: [1] "Gender" "Admit"  "Dept"  
@@ -448,6 +475,7 @@ Slice information:
 5         0       1  1    E
 6         0       1  1    F
  \end{lstlisting}
+ In the last part a simple independence test is performed for each department separately. 
 % \includegraphics[scale=.3]{pics/UCB1} \includegraphics[scale=.3]{pics/UCB2}
 \end{frame}
 
@@ -603,7 +631,7 @@ Let $R=V\setminus \{i,j\}$. The following are equivalent:
   \end{tikzpicture}\qquad f(\bs x)=\phi_{123}(x_1,x_2,x_3)\phi_{134}(x_1,x_3,x_4).
 	$$
 	\end{alertblock}
-This gives an alternative characterisation of $X_2\indep X_4|(X_1,X_3)$.
+\hl{Exercise:} This gives an alternative characterisation of $X_2\indep X_4|(X_1,X_3)$.
 \end{frame}
 
 \begin{frame}[label=HC]{Hammersley-Clifford theorem}
@@ -622,7 +650,9 @@ The graph represents conditional independence.\\[.5cm]
 
 \begin{frame}{Graphical model $\cM(G)$}
 	$G$ a graph with $m$ nodes representing a random vector $X=(X_1,\ldots,X_m)$.\\[.3cm]
-	$\cM(G)$ is the family of all distributions of $X$ that factorize according to $G$. \\[.3cm]
+	\begin{alertblock}{Definition (Graphical model $\cM(G)$)}
+		$\cM(G)$ is the family of all distributions of $X$ that factorize according to $G$.
+	\end{alertblock}
 	By the Hammersley-Clifford theorem this can be equivalently described by conditional independences. (we work with positive distributions only)
 	\bigskip
 	
@@ -644,20 +674,19 @@ This drives modelling for more complicated (non-parametric) settings.
 
 
 \begin{frame}{The Gaussian case}
-\begin{alertblock}{For a Gaussian distribution in $\cM(G)$:}
+\begin{block}{For a Gaussian distribution in $\cM(G)$:}
 		The  non-edges of $G$ correspond to conditional independences $X_i\indep X_j|X_{V\setminus \{i,j\}}$ or equivalently \alert{$\mathbf{K_{ij}=0}$}.
-		\begin{itemize}
-			\item Indeed, $\rho_{ij|V\setminus \{i,j\}}=-\tfrac{K_{ij}}{\sqrt{K_{ii}K_{jj}}}$.
-		\end{itemize}
-\end{alertblock}
-\medskip
+%		\begin{itemize}
+%			\item Indeed, $\rho_{ij|V\setminus \{i,j\}}=-\tfrac{K_{ij}}{\sqrt{K_{ii}K_{jj}}}$.
+%		\end{itemize}
+\end{block}
+\hl{Exercise:} How $K_{ij}=0$ implies that the density factorizes into factors $V\setminus\{i\}$, $V\setminus \{j\}$.
 
 \begin{alertblock}{Two main estimation problems:}
-	Consider an \emph{iid} sample $X^{1},\ldots,X^n$ from $\cM(G)$.\\[.2cm]
-The partial correlation of the sample will have no zeros.
+	Consider an \emph{iid} sample $\x_1,\ldots,\x_n$ from a distribution in $\cM(G)$.\\[.2cm]
 \begin{enumerate}
 	\item [(i)] Estimate $\Sigma$ for a fixed graph $G$.
-	\item [(ii)] Estimate the graph in a statistically meaningful way.
+	\item [(ii)] Learn the underlyin graph if it is unknown.
 \end{enumerate} 
 \end{alertblock}
 \end{frame}
@@ -689,11 +718,11 @@ Estimating the graph seems easier! (at least in this favorable case)
 \end{frame}
 
 \begin{frame}{The Gaussian likelihood function}
-	The sample covariance matrix of the sample $X^{1},\ldots,X^n$ is
-	$$S=\frac{1}{n}\sum_{i=1}^n(X^i-\bar X)(X^i-\bar X)^T.$$
-The log-likelihood is
-$$\log L(\mu,K)\;=\;\tfrac{n}{2}\log\det K-\tfrac{n}{2}\tr(KS)-\tfrac{n}{2}(\bar X-\mu)^T K(\bar X-\mu).$$
-For fixed $K$ we get $\hat\mu=\bar X$ giving the \alert{profile likelihood}
+	The sample covariance matrix of the sample $\x_1,\ldots,\x_n$ is
+	$$S=\frac{1}{n}\sum_{i=1}^n(\x_i-\bar \x)(\x_i-\bar \x)^T.$$
+Recall that the log-likelihood is
+$$\log L(\mu,K)\;=\;\tfrac{n}{2}\log\det K-\tfrac{n}{2}\tr(KS)-\tfrac{n}{2}(\bar \x-\mu)^T K(\bar \x-\mu).$$
+For fixed $K$ we get $\hat\mu=\bar \x$ giving the \alert{profile likelihood}
 $$
 \log L(\hat \mu,K)\;=\;\tfrac{n}{2}\log\det K-\tfrac{n}{2}\tr(KS).
 $$
@@ -703,37 +732,36 @@ $$
 $\cM(G)$ consists of PD matrices $K$ such that $K_{ij}=0$ for $ij\notin E$. \\[.3cm]
 
 	Optimizing $\log L(\hat \mu,K)$ over $\cM(G)$ is a convex optimization problem.\\[.3cm]
-	The MLE is the \textcolor{SeaGreen}{unique} point $\hat\Sigma$ such that:
+	The MLE is the \textcolor{SeaGreen}{unique} point $\hat\Sigma$ (with $\widehat K=\widehat \Sigma^{-1}$) such that:
 	\begin{enumerate}
-		\item [(i)] $\hat\Sigma_{ii}=S_{ii}$ for all $i$, and $\hat\Sigma_{ii}=S_{ii}$ for all edges $ij\in G$,
+		\item [(i)] $\hat\Sigma_{ii}=S_{ii}$ for all $i$, and $\hat\Sigma_{ij}=S_{ij}$ for all edges $ij\in G$,
 		\item [(ii)] $\hat K_{ij}=0$ for all $ij\notin G$.
 	\end{enumerate}
 	\begin{alertblock}{Maximization}
 		Typically numerically using a block \textcolor{SeaGreen}{coordinate-descent} scheme (\texttt{ggmfit}).
 		%If $G$ is decomposable, the MLE admits a closed-form solution.
 	\end{alertblock}
-		\begin{alertblock}{The deviance}
+		\begin{block}{The deviance}
 		Gives the likelihood ratio statistic to test against the unconstrained model. 
-	\end{alertblock}
+	\end{block}
 \end{frame}
 
-\begin{frame}[fragile]{}
+\begin{frame}[fragile]{Example: Financial market data}
 	Using \texttt{gRbase}, \texttt{gRim}, \texttt{RBGL}:
 \begin{lstlisting}
-> data(carcass)
-# generate model: use plot(gen.carc) to see the graph
-> glist <- list(c("Fat11","Fat12","Meat12", "Meat13"), c("Fat11","Fat12","Fat13","LeanMeat"),c("Meat11","Meat12","Meat13"),c("Meat11","Fat13","LeanMeat"))
-#cmod specifies graphical Gaussian model ('c' for continuous)
-> gen.carc <- cmod(glist,data=carcass,fit=TRUE)
-# the deviance is large
-> gen.carc$fitinfo$dev; 1-pchisq(gen.carc$fitinfo$dev,6)
-[1] 19.78537
-[1] 0.003023752
-> qgraph::qgraph(-cov2cor(gen.carc$fitinfo$K))
-# more direct way that also gives more flexibility
-> carcfit <- ggmfit(S.carc,n=nrow(carcass),glist,eps = 1e-14,iter=10000)
-
-  \end{lstlisting}
+> data(EuStockMarkets)  # European stock market index data
+> df <- as.data.frame(EuStockMarkets)  # Convert to a dataframe
+> df <- scale(df)  # Standardize data
+# Define graphical model structure (assumed dependencies)
+> glist <- list(c("DAX", "SMI", "CAC"), c("SMI", "CAC", "FTSE"))
+# Fit Gaussian graphical model
+> gen.fit <- cmod(glist, data=df, fit=TRUE)
+# Deviance and goodness-of-fit test
+> gen.fit$fitinfo$dev; 1 - pchisq(gen.fit$fitinfo$dev, df=1)
+[1] 0.6793619[1] 0.4098065
+# Visualize estimated partial correlation network
+> K_sym <- (gen.fit$fitinfo$K + t(gen.fit$fitinfo$K)) / 2  
+> qgraph::qgraph(-cov2cor(K_sym), directed = FALSE)   \end{lstlisting}
 \end{frame}
 
 \begin{frame}[plain,noframenumbering]{}
@@ -750,6 +778,23 @@ How to learn the graph:\\[.4cm]
 \end{itemize}	
 \end{frame}
 
+
+\begin{frame}{Appendix: Information criteria in model selection}
+	Information criteria provide a popular method for model selection.\\[3mm] 
+	Consider a selection of models $M_1,\ldots,M_r$ with dimensions $d_1,\ldots,d_r$.\\[3mm] 
+	Given a sample $\x_1,\ldots,\x_n$, we compute the MLE for each of the models; $\ell(M_i)$ denotes the value of the log-likelihood.\\[3mm] 
+	Then
+	$$
+	AIC_i\;=\;-2 \ell(M_i)+2 d_i
+	$$
+	$$
+	BIC_i\;=\;-2 \ell(M_i)+\log(n) d_i
+	$$
+	We pick the model with the lowest Akaike Information Criterion (AIC) or Bayesian Information Criterion (BIC).
+	\begin{alertblock}{Dimension of a Gaussian Graphical Model}
+		For GGMs the dimension is simply $|V|+|E|$.
+	\end{alertblock}
+\end{frame}
 
 \begin{frame}[fragile,label=carcass_stepwise]{Stepwise methods}
 %	\begin{alertblock}{Stepwise backward model selection}
@@ -790,33 +835,43 @@ qgraph::qgraph(Sigma.hat,graph="pcor")
 
 
 \begin{frame}[fragile]{Learning the graph in high-dimension}
-\begin{alertblock}{Graphical lasso}
+\begin{alertblock}{Graphical LASSO}
 	If the dimension $m$ is large then the number of possible models is too large.\\[.2cm]
 
 
-Following the same idea as in the lasso regression we maximize
+Instead, following the same idea as in the LASSO regression we maximize
 $$
-L_{\rm pen}(K,\hat \mu)\;=\;\log\det (K)-\tr(SK)-\alert{\lambda \|K\|_1}.
+L_{\rm pen}(K,\hat \mu)\;=\;\log\det (K)-\tr(SK)-\alert{\lambda \|K\|_1},
 $$
-See the package \texttt{glasso} and \texttt{EBICglasso} (finds an optimal $\lambda$).
+where $\|K\|_1=\sum_{i\neq j}|K_{ij}|$ and $\lambda$ is a fixed penalty parameter.
 \end{alertblock}
-\begin{block}{Example: Personality traits}
-\begin{lstlisting}
-> d <- read.table("./data/personality0.txt"); S <- cor(d)
-# the partial correlation graph of the data is dense
-> qgraph::qgraph(S,graph="pcor")
-# the glasso graph is much sparser
-> qgraph::qgraph(S,graph="glasso",sampleSize=nrow(d),layout="spring")
+\begin{block}{Implementation in R}
+	See the packages \texttt{glasso} and \texttt{EBICglasso} (finds an optimal $\lambda$).
+	\begin{lstlisting}
+> S <- cor(data)
+> lambda_opt <- 0.1  # Set a small regularization parameter
+> glasso_fit <- glasso(S, rho=lambda_opt)
 \end{lstlisting}
-	The estimated graph has  137 edges compared to 496 of the full graph.
 \end{block}
+
+%\begin{block}{Example: Financial Networks (using \texttt{glasso,qgraph,quantmod})}
+%\begin{lstlisting}
+%symbols <- c("AAPL", "MSFT", "GOOG", "AMZN", "TSLA", "META", "NFLX", "NVDA", "JPM", "GS")
+%getSymbols(symbols, from="2022-01-01", to="2023-01-01", src="yahoo")
+%returns <- do.call(merge, lapply(symbols, function(sym) dailyReturn(Cl(get(sym)), type="log")))
+%returns <- na.omit(returns)
+%S <- cor(returns)
+%
+%\end{lstlisting}
+%	The estimated graph has  137 edges compared to 496 of the full graph.
+%\end{block}
 \end{frame}
 
-\begin{frame}[plain,label=pers_lasso]{}
-	\begin{center}
-		\includegraphics[scale=.9]{pics/personality_lasso}
-	\end{center}
-\end{frame}
+%\begin{frame}[plain,label=pers_lasso]{}
+%	\begin{center}
+%		\includegraphics[scale=.9]{pics/personality_lasso}
+%	\end{center}
+%\end{frame}
 
 
 
@@ -831,14 +886,8 @@ See the package \texttt{glasso} and \texttt{EBICglasso} (finds an optimal $\lamb
 
 
 \begin{frame}{Hierarchical models}
-	State space $\cX=\cX_1\times \cdots\times \cX_m$,\quad  $|\cX_i|<+\infty$.\\[.2cm]
-	Simplicial complex: $\cC_0$ set of subsets of $\{1,\ldots,m\}$ such that
-	\begin{itemize}
-	\item $\{i\}\in \cC_0$ for all $i=1,\ldots,m$,
-	\item $C\in \cC_0$ and $A\subset C$ then $A\in \cC_0$
-\end{itemize}
-
-	\alert{Generators}: Denote by $\cC$ the maximal elements of $\cC_0$.\\[.4cm]
+Random vector $X=(X_1,\ldots,X_m)$ with state space $\cX=\cX_1\times \cdots\times \cX_m$,\quad  $|\cX_i|<+\infty$.\\[.3cm]
+	\alert{Generators}: Denote by $\cC$ a set of subsets of $\{1,\ldots,m\}$.\\[.4cm]
 	
 
 	\begin{beamercolorbox}[wd=\paperwidth,sep=3pt]{important}
@@ -848,29 +897,20 @@ See the package \texttt{glasso} and \texttt{EBICglasso} (finds an optimal $\lamb
 	
 	\textcolor{SeaGreen}{Main effect model}: $\cC=\{\{1\},\ldots,\{m\}\}$.\\[.3cm]
 	\textcolor{SeaGreen}{Pairwise interaction model}: $\cC=\{\mbox{all pairs}\}$.\\
-	\qquad $\bullet$ more generally: edges of a graph with m nodes.
+	\qquad $\bullet$ more generally: edges of a graph with m nodes.\\[.3cm]
+		\textcolor{SeaGreen}{Graphical models}: $\cC$ be the set of maximal cliques of $G$.\\[.3cm]
 \end{frame}
 
-\begin{frame}{Graphical and non-graphical models}
-	(Graphical) hierarchical models: $\cC$ be the set of maximal cliques of $G$.\\[.3cm]
-	Hammersley-Clifford theorem (Slide~\ref{HC}) gives equivalent description in terms of conditional independences.\\[.3cm]
-	
-		\begin{beamercolorbox}[wd=\paperwidth,sep=3pt]{goldbox}
-Not every hierarchical model is graphical.\\
-\quad$\bullet$ e.g. no three-way interaction models with $\cC=\{\{1,2\},\{1,3\},\{2,3\}\}$.		
-\medskip
-	
-	Not every graphical model is a pairwise interaction model. \\
-\quad$\bullet$ e.g. $\cC=\{\{1,2,3\}\}$.\\[.3cm]
-	\end{beamercolorbox}
-	\medskip
-	
-Two remarks:
-\begin{itemize}
-\item Both pairwise interaction models and graphical models are represented by graphs but the graphs encode different information. 
-	\item Every pairwise interaction model with underlying graph $G$ is contained in graphical model over $G$. (so the conditional independence information is retained)
-\end{itemize}
-\end{frame}
+%\begin{frame}{Graphical and non-graphical models}
+%
+%	Hammersley-Clifford theorem (Slide~\ref{HC}) gives equivalent description in terms of conditional independences of a discrete graphical model.\\[.3cm]
+%		
+%Two remarks:
+%\begin{itemize}
+%\item Both pairwise interaction models and graphical models are represented by graphs but the graphs encode different information. 
+%	\item Every pairwise interaction model with underlying graph $G$ is contained in graphical model over $G$. (so the conditional independence information is retained)
+%\end{itemize}
+%\end{frame}
 
 \begin{frame}[fragile]{Fitting log-linear models in \texttt{R}}
 The function \texttt{loglin()} fits general log-linear models. We focus here on the ones represented by graphs, that is, graphical or pairwise. \\[.3cm]
@@ -943,25 +983,21 @@ Notice the \texttt{df} calculation, which in general may be complicated.
 %\end{frame}
 
 
-\begin{frame}{Model selection}
-In general graphical lasso approach is hard to perform. \\
-\quad {\small $\bullet$ c.f. Ling-Loh, Wainwright, \textit{Structure estimation for discrete graphical models: Generalized covariance matrices and their inverses}}
+%\begin{frame}{Model selection}
+%In general graphical lasso approach is hard to perform. \\
+%\quad {\small $\bullet$ c.f. Ling-Loh, Wainwright, \textit{Structure estimation for discrete graphical models: Generalized covariance matrices and their inverses}}
+%
+%\bigskip
+%Typical strategies:
+%\begin{enumerate}
+%	\item [(i)] using conditional independence tests,
+%	\item [(ii)] heuristic search to optimize some information criterion,
+%	\item [(iii)] Bayesian methods involving MCMC.
+%\end{enumerate}
+%\end{frame}
 
-\bigskip
-Typical strategies:
-\begin{enumerate}
-	\item [(i)] using conditional independence tests,
-	\item [(ii)] heuristic search to optimize some information criterion,
-	\item [(iii)] Bayesian methods involving MCMC.
-\end{enumerate}
-\end{frame}
-
-\begin{frame}[fragile]{Stepwise methods}
-	For stepwise methods of type (ii) typically the penalized likelihood criteria like BIC or AIC are used. For a set of models $M_j$ the criterion we minimize is:
-	$$
-	-2\log L(j) + k \dim M_j,
-	$$
-	where $k=2$ for AIC and $k=\log n$ for BIC.\\[.3cm]
+\begin{frame}[fragile]{Stepwise methods for discrete graphical models}
+	For stepwise methods  typically the penalized likelihood criteria like BIC or AIC are used.\\[.3cm]
 	Stepwise methods either start with the full graph or the empty graph.
 		\begin{lstlisting}
 > data(reinis); m.init <- dmod(~.^., data=reinis)
@@ -987,20 +1023,11 @@ Possible strategies:\\[.3cm]
 	\item Rely on simpler models (e.g. pairwise interaction models). \\[.3cm]
 	\item Restrict to very simple graphs (e.g. trees).
 \end{enumerate}
+\bigskip
+
+\alert{This is an active research area.}
 \end{frame}
 
-\begin{frame}[fragile,plain]{Bayesian Structure Learning using Birth-Death MCMC}
-\texttt{bdgraph.mpl} in the package \texttt{BDgraph} can be used for discrete data. Consider the data table $X$ defined in Slide~\ref{DepAnx}.
-\begin{lstlisting}
-> install.packages("BDgraph"); library(BDgraph)
-> X.fit <- bdgraph.mpl(X,method="dgm-binary",g.prior=.5)
-> A <- X.fit$p_links+t(X.fit$p_links)
-> qgraph::qgraph(A,layout="spring")
-\end{lstlisting}
-\begin{center}
-	\includegraphics[scale=.4]{pics/BDgraphDA}
-\end{center}
-\end{frame}
 
 
 \begin{frame}{Binary Ising model}
@@ -1015,18 +1042,18 @@ Possible strategies:\\[.3cm]
 
 
 \begin{frame}{Pseudo-likelihood approach}
-\begin{alertblock}{Logistic regression}
+\begin{block}{Logistic regression}
 Denoting \textcolor{blue}{$\eta_k=h_k+\sum_{i\neq k}\beta_{ik}x_i$}, the full conditional distributions satisfy
 	$$
 	\log p(x_k|x_{-k})=\eta_k x_k-\log(e^{-\eta_k}+e^{\eta_k })
 	$$ 
-	and so, if $p= p(1|x_{-k})$, then 
-	$$
-	\log \frac{p}{1-p}\;=\;2\eta_k\;=\;2h_k+\sum_{i\neq k}2\beta_{ik}x_i
-	$$
-\end{alertblock}
+	and so, if $p= p(1|x_{-k})$, then \;\;\;\;\;
+	$
+	\log \frac{p}{1-p}\;=\;2\eta_k\;=\;2h_k+\sum_{i\neq k}2\beta_{ik}x_i.
+	$
+\end{block}
 \begin{alertblock}{$\ell_1$-regularized logistic regression (Ravikumar et al, 2010)}
-	Having observed $x^{(1)},\ldots,x^{(n)}$, to learn the support of $B$, we can optimize for each $k$ the logistic regression given the data. Alternatively we can maximize
+	Having observed $\x_1,\ldots,\x_n$, to learn the support of $B$, we can optimize for each $k$ the logistic regression given the data. Alternatively we can maximize
 	$$
 	\sum_{i=1}^n \sum_{k\in V} \log p(x_k^{(i)}|x_{-k}^{(i)})\;-\;\lambda \|B\|_1.
 	$$
@@ -1077,7 +1104,6 @@ two variables perfectly correlated with each other and other seven variables.\\[
 	\begin{center}
 		\includegraphics[scale=.5]{pics/depr_corr}\includegraphics[scale=.5]{pics/depr_lasso}
 	\end{center}
-	Note that basically all edges on the right are green.
 \end{frame}
 
 
@@ -1085,34 +1111,34 @@ two variables perfectly correlated with each other and other seven variables.\\[
 
 \begin{frame}[plain,noframenumbering]{}
 \begin{center}
-	{\Huge \textcolor{DarkRed}{Part 3: Beyond the standard set-up}}
+	{\Huge \textcolor{DarkRed}{Gaussian copula graphical models}}
 \end{center}
 \end{frame}
 
 
 \begin{frame}[label=npn]{Nonparanormal distributions}
-	$(X_1,\ldots,X_m)$ has \textcolor{blue}{nonparanormal} distribution if $(f_1(X_1),\ldots,f_m(X_m))$ is Gaussian for some monotone functions $f_1,\ldots,f_m$.\\[.3cm]
-	The functions $f_i$ are treated again as nuisance parameters. The correlation matrix is estimated directly using \textcolor{blue}{rank correlation statistics}:\\[.2cm]
+	$(X_1,\ldots,X_m)$ has \textcolor{blue}{nonparanormal} distribution if $(f_1(X_1),\ldots,f_m(X_m))$ is Gaussian $N(\mu,\Sigma)$ for some monotone functions $f_1,\ldots,f_m$.
+	\begin{itemize}
+		\item This is the same as the Gaussian copula model; thus assume $\mu=0$, $\Sigma_{ii}=1$.
+	\end{itemize}	
+The functions $f_i$ are treated as nuisance parameters. The correlation matrix is estimated directly using \textcolor{blue}{rank correlation statistics}:\\[.2cm]
 	\begin{alertblock}{We can estimate the correlation matrix of $f(X)$ without knowing f!!}
-		If $\tau_{ij}={\rm cor}(\sgn(X_i-X_i'),\sgn(X_j-X_j'))$ is the \textcolor{blue}{Kendall's tau statistic} then
+		If $\tau_{ij}={\rm cor}(\sgn(X_i-X_i'),\sgn(X_j-X_j'))$ is the \textcolor{blue}{Kendall's tau coefficient} then
 	$$
-	\Sigma^0_{ij}:={\rm cor}(f(X_i),f(X_j))\;=\;\sin\left(\tfrac{\pi}{2}\tau_{ij}\right).
+	\Sigma_{ij}:={\rm cor}(f(X_i),f(X_j))\;=\;\sin\left(\tfrac{\pi}{2}\tau_{ij}\right).
 	$$
 	\vspace{-.8cm}
 	\begin{itemize}
 		\item $\tau_{ij}$'s are invariant under monotone transformations on $X_i$'s.
-		\item $f(X)$ is Gaussian and in this case the formula follows by standard results.
-		\item the inverse $\Sigma^0$ holds the conditional independence structure of $X$.\\{\footnotesize ($f_i(X_i)\indep f_j(X_j)|{\rm rest}$ \qquad$\Leftrightarrow$\qquad $\beta_{ij}=0$ \qquad$\Leftrightarrow$\qquad $X_i \indep X_j|{\rm rest}$)}
 	\end{itemize}
 	\end{alertblock}
+Note that graphical models for $X$ and $f(X)$ are identical.
 \end{frame}
 
 
 \begin{frame}[label=npn2]{Estimating nonparanormal graphical models}
-		Compute \alert{Kendall's tau} coefficients from the data (c.f. Slide~\ref{tau}) 	$$
-	\hat \tau_{ij}\;=\;\tfrac{1}{{n\choose 2}}\sum_{1\leq t\leq t'\leq n}{\rm sign}(X_{it}-X_{it'}){\rm sign}(X_{jt}-X_{jt'}).
-	$$
-	Define $\hat S^\tau=\sin(\tfrac{\pi}{2}\hat\tau_{ij})$.\\[.3cm]
+		Compute \alert{Kendall's tau} coefficients from the data (c.f. Slide~\ref{tau}).\\[4mm] 	
+		Define $\hat S^\tau=\sin(\tfrac{\pi}{2}\hat\tau_{ij})$.\\[.3cm]
 	Concentration analysis based on U-statistics shows that
 	$$
 	\max_{ij}|\hat S^\tau_{ij}-\Sigma^0_{ij}|=\mathcal O\left(\sqrt{\tfrac{\log(mn)}{n}}\right).
@@ -1136,11 +1162,11 @@ two variables perfectly correlated with each other and other seven variables.\\[
 # plot the graph corresponding to lambda=0.397
 > Khat <- (out.npn$icov[[15]]+t(out.npn$icov[[15]]))/2; colnames(Khat) <- rownames(Khat) <- colnames(x)
 > dev.off(); qgraph::qgraph(-cov2cor(Khat),layout="spring")
-	\end{lstlisting}
+\end{lstlisting}
 	This is a rather large example to be handled by \texttt{qgraph} directly.
 	\begin{lstlisting}
 > qgraph(x.npn,graph="glasso",sampleSize=nrow(x),layout="spring")
-	\end{lstlisting}
+\end{lstlisting}
 
 	{\scriptsize Zhao, T., Liu, H., Roeder, K., Lafferty, J., \& Wasserman, L. (2012). The huge package for high-dimensional undirected graph estimation in R. Journal of Machine Learning Research.}
 \end{frame}
@@ -1160,8 +1186,6 @@ For comparison a direct Gaussian approach gives:
 \begin{center}
 	\includegraphics[scale=.8]{pics/huge_stocks2}	
 \end{center}
-Note that all edges are green.\\
-{\scriptsize (for visualizing such big networks may be worthwhile to learn the \texttt{visNetwork} package)}
 \end{frame}
 
 
