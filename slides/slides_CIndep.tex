@@ -760,8 +760,8 @@ $\cM(G)$ consists of PD matrices $K$ such that $K_{ij}=0$ for $ij\notin E$. \\[.
 > gen.fit$fitinfo$dev; 1 - pchisq(gen.fit$fitinfo$dev, df=1)
 [1] 0.6793619[1] 0.4098065
 # Visualize estimated partial correlation network
-> K_sym <- (gen.fit$fitinfo$K + t(gen.fit$fitinfo$K)) / 2  
-> qgraph::qgraph(-cov2cor(K_sym), directed = FALSE)   \end{lstlisting}
+> S <- solve((gen.fit$fitinfo$K + t(gen.fit$fitinfo$K))/2)  
+> qgraph::qgraph(S, graph = "pcor")   \end{lstlisting}
 \end{frame}
 
 \begin{frame}[plain,noframenumbering]{}
@@ -885,7 +885,7 @@ where $\|K\|_1=\sum_{i\neq j}|K_{ij}|$ and $\lambda$ is a fixed penalty paramete
 \end{frame}
 
 
-\begin{frame}{Hierarchical models}
+\begin{frame}{Examples of log-linear models}
 Random vector $X=(X_1,\ldots,X_m)$ with state space $\cX=\cX_1\times \cdots\times \cX_m$,\quad  $|\cX_i|<+\infty$.\\[.3cm]
 	\alert{Generators}: Denote by $\cC$ a set of subsets of $\{1,\ldots,m\}$.\\[.4cm]
 	
@@ -1037,7 +1037,7 @@ Possible strategies:\\[.3cm]
 	Likelihood is hard to handle because $Z(h,B)$ is intractable if $m$ is large.\\
 	\bigskip
 	
-	This will be our first encounter with pseudo-likelihood methods.
+	This motivates pseudo-likelihood methods.
 \end{frame}
 
 
