@@ -13,6 +13,7 @@ More details can be found in [syllabus](syllabus2025.pdf) and [piazza](https://p
 ***
 
 ### Announcements:
+- Mar 26: I started adding exercises to practice for the final; see [here](#practice).
 - Mar 22: Midterm 2 results are out. Both sections had average ~65.
 - Mar 16: Midterm 2 with solutions is available: [Section 101](./exams/midterm2_101_sols.pdf), [Section 201](./exams/midterm2_201_sols.pdf).
 - Mar 12: Final project deadline has been extended to April 8.
@@ -177,6 +178,19 @@ This appendix provides guidelines on how to structure your final project report.
  
 - Data Summaries: Present key findings from visualizations and descriptive statistics.
 - Interpretation of Findings.
+
+***
+
+## Practice
+
+I cleaned-up the exercises so the numbers below refer to the newest version of the notes. 
+
+Chapter 1: 1-5,7-10,12,16,19,20,27,28
+Chapter 2: 2-5,7,9,10,16,18-20
+Chapter 3: 2,4,15,17,19,21,23,25-29,38
+Chapter 4: 1-11
+Chapter 5: 2, 12-14
+Chapter 6: 1, 3-9
 - How do the results answer your research question? Were the results expected or surprising?
 
 
