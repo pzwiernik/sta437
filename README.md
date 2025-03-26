@@ -178,6 +178,7 @@ This appendix provides guidelines on how to structure your final project report.
  
 - Data Summaries: Present key findings from visualizations and descriptive statistics.
 - Interpretation of Findings.
+- How do the results answer your research question? Were the results expected or surprising?
 
 ***
 
@@ -185,13 +186,17 @@ This appendix provides guidelines on how to structure your final project report.
 
 I cleaned-up the exercises so the numbers below refer to the newest version of the notes. 
 
-Chapter 1: 1-5,7-10,12,16,19,20,27,28
-Chapter 2: 2-5,7,9,10,16,18-20
-Chapter 3: 2,4,15,17,19,21,23,25-29,38
-Chapter 4: 1-11
-Chapter 5: 2, 12-14
-Chapter 6: 1, 3-9
-- How do the results answer your research question? Were the results expected or surprising?
+**Chapter 1:** 1-5,7-10,12,16,19,20,27,28
+
+**Chapter 2:** 2-5,7,9,10,16,18-20
+
+**Chapter 3:** 2,4,15,17,19,21,23,25-29,38
+
+**Chapter 4:** 1-11
+
+**Chapter 5:** 2, 12-14
+
+**Chapter 6:** 1, 3-9
 
 
 
