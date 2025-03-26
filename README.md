@@ -184,7 +184,7 @@ This appendix provides guidelines on how to structure your final project report.
 
 ## Practice
 
-I cleaned-up the exercises so the numbers below refer to the newest version of the notes. 
+This is the list of exercises that should be relevant for preparing for the final. I cleaned-up the exercises so the numbers below refer to the newest version of the notes. The list is incomplete and it covers only Chapters 1-6 for now. The rest is coming soon.
 
 **Chapter 1:** 1-5,7-10,12,16,19,20,27,28
 
