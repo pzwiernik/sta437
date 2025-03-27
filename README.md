@@ -13,6 +13,7 @@ More details can be found in [syllabus](syllabus2025.pdf) and [piazza](https://p
 ***
 
 ### Announcements:
+- Mar 27: Office hours for Project 1: Monday, March 31, Monday from 2PM to 3:30PM on [zoom](https://utoronto.zoom.us/j/3094786621).  Office hours for Project 2: Tuesday from 9.30AM to 11AM on [zoom](https://utoronto.zoom.us/j/86249039588). 
 - Mar 27: The recording for the last lecture is now available. Extra office hours will be organized soon.
 - Mar 26: I started adding exercises to practice for the final; see [here](#practice).
 - Mar 22: Midterm 2 results are out. Both sections had average ~65.
