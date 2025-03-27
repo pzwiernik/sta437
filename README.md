@@ -13,6 +13,7 @@ More details can be found in [syllabus](syllabus2025.pdf) and [piazza](https://p
 ***
 
 ### Announcements:
+- Mar 27: The recording for the last lecture is now available. Extra office hours will be organized soon.
 - Mar 26: I started adding exercises to practice for the final; see [here](#practice).
 - Mar 22: Midterm 2 results are out. Both sections had average ~65.
 - Mar 16: Midterm 2 with solutions is available: [Section 101](./exams/midterm2_101_sols.pdf), [Section 201](./exams/midterm2_201_sols.pdf).
@@ -84,7 +85,7 @@ The midterms are short (1 hour) and they focus on simple conceptual/theory quest
 | **9** | Multidimensional Scaling <br> Laplacian eigenmap and UMAP   | [slides9](./slides/slides_dim_reduction.pdf)<br>[notes9](./lectures/lecture9.pdf) | **midterm2**| 12 Mar| |
 | **10** |Canonical Correlation Analysis (CCA)<br> Factor Analysis (FA)   | [slidesFA](./slides/slides_FAandICA.pdf)<br>[notes10](./lectures/lecture10.pdf)| DL: [tut10](./tutorials/tutorial10.pdf) | 19 Mar| |
 | 11 |  Conditional independence  <br> Graphical models | [slidesCIndep](./slides/slides_CIndep.pdf) | SCh  | 26 Mar |  |
-| 12 | Gaussian Graphical models <br> Ising model  | (pre-recorded) | LSM| Apr 2|  |
+| 12 | Gaussian Graphical models <br> Ising model  | [rec1](https://play.library.utoronto.ca/watch/51c446e607fca33fa189ffa54bbf1d90) <br> [rec2](https://play.library.utoronto.ca/watch/44ec7ff903a7af02c62be22bafa29d6a) | LSM| Apr 2|  |
 
 
 
