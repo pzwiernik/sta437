@@ -86,7 +86,7 @@ The midterms are short (1 hour) and they focus on simple conceptual/theory quest
 | **9** | Multidimensional Scaling <br> Laplacian eigenmap and UMAP   | [slides9](./slides/slides_dim_reduction.pdf)<br>[notes9](./lectures/lecture9.pdf) | **midterm2**| 12 Mar| |
 | **10** |Canonical Correlation Analysis (CCA)<br> Factor Analysis (FA)   | [slidesFA](./slides/slides_FAandICA.pdf)<br>[notes10](./lectures/lecture10.pdf)| DL: [tut10](./tutorials/tutorial10.pdf) | 19 Mar| |
 | **11** |  Conditional independence  <br> Graphical models | [slidesCIndep](./slides/slides_CIndep.pdf) | SCh: [tut11](./tutorials/tutorial11.pdf)  | 26 Mar |  |
-| **12** | Gaussian Graphical models <br> Ising model  | [rec1](https://play.library.utoronto.ca/watch/51c446e607fca33fa189ffa54bbf1d90) <br> [rec2](https://play.library.utoronto.ca/watch/44ec7ff903a7af02c62be22bafa29d6a) | LSM| Apr 2|  |
+| **12** | Gaussian Graphical models <br> Ising model  | [rec1](https://play.library.utoronto.ca/watch/51c446e607fca33fa189ffa54bbf1d90) <br> [rec2](https://play.library.utoronto.ca/watch/44ec7ff903a7af02c62be22bafa29d6a) | LSM: [tut12](./tutorials/tutorial12.pdf) <br> [code](./tutorials/Simulation-LRT.html)| Apr 2|  |
 
 
 
