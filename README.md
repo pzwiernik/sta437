@@ -200,6 +200,10 @@ This is the list of exercises that should be relevant for preparing for the fina
 
 **Chapter 6:** 1, 3-9
 
+**Chapter 7:** 1, 4
+
+**Chapter 8:** 1, 2, 7
+
 
 
 
